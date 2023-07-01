@@ -132,7 +132,8 @@ class btnView extends StatelessWidget {
         SizedBox(width: 25.0),
         btnRegisterClear(),
         SizedBox(width: 25.0),
-        btnToLoginPage()
+        btnToLoginPage(),
+        SizedBox(width: 25.0),
       ],
     );
   }
@@ -166,7 +167,7 @@ class btnRegisterSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -206,11 +207,6 @@ class btnRegisterSend extends StatelessWidget {
     }
   }
 
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
-
   //輸出成功註冊
   Future<void> showFinnshAlert(BuildContext context) {
     return showDialog<void>(
@@ -230,6 +226,11 @@ class btnRegisterSend extends StatelessWidget {
         );
       },
     );
+  }
+
+  //跳回登入主頁
+  void pushToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
   }
 
   // 顯示 SnackBar 訊息與自定義按鈕
@@ -261,7 +262,7 @@ class btnRegisterClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -292,7 +293,7 @@ class btnToLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),

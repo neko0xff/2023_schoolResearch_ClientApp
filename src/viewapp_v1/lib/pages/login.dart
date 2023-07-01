@@ -110,7 +110,8 @@ class btnView extends StatelessWidget {
         SizedBox(width: 25.0),
         btnLoginClear(),
         SizedBox(width: 25.0),
-        btnToRegisterPage()
+        btnToRegisterPage(),
+        SizedBox(width: 25.0),
       ],
     );
   }
@@ -144,7 +145,7 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
@@ -170,23 +171,25 @@ class btnLoginSend extends StatelessWidget {
     });
     final result = response.body;
     final data = jsonDecode(result);
+    final code = data["code"];
 
     /*主迴圈*/
-    if (data["code"] == "1") {
+    if (code == "1") {
       // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
-            username: usernameStr.text,
+            username: data["username"],
+            LoginName: data["LoginName"],
             key: null,
           ),
         ),
       );
-    } else if (data["code"] == "0") {
+    } else if (code == "0") {
       // ignore: use_build_context_synchronously
       showSnackBar_FailLogin(context);
-    } else if (data["code"] == "-1") {
+    } else if (code == "-1") {
       // ignore: use_build_context_synchronously
       showSnackBar_FailCN(context);
     } else {
@@ -227,7 +230,7 @@ class btnLoginClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -262,7 +265,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),

@@ -1,5 +1,5 @@
 // ignore: duplicate_ignore
-// ignore_for_file: must_be_immutable, duplicate_ignore
+// ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 @immutable
 class HomePage extends StatelessWidget {
   String? username;
-  HomePage({required Key? key, this.username}) : super(key: key);
+  String? LoginName;
+  HomePage({required Key? key, this.username, this.LoginName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class HomePage extends StatelessWidget {
         drawer: DrawerMenu(
           key: null,
           username: username,
+          LoginName: LoginName,
         ),
       ),
     );
@@ -47,7 +50,9 @@ class HomePage extends StatelessWidget {
 @immutable
 class DrawerMenu extends StatelessWidget {
   String? username;
-  DrawerMenu({required Key? key, this.username}) : super(key: key);
+  String? LoginName;
+  DrawerMenu({required Key? key, this.username, this.LoginName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +61,7 @@ class DrawerMenu extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text('$username'),
-            accountEmail: const Text(''),
+            accountEmail: Text('$LoginName'),
             //設定大頭照
             currentAccountPicture: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/user.png"),
