@@ -2,14 +2,21 @@
 // ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:viewapp_v1/class/user.dart';
+import 'package:viewapp_v1/pages/out/sensor.dart';
 
 // ignore: must_be_immutable
 @immutable
 class HomePage extends StatelessWidget {
   String? username;
   String? LoginName;
-  HomePage({required Key? key, this.username, this.LoginName})
-      : super(key: key);
+  String? serverSource;
+  final userData user;
+  HomePage({required Key? key, required this.user}) : super(key: key) {
+    username = user.username;
+    LoginName = user.LoginName;
+    serverSource = user.serverSource;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +29,16 @@ class HomePage extends StatelessWidget {
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
               Tab(text: "Home"),
-              Tab(text: "Repo"),
+              Tab(text: "Sensor"),
               Tab(text: "Activity"),
               Tab(text: "Issues"),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: <Widget>[
             Text("Home"),
-            Text("Repo"),
+            Sensor(user: user),
             Text("Activity"),
             Text("Issues"),
           ],
@@ -40,6 +47,7 @@ class HomePage extends StatelessWidget {
           key: null,
           username: username,
           LoginName: LoginName,
+          serverSource: serverSource,
         ),
       ),
     );
@@ -51,7 +59,9 @@ class HomePage extends StatelessWidget {
 class DrawerMenu extends StatelessWidget {
   String? username;
   String? LoginName;
-  DrawerMenu({required Key? key, this.username, this.LoginName})
+  String? serverSource;
+  DrawerMenu(
+      {required Key? key, this.username, this.LoginName, this.serverSource})
       : super(key: key);
 
   @override
@@ -60,13 +70,14 @@ class DrawerMenu extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text('$username'),
-            accountEmail: Text('$LoginName'),
+            accountName: Text('$LoginName'),
+            accountEmail: Text('$username@$serverSource'),
             //設定大頭照
             currentAccountPicture: const CircleAvatar(
               backgroundImage: AssetImage("assets/images/user.png"),
             ),
           ),
+          const BtnAbout(),
           const BtnLogOut(),
         ],
       ),
@@ -90,5 +101,24 @@ class BtnLogOut extends StatelessWidget {
 
   void toLoginPage(BuildContext context) {
     Navigator.pushNamed(context, '/login');
+  }
+}
+
+class BtnAbout extends StatelessWidget {
+  const BtnAbout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: const CircleAvatar(child: Icon(Icons.info)),
+      title: const Text('About'),
+      onTap: () {
+        toLoginPage(context);
+      },
+    );
+  }
+
+  void toLoginPage(BuildContext context) {
+    Navigator.pushNamed(context, '/about');
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/pages/home.dart';
 import 'package:viewapp_v1/pages/register.dart';
 
@@ -176,13 +177,17 @@ class btnLoginSend extends StatelessWidget {
     /*主迴圈*/
     if (code == "1") {
       // ignore: use_build_context_synchronously
+      final userData user = userData(
+          serverSource: serverSourceStr.text,
+          username: data["username"],
+          LoginName: data["LoginName"]);
+      // ignore: use_build_context_synchronously
       Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
-            username: data["username"],
-            LoginName: data["LoginName"],
             key: null,
+            user: user,
           ),
         ),
       );
@@ -265,7 +270,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 90.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),

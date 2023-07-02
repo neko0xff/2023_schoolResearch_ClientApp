@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -6,6 +8,7 @@ TextEditingController serverSourceStr = TextEditingController();
 TextEditingController usernameStr = TextEditingController();
 TextEditingController loginNameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
+TextEditingController ConfirmPasswordStr = TextEditingController();
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -51,7 +54,8 @@ class LoginStr extends StatelessWidget {
         tbServerSource(),
         tbloginName(),
         tbUsername(),
-        tbPassword()
+        tbPassword(),
+        tbConfirmPassword(),
       ],
     );
   }
@@ -161,13 +165,34 @@ class tbPassword extends StatelessWidget {
 }
 
 // ignore: camel_case_types
+class tbConfirmPassword extends StatelessWidget {
+  const tbConfirmPassword({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: TextFormField(
+        controller: ConfirmPasswordStr,
+        obscureText: true,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.lock),
+          labelText: "Confirm Password",
+          hintText: "Password Check",
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: camel_case_types
 class btnRegisterSend extends StatelessWidget {
   const btnRegisterSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 90.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -179,7 +204,18 @@ class btnRegisterSend extends StatelessWidget {
   }
 
   // 使用者比對部分
-  Future<dynamic> sendUserData(BuildContext context) async {
+  void sendUserData(BuildContext context) {
+    String? password = passwordStr.text;
+    String? ConfirmPassword = ConfirmPasswordStr.text;
+
+    if (password != ConfirmPassword) {
+      showSnackBar_FailPassword(context);
+    } else {
+      cnServer(context);
+    }
+  }
+
+  Future<dynamic> cnServer(BuildContext context) async {
     String? serverSource = serverSourceStr.text;
     String? loginName = loginNameStr.text;
     String? username = usernameStr.text;
@@ -234,7 +270,6 @@ class btnRegisterSend extends StatelessWidget {
   }
 
   // 顯示 SnackBar 訊息與自定義按鈕
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailLogin(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -244,11 +279,19 @@ class btnRegisterSend extends StatelessWidget {
     );
   }
 
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailCN(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Connect Fail"), // 簡單基本訊息
+        duration: Duration(seconds: 5), // 停留時間
+      ),
+    );
+  }
+
+  void showSnackBar_FailPassword(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Password Not Confirm"), // 簡單基本訊息
         duration: Duration(seconds: 5), // 停留時間
       ),
     );
@@ -278,6 +321,7 @@ class btnRegisterClear extends StatelessWidget {
     loginNameStr.text = "";
     usernameStr.text = "";
     passwordStr.text = "";
+    ConfirmPasswordStr.text = "";
   }
 }
 

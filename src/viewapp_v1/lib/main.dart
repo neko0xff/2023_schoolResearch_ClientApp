@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:viewapp_v1/pages/home.dart';
+import 'package:viewapp_v1/pages/about.dart';
 import 'package:viewapp_v1/pages/login.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class viewAppMain extends StatelessWidget {
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
-          '/home': (context) => HomePage(key: null),
+          '/about': (context) => const AboutPage(),
         });
   }
 }
