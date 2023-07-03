@@ -1,27 +1,23 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'dart:convert';
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:viewapp_v1/class/user.dart';
-import 'package:viewapp_v1/modules/PreferencesUtil.dart';
-import 'package:viewapp_v1/pages/home.dart';
-import 'package:viewapp_v1/pages/register.dart';
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
 TextEditingController usernameStr = TextEditingController();
+TextEditingController loginNameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
+TextEditingController ConfirmPasswordStr = TextEditingController();
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class updateUserPage extends StatelessWidget {
+  const updateUserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text("Register Page"),
         automaticallyImplyLeading: false,
       ),
       body: const InputGet(),
@@ -54,7 +50,13 @@ class LoginStr extends StatelessWidget {
     return const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[tbServerSource(), tbUsername(), tbPassword()],
+      children: <Widget>[
+        tbServerSource(),
+        tbloginName(),
+        tbUsername(),
+        tbPassword(),
+        tbConfirmPassword(),
+      ],
     );
   }
 }
@@ -100,6 +102,26 @@ class tbUsername extends StatelessWidget {
 }
 
 // ignore: camel_case_types
+class tbloginName extends StatelessWidget {
+  const tbloginName({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: TextFormField(
+        controller: loginNameStr,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.person),
+          labelText: "Login Name",
+          hintText: "Your account use a NickName",
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: camel_case_types
 class btnView extends StatelessWidget {
   const btnView({super.key});
 
@@ -110,11 +132,11 @@ class btnView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         SizedBox(width: 25.0),
-        btnLoginSend(),
+        btnRegisterSend(),
         SizedBox(width: 25.0),
-        btnLoginClear(),
+        btnRegisterClear(),
         SizedBox(width: 25.0),
-        btnToRegisterPage(),
+        btnToLoginPage(),
         SizedBox(width: 25.0),
       ],
     );
@@ -143,16 +165,37 @@ class tbPassword extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class btnLoginSend extends StatelessWidget {
-  const btnLoginSend({Key? key}) : super(key: key);
+class tbConfirmPassword extends StatelessWidget {
+  const tbConfirmPassword({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      child: TextFormField(
+        controller: ConfirmPasswordStr,
+        obscureText: true,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.lock),
+          labelText: "Confirm Password",
+          hintText: "Password Check",
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: camel_case_types
+class btnRegisterSend extends StatelessWidget {
+  const btnRegisterSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 90.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Login"),
+        child: const Text("Register"),
         onPressed: () {
           sendUserData(context);
         },
@@ -161,55 +204,72 @@ class btnLoginSend extends StatelessWidget {
   }
 
   // 使用者比對部分
-  Future<dynamic> sendUserData(BuildContext context) async {
+  void sendUserData(BuildContext context) {
+    String? password = passwordStr.text;
+    String? ConfirmPassword = ConfirmPasswordStr.text;
+
+    if (password != ConfirmPassword) {
+      showSnackBar_FailPassword(context);
+    } else {
+      cnServer(context);
+    }
+  }
+
+  Future<dynamic> cnServer(BuildContext context) async {
     String? serverSource = serverSourceStr.text;
+    String? loginName = loginNameStr.text;
     String? username = usernameStr.text;
     String? password = passwordStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/Login");
+    final Uri uri = Uri.http(serverSource, "/CreateUser");
     final response = await http.post(uri, body: {
       "username": username,
-      "password": password
+      "password": password,
+      "LoginName": loginName
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });
     final result = response.body;
-    final data = jsonDecode(result);
-    final code = data["code"];
 
-    /*主迴圈*/
-    if (code == "1") {
-      final userData user = userData(
-          serverSource: serverSourceStr.text,
-          LoginName: data["LoginName"],
-          username: data["username"]);
-      /*save Str in local*/
-      PreferencesUtil.saveString('serverSource', serverSourceStr.text);
-      PreferencesUtil.saveString('username', data["username"]);
-      PreferencesUtil.saveString('LoginName', data["LoginName"]);
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(
-            key: null,
-            user: user,
-          ),
-        ),
-      );
-    } else if (code == "0") {
+    if (result == "1") {
+      // ignore: use_build_context_synchronously
+      showFinnshAlert(context);
+    } else if (result == "0") {
+      // ignore: use_build_context_synchronously
       showSnackBar_FailLogin(context);
-    } else if (code == "-1") {
-      showSnackBar_FailCN(context);
     } else {
+      // ignore: use_build_context_synchronously
       showSnackBar_FailCN(context);
     }
   }
 
-  //跳到下一頁
-  void pushToHome(BuildContext context) {}
+  //輸出成功註冊
+  Future<void> showFinnshAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Register Finnish!'),
+          content: const Text('Please Go to Login Page,You now can Login!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToLogin(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //跳回登入主頁
+  void pushToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
+  }
 
   // 顯示 SnackBar 訊息與自定義按鈕
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailLogin(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -219,7 +279,6 @@ class btnLoginSend extends StatelessWidget {
     );
   }
 
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailCN(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -228,11 +287,20 @@ class btnLoginSend extends StatelessWidget {
       ),
     );
   }
+
+  void showSnackBar_FailPassword(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Password Not Confirm"), // 簡單基本訊息
+        duration: Duration(seconds: 5), // 停留時間
+      ),
+    );
+  }
 }
 
 // ignore: camel_case_types
-class btnLoginClear extends StatelessWidget {
-  const btnLoginClear({super.key});
+class btnRegisterClear extends StatelessWidget {
+  const btnRegisterClear({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -250,34 +318,31 @@ class btnLoginClear extends StatelessWidget {
 
   void clearInput() {
     serverSourceStr.text = "";
+    loginNameStr.text = "";
     usernameStr.text = "";
     passwordStr.text = "";
+    ConfirmPasswordStr.text = "";
   }
 }
 
 // ignore: camel_case_types
-class btnToRegisterPage extends StatelessWidget {
-  const btnToRegisterPage({super.key});
+class btnToLoginPage extends StatelessWidget {
+  const btnToLoginPage({super.key});
 
   //跳回登入主頁
-  void pushToRegister(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const RegisterPage(),
-      ),
-    );
+  void pushToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 90.0,
+      width: 80.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Register"),
+        child: const Text("Login"),
         onPressed: () {
-          pushToRegister(context);
+          pushToLogin(context);
         },
       ),
     );

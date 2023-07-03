@@ -1,34 +1,26 @@
-// ignore_for_file: camel_case_types, must_be_immutable, unused_import, non_constant_identifier_names, library_private_types_in_public_api
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:viewapp_v1/class/user.dart';
+import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 
 class Sensor extends StatelessWidget {
-  final userData user;
-  String? serverSource;
-
-  Sensor({Key? key, required this.user}) : super(key: key) {
-    serverSource = user.serverSource;
-  }
+  const Sensor({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: SensorPage(user: user),
+        body: SensorPage(),
       ),
     );
   }
 }
 
 class SensorPage extends StatelessWidget {
-  final userData user;
-  String? serverSource;
-  SensorPage({Key? key, required this.user}) : super(key: key) {
-    serverSource = user.serverSource;
-  }
+  const SensorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,135 +28,197 @@ class SensorPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        const SizedBox(height: 10.0),
-        const Text("Output Data"),
-        const SizedBox(height: 10.0),
-        data1(user: user),
-        const SizedBox(height: 10.0),
+        SizedBox(height: 10.0),
+        Text("Output Data", style: TextStyle(fontSize: 20)),
+        SizedBox(height: 10.0),
+        const Data1(),
+        SizedBox(height: 10.0),
       ],
     );
   }
 }
 
-class data1 extends StatelessWidget {
-  String? serverSource;
-  final userData user;
-  data1({Key? key, required this.user}) : super(key: key) {
-    serverSource = user.serverSource;
-  }
+class Data1 extends StatelessWidget {
+  const Data1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: MetaTable1(user: user),
+      child: MetaTable1(),
     );
   }
 }
 
 class MetaTable1 extends StatefulWidget {
-  final userData user;
-
-  const MetaTable1({Key? key, required this.user}) : super(key: key);
+  const MetaTable1({Key? key}) : super(key: key);
 
   @override
   _MetaTable1State createState() => _MetaTable1State();
 }
 
 class _MetaTable1State extends State<MetaTable1> {
-  late final userData user;
-  String? serverSource;
-
-  List<dynamic> data = [];
+  late Future<Map<String, dynamic>> _dataFuture;
 
   @override
   void initState() {
     super.initState();
-    fetchData();
+    _dataFuture = getData();
   }
 
-  Future<List> fetchData() async {
-    String serverSource = widget.user.serverSource!;
-    String uriSource = "$serverSource/read/Sensor01/ALL";
-    final response = await http.get(Uri.parse(uriSource));
-    if (response.statusCode == 200) {
-      setState(() {
-        data = jsonDecode(response.body);
-      });
-    }
-
-    return data;
+  Future<Map<String, dynamic>> getData() async {
+    final String? serverSource =
+        await PreferencesUtil.getString("serverSource");
+    final Uri uri = Uri.http(serverSource!, "/read/Sensor01/ALL");
+    final response = await http.get(uri);
+    final result = response.body;
+    final data = jsonDecode(result);
+    print(data[0]);
+    return Map<String, dynamic>.from(data[0]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      columnWidths: const <int, TableColumnWidth>{
-        //指定索引及固定列宽
-        0: FixedColumnWidth(100.0),
-        1: FixedColumnWidth(100.0),
-        2: FixedColumnWidth(100.0),
+    return FutureBuilder<Map<String, dynamic>>(
+      future: _dataFuture,
+      builder:
+          (BuildContext context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          final data = snapshot.data!;
+          return output(data);
+        }
       },
-      //設定表格樣式
-      border: TableBorder.all(
-          color: Colors.black87, width: 1.0, style: BorderStyle.solid),
-      children: <TableRow>[
-        const TableRow(
-          children: <Widget>[
-            Center(child: Text('開發版')),
-            Center(child: Text('感測氣體')),
-            Center(child: Text('回傳值')),
-          ],
-        ),
-        TableRow(
-          children: <Widget>[
-            const Center(child: Text('Sensor01')),
-            const Center(child: Text('temp')),
-            Center(child: Text('${data[1]}')),
-          ],
-        ),
-        TableRow(
-          children: <Widget>[
-            const Center(child: Text('Sensor01')),
-            const Center(child: Text('hum')),
-            Center(child: Text('${data[2]}')),
-          ],
-        ),
-        TableRow(
-          children: <Widget>[
-            const Center(child: Text('Sensor01')),
-            const Center(child: Text('tvoc')),
-            Center(child: Text('${data[3]}')),
-          ],
-        ),
-        TableRow(
-          children: <Widget>[
-            const Center(child: Text('Sensor01')),
-            const Center(child: Text('co')),
-            Center(child: Text('${data[4]}')),
-          ],
-        ),
-        const TableRow(
-          children: <Widget>[
-            Center(child: Text('Sensor01')),
-            Center(child: Text('co2')),
-            Center(child: Text('每週 一、三 21:00~22:00')),
-          ],
-        ),
-        const TableRow(
-          children: <Widget>[
-            Center(child: Text('Sensor01')),
-            Center(child: Text('PM2.5')),
-            Center(child: Text('每週 一、三 21:00~22:00')),
-          ],
-        ),
-        const TableRow(
-          children: <Widget>[
-            Center(child: Text('Sensor01')),
-            Center(child: Text('o3')),
-            Center(child: Text('每週 一、三 21:00~22:00')),
-          ],
-        ),
+    );
+  }
+
+  Widget output(Map<String, dynamic> data) {
+    return Column(
+      children: <Widget>[
+        buildTable(data),
+        UpdateDay(data),
       ],
     );
+  }
+
+  Widget UpdateDay(Map<String, dynamic> data) {
+    return Center(
+        child: Column(
+      children: <Widget>[
+        Text("Update Time", style: TextStyle(fontSize: 20)),
+        Text("Date= " + data["date"], style: TextStyle(fontSize: 20)),
+        Text("Time= " + data["time"], style: TextStyle(fontSize: 20)),
+      ],
+    ));
+  }
+
+  Widget buildTable(Map<String, dynamic> data) {
+    return Center(
+        child: Column(children: <Widget>[
+      Table(
+        columnWidths: const <int, TableColumnWidth>{
+          0: FixedColumnWidth(110.0),
+          1: FixedColumnWidth(110.0),
+          2: FixedColumnWidth(110.0),
+        },
+        border: TableBorder.all(
+          color: Colors.black87,
+          width: 1.0,
+          style: BorderStyle.solid,
+        ),
+        children: <TableRow>[
+          const TableRow(
+            children: <Widget>[
+              Center(
+                  child: Text(
+                '開發版',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              )),
+              Center(
+                  child: Text(
+                '感測氣體',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              )),
+              Center(
+                  child: Text(
+                '回傳值',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              )),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('temp', style: TextStyle(fontSize: 25))),
+              Center(
+                  child:
+                      Text('${data["temp"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('hum', style: TextStyle(fontSize: 25))),
+              Center(
+                  child:
+                      Text('${data["hum"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('tvoc', style: TextStyle(fontSize: 25))),
+              Center(
+                  child:
+                      Text('${data["tvoc"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('co', style: TextStyle(fontSize: 25))),
+              Center(
+                  child: Text('${data["co"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('co2', style: TextStyle(fontSize: 25))),
+              Center(
+                  child:
+                      Text('${data["co2"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(
+                  child: Text('PM2.5', style: TextStyle(fontSize: 25))),
+              Center(
+                  child:
+                      Text('${data["pm25"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+          TableRow(
+            children: <Widget>[
+              const Center(
+                  child: Text('Sensor01', style: TextStyle(fontSize: 25))),
+              const Center(child: Text('O3', style: TextStyle(fontSize: 25))),
+              Center(
+                  child: Text('${data["o3"]}', style: TextStyle(fontSize: 25))),
+            ],
+          ),
+        ],
+      ),
+    ]));
   }
 }

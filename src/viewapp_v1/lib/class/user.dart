@@ -2,9 +2,9 @@
 
 /*使用者資訊*/
 class userData {
-  String? serverSource;
-  String? username;
-  String? LoginName;
+  final String? serverSource;
+  final String? username;
+  final String? LoginName;
 
   userData({this.serverSource, this.username, this.LoginName});
 }
