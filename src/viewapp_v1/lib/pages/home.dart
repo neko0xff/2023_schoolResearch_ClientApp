@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/modules/PreferencesUtil.dart';
+import 'package:viewapp_v1/pages/out/main.dart';
 import 'package:viewapp_v1/pages/out/sensor.dart';
 
 // ignore: must_be_immutable
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
           title: const TabBar(
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
-              Tab(text: "Home"),
+              Tab(text: "Main"),
               Tab(text: "Sensor"),
               Tab(text: "Activity"),
               Tab(text: "Issues"),
@@ -39,7 +40,7 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: const <Widget>[
-            Text("Home"),
+            Main(),
             Sensor(),
             Text("Activity"),
             Text("Issues"),

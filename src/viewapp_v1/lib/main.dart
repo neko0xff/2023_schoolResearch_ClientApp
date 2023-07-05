@@ -11,6 +11,7 @@ class viewAppMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: "View App v1",
         theme: ThemeData(
           primarySwatch: Colors.blueGrey,

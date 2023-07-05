@@ -33,7 +33,7 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          LoginStr(),
+          RegisterStr(),
           SizedBox(height: 10.0),
           btnView(),
           SizedBox(height: 10.0),
@@ -43,8 +43,8 @@ class InputGet extends StatelessWidget {
   }
 }
 
-class LoginStr extends StatelessWidget {
-  const LoginStr({super.key});
+class RegisterStr extends StatelessWidget {
+  const RegisterStr({super.key});
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -68,7 +68,7 @@ class tbServerSource extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: serverSourceStr,
         decoration: const InputDecoration(
@@ -88,7 +88,7 @@ class tbUsername extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: usernameStr,
         decoration: const InputDecoration(
@@ -108,7 +108,7 @@ class tbloginName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: loginNameStr,
         decoration: const InputDecoration(
@@ -122,35 +122,13 @@ class tbloginName extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class btnView extends StatelessWidget {
-  const btnView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        SizedBox(width: 25.0),
-        btnRegisterSend(),
-        SizedBox(width: 25.0),
-        btnRegisterClear(),
-        SizedBox(width: 25.0),
-        btnToLoginPage(),
-        SizedBox(width: 25.0),
-      ],
-    );
-  }
-}
-
-// ignore: camel_case_types
 class tbPassword extends StatelessWidget {
   const tbPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: passwordStr,
         obscureText: true,
@@ -171,7 +149,7 @@ class tbConfirmPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: ConfirmPasswordStr,
         obscureText: true,
@@ -181,6 +159,28 @@ class tbConfirmPassword extends StatelessWidget {
           hintText: "Password Check",
         ),
       ),
+    );
+  }
+}
+
+// ignore: camel_case_types
+class btnView extends StatelessWidget {
+  const btnView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        SizedBox(width: 20.0),
+        btnRegisterSend(),
+        SizedBox(width: 20.0),
+        btnRegisterClear(),
+        SizedBox(width: 20.0),
+        btnToLoginPage(),
+        SizedBox(width: 20.0),
+      ],
     );
   }
 }

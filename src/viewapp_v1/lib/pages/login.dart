@@ -37,8 +37,9 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          LoginStr(),
           SizedBox(height: 10.0),
+          LoginStr(),
+          SizedBox(height: 15.0),
           btnView(),
           SizedBox(height: 10.0),
         ],
@@ -66,7 +67,7 @@ class tbServerSource extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: serverSourceStr,
         decoration: const InputDecoration(
@@ -86,13 +87,34 @@ class tbUsername extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: usernameStr,
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.person),
           labelText: "Name",
           hintText: "Your account username",
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: camel_case_types
+class tbPassword extends StatelessWidget {
+  const tbPassword({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
+      child: TextFormField(
+        controller: passwordStr,
+        obscureText: true,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.lock),
+          labelText: "Password",
+          hintText: "Your account password",
         ),
       ),
     );
@@ -117,27 +139,6 @@ class btnView extends StatelessWidget {
         btnToRegisterPage(),
         SizedBox(width: 25.0),
       ],
-    );
-  }
-}
-
-// ignore: camel_case_types
-class tbPassword extends StatelessWidget {
-  const tbPassword({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-      child: TextFormField(
-        controller: passwordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Password",
-          hintText: "Your account password",
-        ),
-      ),
     );
   }
 }

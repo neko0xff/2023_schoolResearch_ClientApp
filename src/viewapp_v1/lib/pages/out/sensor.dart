@@ -12,6 +12,7 @@ class Sensor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SensorPage(),
       ),
@@ -134,17 +135,17 @@ class _MetaTable1State extends State<MetaTable1> {
               Center(
                   child: Text(
                 '開發版',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               )),
               Center(
                   child: Text(
                 '感測氣體',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               )),
               Center(
                   child: Text(
                 '回傳值',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               )),
             ],
           ),
