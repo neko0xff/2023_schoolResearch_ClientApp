@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1/pages/home.dart';
-import 'package:viewapp_v1/pages/register.dart';
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
@@ -134,7 +133,7 @@ class btnView extends StatelessWidget {
         SizedBox(width: 25.0),
         btnLoginSend(),
         SizedBox(width: 25.0),
-        btnLoginClear(),
+        btnClear(),
         SizedBox(width: 25.0),
         btnToRegisterPage(),
         SizedBox(width: 25.0),
@@ -201,13 +200,8 @@ class btnLoginSend extends StatelessWidget {
       showSnackBar_FailLogin(context);
     } else if (code == "-1") {
       showSnackBar_FailCN(context);
-    } else {
-      showSnackBar_FailCN(context);
     }
   }
-
-  //跳到下一頁
-  void pushToHome(BuildContext context) {}
 
   // 顯示 SnackBar 訊息與自定義按鈕
   // ignore: non_constant_identifier_names
@@ -232,8 +226,8 @@ class btnLoginSend extends StatelessWidget {
 }
 
 // ignore: camel_case_types
-class btnLoginClear extends StatelessWidget {
-  const btnLoginClear({super.key});
+class btnClear extends StatelessWidget {
+  const btnClear({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -262,12 +256,7 @@ class btnToRegisterPage extends StatelessWidget {
 
   //跳回登入主頁
   void pushToRegister(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const RegisterPage(),
-      ),
-    );
+    Navigator.pushNamed(context, '/register');
   }
 
   @override

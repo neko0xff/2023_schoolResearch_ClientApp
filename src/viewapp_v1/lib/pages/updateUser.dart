@@ -1,24 +1,22 @@
-// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously
+// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types,use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 
-// 定義輸入元件
-TextEditingController serverSourceStr = TextEditingController();
-TextEditingController usernameStr = TextEditingController();
 TextEditingController loginNameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class UpdateUserPage extends StatelessWidget {
+  const UpdateUserPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register Page"),
-        automaticallyImplyLeading: false,
+        title: const Text("Update User Page"),
+        automaticallyImplyLeading: true,
       ),
       body: const InputGet(),
     );
@@ -33,7 +31,7 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          RegisterStr(),
+          UpdateStr(),
           SizedBox(height: 10.0),
           btnView(),
           SizedBox(height: 10.0),
@@ -43,17 +41,16 @@ class InputGet extends StatelessWidget {
   }
 }
 
-class RegisterStr extends StatelessWidget {
-  const RegisterStr({super.key});
+class UpdateStr extends StatelessWidget {
+  const UpdateStr({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        tbServerSource(),
         tbloginName(),
-        tbUsername(),
         tbPassword(),
         tbConfirmPassword(),
       ],
@@ -61,47 +58,6 @@ class RegisterStr extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
-class tbServerSource extends StatelessWidget {
-  const tbServerSource({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: serverSourceStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.info),
-          labelText: "Server",
-          hintText: "Your Server Address",
-        ),
-      ),
-    );
-  }
-}
-
-// ignore: camel_case_types
-class tbUsername extends StatelessWidget {
-  const tbUsername({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: usernameStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Name",
-          hintText: "Your account username",
-        ),
-      ),
-    );
-  }
-}
-
-// ignore: camel_case_types
 class tbloginName extends StatelessWidget {
   const tbloginName({super.key});
 
@@ -121,7 +77,6 @@ class tbloginName extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbPassword extends StatelessWidget {
   const tbPassword({super.key});
 
@@ -134,15 +89,14 @@ class tbPassword extends StatelessWidget {
         obscureText: true,
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.lock),
-          labelText: "Password",
-          hintText: "Your account password",
+          labelText: "New Password",
+          hintText: "Your account New password",
         ),
       ),
     );
   }
 }
 
-// ignore: camel_case_types
 class tbConfirmPassword extends StatelessWidget {
   const tbConfirmPassword({super.key});
 
@@ -163,7 +117,6 @@ class tbConfirmPassword extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnView extends StatelessWidget {
   const btnView({super.key});
 
@@ -174,20 +127,41 @@ class btnView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         SizedBox(width: 20.0),
-        btnRegisterSend(),
+        btnUpdateSend(),
         SizedBox(width: 20.0),
         btnClear(),
-        SizedBox(width: 20.0),
-        btnToLoginPage(),
         SizedBox(width: 20.0),
       ],
     );
   }
 }
 
-// ignore: camel_case_types
-class btnRegisterSend extends StatelessWidget {
-  const btnRegisterSend({Key? key}) : super(key: key);
+class btnClear extends StatelessWidget {
+  const btnClear({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 80.0,
+      height: 40.0,
+      child: ElevatedButton(
+        child: const Text("Clear"),
+        onPressed: () {
+          clearInput();
+        },
+      ),
+    );
+  }
+
+  void clearInput() {
+    loginNameStr.text = "";
+    passwordStr.text = "";
+    ConfirmPasswordStr.text = "";
+  }
+}
+
+class btnUpdateSend extends StatelessWidget {
+  const btnUpdateSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +169,7 @@ class btnRegisterSend extends StatelessWidget {
       width: 90.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Register"),
+        child: const Text("Update"),
         onPressed: () {
           sendUserData(context);
         },
@@ -216,12 +190,13 @@ class btnRegisterSend extends StatelessWidget {
   }
 
   Future<dynamic> cnServer(BuildContext context) async {
-    String? serverSource = serverSourceStr.text;
+    final String? serverSource =
+        await PreferencesUtil.getString("serverSource");
+    final String? username = await PreferencesUtil.getString("username");
     String? loginName = loginNameStr.text;
-    String? username = usernameStr.text;
     String? password = passwordStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/CreateUser");
+    final Uri uri = Uri.http(serverSource!, "/UpdateUserData");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,
@@ -234,7 +209,7 @@ class btnRegisterSend extends StatelessWidget {
     if (result == "1") {
       showFinnshAlert(context);
     } else if (result == "0") {
-      showSnackBar_FailLogin(context);
+      showSnackBar_FailUpdate(context);
     } else if (result == "-1") {
       showSnackBar_FailCN(context);
     }
@@ -246,7 +221,7 @@ class btnRegisterSend extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Register Finnish!'),
+          title: const Text('Update User Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
           actions: <Widget>[
             ElevatedButton(
@@ -263,23 +238,15 @@ class btnRegisterSend extends StatelessWidget {
 
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
+    PreferencesUtil.clear();
     Navigator.pushNamed(context, '/login');
   }
 
   // 顯示 SnackBar 訊息與自定義按鈕
-  void showSnackBar_FailLogin(BuildContext context) {
+  void showSnackBar_FailUpdate(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("Login Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailPassword(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Password Not Confirm"), // 簡單基本訊息
+        content: Text("Update Fail"), // 簡單基本訊息
         duration: Duration(seconds: 5), // 停留時間
       ),
     );
@@ -293,54 +260,12 @@ class btnRegisterSend extends StatelessWidget {
       ),
     );
   }
-}
 
-// ignore: camel_case_types
-class btnClear extends StatelessWidget {
-  const btnClear({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 80.0,
-      height: 40.0,
-      child: ElevatedButton(
-        child: const Text("Clear"),
-        onPressed: () {
-          clearInput();
-        },
-      ),
-    );
-  }
-
-  void clearInput() {
-    serverSourceStr.text = "";
-    loginNameStr.text = "";
-    usernameStr.text = "";
-    passwordStr.text = "";
-    ConfirmPasswordStr.text = "";
-  }
-}
-
-// ignore: camel_case_types
-class btnToLoginPage extends StatelessWidget {
-  const btnToLoginPage({super.key});
-
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 80.0,
-      height: 40.0,
-      child: ElevatedButton(
-        child: const Text("Login"),
-        onPressed: () {
-          pushToLogin(context);
-        },
+  void showSnackBar_FailPassword(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Password Not Confirm"), // 簡單基本訊息
+        duration: Duration(seconds: 5), // 停留時間
       ),
     );
   }

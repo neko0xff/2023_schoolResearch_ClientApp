@@ -6,6 +6,7 @@ import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1/pages/out/main.dart';
 import 'package:viewapp_v1/pages/out/sensor.dart';
+import 'package:viewapp_v1/pages/updateUser.dart';
 
 // ignore: must_be_immutable
 @immutable
@@ -81,6 +82,7 @@ class DrawerMenu extends StatelessWidget {
             ),
           ),
           const BtnAbout(),
+          const BtnUpdateUser(),
           const BtnLogOut(),
         ],
       ),
@@ -98,13 +100,33 @@ class BtnLogOut extends StatelessWidget {
       title: const Text('Logout'),
       onTap: () {
         toLoginPage(context);
-        PreferencesUtil.clear();
       },
     );
   }
 
   void toLoginPage(BuildContext context) {
+    PreferencesUtil.clear();
     Navigator.pushNamed(context, '/login');
+  }
+}
+
+class BtnUpdateUser extends StatelessWidget {
+  const BtnUpdateUser({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: const CircleAvatar(child: Icon(Icons.account_circle_outlined)),
+      title: const Text('Update User data'),
+      onTap: () {
+        toUpdateUserPage(context);
+      },
+    );
+  }
+
+  void toUpdateUserPage(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => UpdateUserPage()));
   }
 }
 

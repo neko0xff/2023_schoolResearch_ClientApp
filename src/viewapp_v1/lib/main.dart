@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1/pages/about.dart';
 import 'package:viewapp_v1/pages/login.dart';
+import 'package:viewapp_v1/pages/register.dart';
 
 void main() {
   runApp(viewAppMain());
@@ -20,6 +21,7 @@ class viewAppMain extends StatelessWidget {
         routes: {
           '/login': (context) => const LoginPage(),
           '/about': (context) => const AboutPage(),
+          '/register': (context) => const RegisterPage(),
         });
   }
 }
