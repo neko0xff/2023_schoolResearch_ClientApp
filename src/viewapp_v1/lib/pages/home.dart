@@ -32,8 +32,8 @@ class HomePage extends StatelessWidget {
           title: const TabBar(
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
-              Tab(text: "Main"),
-              Tab(text: "Sensor"),
+              Tab(icon: Icon(Icons.home)),
+              Tab(icon: Icon(Icons.list)),
               Tab(text: "Activity"),
               Tab(text: "Issues"),
             ],

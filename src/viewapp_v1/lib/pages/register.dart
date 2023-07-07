@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names,use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -230,12 +232,13 @@ class btnRegisterSend extends StatelessWidget {
       "Content-Type": "application/x-www-form-urlencoded",
     });
     final result = response.body;
+    final data = jsonDecode(result);
 
-    if (result == "1") {
+    if (data["code"] == "1") {
       showFinnshAlert(context);
-    } else if (result == "0") {
+    } else if (data["code"] == "0") {
       showSnackBar_FailLogin(context);
-    } else if (result == "-1") {
+    } else {
       showSnackBar_FailCN(context);
     }
   }
