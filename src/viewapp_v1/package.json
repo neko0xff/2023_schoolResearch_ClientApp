@@ -1,0 +1,32 @@
+{
+  "name": "iot_gateway",
+  "version": "1.0.0",
+  "description": "using HTTP API & MQTT a IoT Gateway",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --max-semi-space-size=128 index.js",
+    "swagger-autogen": "node ./tools/swaggerAutoGen.js",
+    "mqttTest-Sub": "node ./tools/mqttSubTest.js"
+  },
+  "keywords": [
+    "sensor",
+    "api"
+  ],
+  "author": "neko_0xff",
+  "license": "ISC",
+  "dependencies": {
+    "aedes": "^0.49.0",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "configparser": "^0.3.10",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mqtt": "^4.3.7",
+    "mysql2": "^3.2.3",
+    "swagger-autogen": "^2.23.4",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3"
+  }
+}
