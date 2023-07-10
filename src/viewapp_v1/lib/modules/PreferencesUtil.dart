@@ -16,9 +16,10 @@ class PreferencesUtil {
   }
 
   /*儲存指定布林*/
-  static Future<void> saveBool(String key, bool value) async {
+  static Future<bool?> saveBool(String key, bool value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(key, value);
+    return null;
   }
 
   /*取得指定布林*/

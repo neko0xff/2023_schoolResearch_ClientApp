@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names, must_be_immutable, camel_case_types
 
 import 'dart:convert';
 
@@ -59,7 +59,6 @@ class LoginStr extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbServerSource extends StatelessWidget {
   const tbServerSource({super.key});
 
@@ -79,7 +78,6 @@ class tbServerSource extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbUsername extends StatelessWidget {
   const tbUsername({super.key});
 
@@ -99,7 +97,6 @@ class tbUsername extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbPassword extends StatelessWidget {
   const tbPassword({super.key});
 
@@ -120,7 +117,6 @@ class tbPassword extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnView extends StatelessWidget {
   const btnView({super.key});
 
@@ -142,10 +138,8 @@ class btnView extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnLoginSend extends StatelessWidget {
   const btnLoginSend({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -176,26 +170,26 @@ class btnLoginSend extends StatelessWidget {
     final result = response.body;
     final data = jsonDecode(result);
     final code = data["code"];
+    final userData user = userData(
+        serverSource: serverSourceStr.text,
+        LoginName: data["LoginName"],
+        username: data["username"]);
 
     /*主迴圈*/
     if (code == "1") {
-      final userData user = userData(
-          serverSource: serverSourceStr.text,
-          LoginName: data["LoginName"],
-          username: data["username"]);
       /*save Str in local*/
       PreferencesUtil.saveString('serverSource', serverSourceStr.text);
       PreferencesUtil.saveString('username', data["username"]);
       PreferencesUtil.saveString('LoginName', data["LoginName"]);
+      //Go To HomePage
       Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(
-            key: null,
-            user: user,
-          ),
-        ),
-      );
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(
+              key: null,
+              user: user,
+            ),
+          ));
     } else if (code == "0") {
       showSnackBar_FailLogin(context);
     } else if (code == "-1") {
@@ -204,7 +198,6 @@ class btnLoginSend extends StatelessWidget {
   }
 
   // 顯示 SnackBar 訊息與自定義按鈕
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailLogin(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -214,7 +207,6 @@ class btnLoginSend extends StatelessWidget {
     );
   }
 
-  // ignore: non_constant_identifier_names
   void showSnackBar_FailCN(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -225,7 +217,6 @@ class btnLoginSend extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnClear extends StatelessWidget {
   const btnClear({super.key});
 
@@ -250,7 +241,6 @@ class btnClear extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnToRegisterPage extends StatelessWidget {
   const btnToRegisterPage({super.key});
 
