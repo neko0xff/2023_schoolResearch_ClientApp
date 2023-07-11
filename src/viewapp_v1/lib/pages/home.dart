@@ -2,6 +2,7 @@
 // ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1/pages/out/control.dart';
@@ -84,7 +85,7 @@ class DrawerMenu extends StatelessWidget {
           ),
           const BtnAbout(),
           const BtnUpdateUser(),
-          const BtnLogOut(),
+          BtnLogOut(),
         ],
       ),
     );
@@ -92,7 +93,11 @@ class DrawerMenu extends StatelessWidget {
 }
 
 class BtnLogOut extends StatelessWidget {
-  const BtnLogOut({super.key});
+  BtnLogOut({super.key});
+  LocalNotification notification = LocalNotification(
+    title: "Tip",
+    body: "Now Logout",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +105,7 @@ class BtnLogOut extends StatelessWidget {
       leading: const CircleAvatar(child: Icon(Icons.arrow_back)),
       title: const Text('Logout'),
       onTap: () {
+        notification.show(); //for Windows,Linux.macOS
         toLoginPage(context);
       },
     );

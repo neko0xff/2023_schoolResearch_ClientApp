@@ -63,7 +63,7 @@ class _SwitchctrState extends State<Switchctr> {
     return Center(
       child: Column(
         children: <Widget>[
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Fan1ctr(
             switchSelectedFan1: _switchSelectedFan1,
             onChanged: (value) {
@@ -74,7 +74,7 @@ class _SwitchctrState extends State<Switchctr> {
               _connectToServer();
             },
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Fan2ctr(
             switchSelectedFan2: _switchSelectedFan2,
             onChanged: (value) {
@@ -107,6 +107,7 @@ class Fan1ctr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
+        const SizedBox(width: 20),
         const Text(
           "Fan1 ",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -136,6 +137,7 @@ class Fan2ctr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
+        const SizedBox(width: 20),
         const Text(
           "Fan2 ",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

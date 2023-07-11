@@ -6,10 +6,11 @@ import 'package:viewapp_v1/pages/user/register.dart';
 
 void main() async {
   runApp(viewAppMain());
+  /* localNotifier: Only Windows,Linux.macOS */
   await localNotifier.setup(
     appName: 'View App v1',
-    // 参数 shortcutPolicy 仅适用于 Windows
-    shortcutPolicy: ShortcutPolicy.requireCreate,
+    shortcutPolicy:
+        ShortcutPolicy.requireCreate, // shortcutPolicy: 仅适用于 Windows
   );
 }
 

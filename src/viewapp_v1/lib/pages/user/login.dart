@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_v1/class/user.dart';
 import 'package:viewapp_v1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1/pages/home.dart';
@@ -174,6 +175,10 @@ class btnLoginSend extends StatelessWidget {
         serverSource: serverSourceStr.text,
         LoginName: data["LoginName"],
         username: data["username"]);
+    LocalNotification notification = LocalNotification(
+      title: "Tip",
+      body: "Now Login User: ${data["LoginName"]} ",
+    );
 
     /*主迴圈*/
     if (code == "1") {
@@ -181,6 +186,7 @@ class btnLoginSend extends StatelessWidget {
       PreferencesUtil.saveString('serverSource', serverSourceStr.text);
       PreferencesUtil.saveString('username', data["username"]);
       PreferencesUtil.saveString('LoginName', data["LoginName"]);
+      notification.show(); //for Windows,Linux.macOS
       //Go To HomePage
       Navigator.push(
           context,
