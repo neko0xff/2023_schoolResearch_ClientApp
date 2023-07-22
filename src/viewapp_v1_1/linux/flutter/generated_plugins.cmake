@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   local_notifier
+  printing
   url_launcher_linux
 )
 

@@ -4,6 +4,8 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   local_notifier
+  printing
+  share_plus
   syncfusion_pdfviewer_windows
   url_launcher_windows
 )

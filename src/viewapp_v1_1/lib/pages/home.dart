@@ -7,6 +7,7 @@ import 'package:viewapp_v1_1/class/user.dart';
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1_1/pages/out/control.dart';
 import 'package:viewapp_v1_1/pages/out/main.dart';
+import 'package:viewapp_v1_1/pages/out/news.dart';
 import 'package:viewapp_v1_1/pages/out/view.dart';
 import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
@@ -37,7 +38,7 @@ class HomePage extends StatelessWidget {
               Tab(icon: Icon(Icons.home), text: "Main"),
               Tab(icon: Icon(Icons.list), text: "Data Table"),
               Tab(icon: Icon(Icons.switch_right_sharp), text: "Control"),
-              Tab(text: "Issues"),
+              Tab(icon: Icon(Icons.account_balance_outlined), text: "News"),
             ],
           ),
         ),
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
             Main(),
             ViewData(),
             Control(),
-            Text("Issues"),
+            NewsData(),
           ],
         ),
         drawer: DrawerMenu(

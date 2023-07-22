@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, unused_local_variable
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, unused_local_variable, await_only_futures, deprecated_member_use
 
 import 'dart:convert';
 import 'dart:io';
@@ -8,16 +8,25 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  getNotoSerifHKMediumFont();
   runApp(const CreatePDFViewPage());
+}
+
+/* 加戴字型 */
+Future<pw.Font> getNotoSerifHKMediumFont() async {
+  final font = await PdfGoogleFonts.notoSerifHKMedium();
+  return font;
 }
 
 class CreatePDFViewPage extends StatelessWidget {
   const CreatePDFViewPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -34,9 +43,9 @@ class PDFScreen extends StatefulWidget {
 }
 
 class _PDFScreenState extends State<PDFScreen> {
-  late Future<Map<String, dynamic>> _dataFuture;
   String pdfFile = '';
   pw.Document pdf = pw.Document();
+  late Future<Map<String, dynamic>> _dataFuture;
   GlobalKey tableKey = GlobalKey();
   String id = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -46,6 +55,7 @@ class _PDFScreenState extends State<PDFScreen> {
     _dataFuture = getData();
   }
 
+  /*獲取伺服器資料*/
   Future<Map<String, dynamic>> getData() async {
     const String setboards = "Sensor01";
     final String? serverSource =
@@ -109,7 +119,7 @@ class _PDFScreenState extends State<PDFScreen> {
           visible: pdfFile.isNotEmpty,
           child: SizedBox(
             width: 400,
-            height: 470,
+            height: 400,
             child: SfPdfViewer.file(
               File(pdfFile),
               canShowScrollHead: true,
@@ -117,30 +127,41 @@ class _PDFScreenState extends State<PDFScreen> {
             ),
           ),
         ),
+        const SizedBox(width: 10.0),
+        ElevatedButton(
+          onPressed: () {
+            Share.shareFiles([pdfFile]);
+          },
+          child: const Text('Share PDF'),
+        ),
       ],
     );
   }
 
-  /* 创建 PDF 文件 */
+  /* 建立 PDF 文件 */
   Future<void> createPdfFile(Map<String, dynamic> data) async {
-    pdf.addPage(pw.MultiPage(
-      margin: const pw.EdgeInsets.all(10),
-      crossAxisAlignment: pw.CrossAxisAlignment.center,
-      pageFormat: PdfPageFormat.a4,
-      build: (pw.Context context) {
-        return <pw.Widget>[
-          title1(),
-          title2(),
-          pw.SizedBox(width: 10.0, height: 10.0),
-          buildDataTable(data),
-          pw.SizedBox(width: 10.0, height: 10.0),
-          UpdateDay(data),
-        ];
-      },
-    ));
+    final pw.Font notoSerifHKMedium = await getNotoSerifHKMediumFont();
+    pdf.addPage(
+      pw.MultiPage(
+        margin: const pw.EdgeInsets.all(10),
+        crossAxisAlignment: pw.CrossAxisAlignment.center,
+        pageFormat: PdfPageFormat.a4,
+        build: (pw.Context context) {
+          return <pw.Widget>[
+            pw.SizedBox(height: 10.0),
+            title1(notoSerifHKMedium),
+            title2(notoSerifHKMedium),
+            pw.SizedBox(width: 10.0, height: 10.0),
+            buildDataTable(data, notoSerifHKMedium),
+            pw.SizedBox(width: 10.0, height: 10.0),
+            UpdateDay(data, notoSerifHKMedium),
+          ];
+        },
+      ),
+    );
   }
 
-  pw.Widget title1() {
+  pw.Widget title1(pw.Font openSans) {
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.center,
       mainAxisSize: pw.MainAxisSize.min,
@@ -148,15 +169,14 @@ class _PDFScreenState extends State<PDFScreen> {
         pw.Text(
           'Output Data',
           textAlign: pw.TextAlign.center,
-          style: const pw.TextStyle(fontSize: 28),
+          style: pw.TextStyle(fontSize: 28, font: openSans),
         ),
-        pw.Divider(),
         pw.Divider(),
       ],
     );
   }
 
-  pw.Widget title2() {
+  pw.Widget title2(pw.Font openSans) {
     return pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.center,
       mainAxisSize: pw.MainAxisSize.min,
@@ -164,59 +184,62 @@ class _PDFScreenState extends State<PDFScreen> {
         pw.Text(
           'Sensor01',
           textAlign: pw.TextAlign.center,
-          style: const pw.TextStyle(fontSize: 25),
+          style: pw.TextStyle(fontSize: 25, font: openSans),
         ),
       ],
     );
   }
 
-  pw.Widget UpdateDay(Map<String, dynamic> data) {
+  pw.Widget UpdateDay(Map<String, dynamic> data, pw.Font openSans) {
     return pw.Center(
       child: pw.Column(
         children: <pw.Widget>[
-          pw.Text("Update Time", style: const pw.TextStyle(fontSize: 20)),
+          pw.Text("Update Time",
+              style: pw.TextStyle(fontSize: 20, font: openSans)),
           pw.Text("Date= ${data["date"]}",
-              style: const pw.TextStyle(fontSize: 20)),
+              style: pw.TextStyle(fontSize: 20, font: openSans)),
           pw.Text("Time= ${data["time"]}",
-              style: const pw.TextStyle(fontSize: 20)),
+              style: pw.TextStyle(fontSize: 20, font: openSans)),
         ],
       ),
     );
   }
 
-  pw.Widget buildDataTable(Map<String, dynamic> data) {
+  pw.Widget buildDataTable(Map<String, dynamic> data, pw.Font openSans) {
     return pw.Table(
       columnWidths: const <int, pw.TableColumnWidth>{
-        0: pw.FixedColumnWidth(50), // Adjust the width of the first column
-        1: pw.FixedColumnWidth(50), // Adjust the width of the second column
+        0: pw.FixedColumnWidth(20),
+        1: pw.FixedColumnWidth(20),
       },
-      border: pw.TableBorder.all(width: 1), // Add border to the table
+      border: pw.TableBorder.all(width: 1),
       children: [
-        _buildTableRow('感測氣體', '回傳值', header: true), // Add a header row
-        _buildTableRow('Temp', '${data["temp"]}'),
-        _buildTableRow('Hum', '${data["hum"]}'),
-        _buildTableRow('TVOC', '${data["tvoc"]}'),
-        _buildTableRow('CO', '${data["co"]}'),
-        _buildTableRow('CO2', '${data["co2"]}'),
-        _buildTableRow('PM2.5', '${data["pm25"]}'),
-        _buildTableRow('O3', '${data["o3"]}'),
+        _buildTableRow('感測氣體', '回傳值', openSans),
+        _buildTableRow('Temp', '${data["temp"]}', openSans),
+        _buildTableRow('Hum', '${data["hum"]}', openSans),
+        _buildTableRow('TVOC', '${data["tvoc"]}', openSans),
+        _buildTableRow('CO', '${data["co"]}', openSans),
+        _buildTableRow('CO2', '${data["co2"]}', openSans),
+        _buildTableRow('PM2.5', '${data["pm25"]}', openSans),
+        _buildTableRow('O3', '${data["o3"]}', openSans),
       ],
     );
   }
 
-  pw.TableRow _buildTableRow(String label, String value,
+  pw.TableRow _buildTableRow(String label, String value, pw.Font openSans,
       {bool header = false}) {
     return pw.TableRow(
       children: [
         pw.Text(
           label,
           style: pw.TextStyle(
-              fontSize: 25,
-              fontWeight: header ? pw.FontWeight.bold : pw.FontWeight.normal),
+            fontSize: 25,
+            fontWeight: header ? pw.FontWeight.bold : pw.FontWeight.normal,
+            font: openSans,
+          ),
         ),
         pw.Text(
           value,
-          style: const pw.TextStyle(fontSize: 25),
+          style: pw.TextStyle(fontSize: 25, font: openSans),
         ),
       ],
     );
