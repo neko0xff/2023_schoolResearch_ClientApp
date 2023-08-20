@@ -146,7 +146,7 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 65.0,
+      width: 70.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
@@ -297,7 +297,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 77.0,
+      width: 85.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
