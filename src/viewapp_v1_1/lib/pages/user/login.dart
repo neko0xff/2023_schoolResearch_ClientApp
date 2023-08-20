@@ -127,13 +127,15 @@ class btnView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        SizedBox(width: 25.0),
+        SizedBox(width: 15.0),
         btnLoginSend(),
-        SizedBox(width: 25.0),
-        btnClear(),
-        SizedBox(width: 25.0),
+        SizedBox(width: 15.0),
         btnToRegisterPage(),
-        SizedBox(width: 25.0),
+        SizedBox(width: 15.0),
+        btnToforgetPage(),
+        SizedBox(width: 15.0),
+        btnClear(),
+        SizedBox(width: 15.0),
       ],
     );
   }
@@ -144,15 +146,26 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 65.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
         onPressed: () {
+          checkInputNull(context);
           sendUserData(context);
         },
       ),
     );
+  }
+
+  void checkInputNull(BuildContext context) {
+    String? serverSource = serverSourceStr.text;
+    String? username = usernameStr.text;
+    String? password = passwordStr.text;
+
+    if (serverSource == "" || username == "" || password == "") {
+      showFailAlert(context);
+    }
   }
 
   // 使用者比對部分
@@ -203,6 +216,32 @@ class btnLoginSend extends StatelessWidget {
     }
   }
 
+  //輸出註冊失敗
+  Future<void> showFailAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Login Fail!'),
+          content: const Text('Please check you are Input Data!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToLogin(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //跳回登入主頁
+  void pushToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
+  }
+
   // 顯示 SnackBar 訊息與自定義按鈕
   void showSnackBar_FailLogin(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -229,7 +268,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 65.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -258,12 +297,35 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 90.0,
+      width: 77.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
         onPressed: () {
           pushToRegister(context);
+        },
+      ),
+    );
+  }
+}
+
+class btnToforgetPage extends StatelessWidget {
+  const btnToforgetPage({super.key});
+
+  //跳回登入主頁
+  void pushToforget(BuildContext context) {
+    Navigator.pushNamed(context, '/forget');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 75.0,
+      height: 40.0,
+      child: ElevatedButton(
+        child: const Text("forget"),
+        onPressed: () {
+          pushToforget(context);
         },
       ),
     );

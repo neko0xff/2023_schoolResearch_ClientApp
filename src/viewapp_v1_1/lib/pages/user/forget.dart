@@ -1,25 +1,23 @@
-// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types,use_build_context_synchronously
+// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
-TextEditingController loginNameStr = TextEditingController();
-TextEditingController passwordStr = TextEditingController();
-TextEditingController ConfirmPasswordStr = TextEditingController();
+// 定義輸入元件
+TextEditingController serverSourceStr = TextEditingController();
 TextEditingController EmailStr = TextEditingController();
 
-class UpdateUserPage extends StatelessWidget {
-  const UpdateUserPage({super.key});
+class forgetPage extends StatelessWidget {
+  const forgetPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Update User Page"),
-        automaticallyImplyLeading: true,
+        title: const Text("forget Password"),
+        automaticallyImplyLeading: false,
       ),
       body: const InputGet(),
     );
@@ -34,7 +32,14 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          UpdateStr(),
+          SizedBox(height: 10.0),
+          Text("請輸入註冊時所輸入email！",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          SizedBox(height: 10.0),
+          Text("送出後則會自動查詢是否有該使用者存在",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          SizedBox(height: 10.0),
+          forgetStr(),
           SizedBox(height: 10.0),
           btnView(),
           SizedBox(height: 10.0),
@@ -44,37 +49,31 @@ class InputGet extends StatelessWidget {
   }
 }
 
-class UpdateStr extends StatelessWidget {
-  const UpdateStr({super.key});
-
+class forgetStr extends StatelessWidget {
+  const forgetStr({super.key});
   @override
   Widget build(BuildContext context) {
     return const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        tbloginName(),
-        tbEmail(),
-        tbPassword(),
-        tbConfirmPassword(),
-      ],
+      children: <Widget>[tbServerSource(), tbEmail()],
     );
   }
 }
 
-class tbloginName extends StatelessWidget {
-  const tbloginName({super.key});
+class tbServerSource extends StatelessWidget {
+  const tbServerSource({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: loginNameStr,
+        controller: serverSourceStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Login Name",
-          hintText: "Your account use a NickName",
+          prefixIcon: Icon(Icons.info),
+          labelText: "Server",
+          hintText: "Your Server Address",
         ),
       ),
     );
@@ -100,46 +99,6 @@ class tbEmail extends StatelessWidget {
   }
 }
 
-class tbPassword extends StatelessWidget {
-  const tbPassword({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: passwordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "New Password",
-          hintText: "Your account New password",
-        ),
-      ),
-    );
-  }
-}
-
-class tbConfirmPassword extends StatelessWidget {
-  const tbConfirmPassword({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: ConfirmPasswordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Confirm Password",
-          hintText: "Password Check",
-        ),
-      ),
-    );
-  }
-}
-
 class btnView extends StatelessWidget {
   const btnView({super.key});
 
@@ -150,11 +109,36 @@ class btnView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         SizedBox(width: 20.0),
-        btnUpdateSend(),
+        btnforgetSend(),
         SizedBox(width: 20.0),
         btnClear(),
         SizedBox(width: 20.0),
+        btnToLoginPage(),
+        SizedBox(width: 20.0),
       ],
+    );
+  }
+}
+
+class btnToLoginPage extends StatelessWidget {
+  const btnToLoginPage({super.key});
+
+  //跳回登入主頁
+  void pushToLogin(BuildContext context) {
+    Navigator.pushNamed(context, '/login');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 80.0,
+      height: 40.0,
+      child: ElevatedButton(
+        child: const Text("Login"),
+        onPressed: () {
+          pushToLogin(context);
+        },
+      ),
     );
   }
 }
@@ -177,15 +161,13 @@ class btnClear extends StatelessWidget {
   }
 
   void clearInput() {
-    loginNameStr.text = "";
+    serverSourceStr.text = "";
     EmailStr.text = "";
-    passwordStr.text = "";
-    ConfirmPasswordStr.text = "";
   }
 }
 
-class btnUpdateSend extends StatelessWidget {
-  const btnUpdateSend({Key? key}) : super(key: key);
+class btnforgetSend extends StatelessWidget {
+  const btnforgetSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -193,39 +175,29 @@ class btnUpdateSend extends StatelessWidget {
       width: 90.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Update"),
+        child: const Text("Forget?"),
         onPressed: () {
-          sendUserData(context);
+          cnServer(context);
         },
       ),
     );
   }
 
-  // 使用者比對部分
-  void sendUserData(BuildContext context) {
-    String? password = passwordStr.text;
-    String? ConfirmPassword = ConfirmPasswordStr.text;
+  void checkInputNull(BuildContext context) {
+    String? serverSource = serverSourceStr.text;
+    String? email = EmailStr.text;
 
-    if (password != ConfirmPassword) {
-      showSnackBar_FailPassword(context);
-    } else {
-      cnServer(context);
+    if (serverSource == "" || email == "") {
+      showFailAlert(context);
     }
   }
 
   Future<dynamic> cnServer(BuildContext context) async {
-    final String? serverSource =
-        await PreferencesUtil.getString("serverSource");
-    final String? username = await PreferencesUtil.getString("username");
-    String? loginName = loginNameStr.text;
-    String? password = passwordStr.text;
+    String? serverSource = serverSourceStr.text;
     String? email = EmailStr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/UpdateUserData");
+    final Uri uri = Uri.http(serverSource, "/emailAuthCheck");
     final response = await http.post(uri, body: {
-      "username": username,
-      "password": password,
-      "LoginName": loginName,
       "email": email
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -236,7 +208,7 @@ class btnUpdateSend extends StatelessWidget {
     if (data["code"] == "1") {
       showFinnshAlert(context);
     } else if (data["code"] == "0") {
-      showSnackBar_FailUpdate(context);
+      showSnackBar_FailLogin(context);
     } else {
       showSnackBar_FailCN(context);
     }
@@ -248,7 +220,7 @@ class btnUpdateSend extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Update User Finnish!'),
+          title: const Text('Find username Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
           actions: <Widget>[
             ElevatedButton(
@@ -263,17 +235,42 @@ class btnUpdateSend extends StatelessWidget {
     );
   }
 
+  //輸出註冊失敗
+  Future<void> showFailAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Forget Fail!'),
+          content: const Text('Please check you are Input Data!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToforget(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
-    PreferencesUtil.clear();
     Navigator.pushNamed(context, '/login');
   }
 
+  //跳回忘記密碼主頁
+  void pushToforget(BuildContext context) {
+    Navigator.pushNamed(context, '/forget');
+  }
+
   // 顯示 SnackBar 訊息與自定義按鈕
-  void showSnackBar_FailUpdate(BuildContext context) {
+  void showSnackBar_FailLogin(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text("Update Fail"), // 簡單基本訊息
+        content: Text("forget Fail"), // 簡單基本訊息
         duration: Duration(seconds: 5), // 停留時間
       ),
     );
@@ -283,15 +280,6 @@ class btnUpdateSend extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Connect Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailPassword(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Password Not Confirm"), // 簡單基本訊息
         duration: Duration(seconds: 5), // 停留時間
       ),
     );

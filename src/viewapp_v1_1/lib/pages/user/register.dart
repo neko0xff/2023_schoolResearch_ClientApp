@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously
+// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types, unrelated_type_equality_checks
 
 import 'dart:convert';
 
@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 TextEditingController serverSourceStr = TextEditingController();
 TextEditingController usernameStr = TextEditingController();
 TextEditingController loginNameStr = TextEditingController();
+TextEditingController EmailStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
@@ -55,6 +56,7 @@ class RegisterStr extends StatelessWidget {
       children: <Widget>[
         tbServerSource(),
         tbloginName(),
+        tbEmail(),
         tbUsername(),
         tbPassword(),
         tbConfirmPassword(),
@@ -63,7 +65,25 @@ class RegisterStr extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
+class tbEmail extends StatelessWidget {
+  const tbEmail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
+      child: TextFormField(
+        controller: EmailStr,
+        decoration: const InputDecoration(
+          prefixIcon: Icon(Icons.mail),
+          labelText: "Email",
+          hintText: "You are use a Email?",
+        ),
+      ),
+    );
+  }
+}
+
 class tbServerSource extends StatelessWidget {
   const tbServerSource({super.key});
 
@@ -83,7 +103,6 @@ class tbServerSource extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbUsername extends StatelessWidget {
   const tbUsername({super.key});
 
@@ -95,7 +114,7 @@ class tbUsername extends StatelessWidget {
         controller: usernameStr,
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.person),
-          labelText: "Name",
+          labelText: "Username",
           hintText: "Your account username",
         ),
       ),
@@ -103,7 +122,6 @@ class tbUsername extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbloginName extends StatelessWidget {
   const tbloginName({super.key});
 
@@ -123,7 +141,6 @@ class tbloginName extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbPassword extends StatelessWidget {
   const tbPassword({super.key});
 
@@ -144,7 +161,6 @@ class tbPassword extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class tbConfirmPassword extends StatelessWidget {
   const tbConfirmPassword({super.key});
 
@@ -165,7 +181,6 @@ class tbConfirmPassword extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnView extends StatelessWidget {
   const btnView({super.key});
 
@@ -187,7 +202,6 @@ class btnView extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnRegisterSend extends StatelessWidget {
   const btnRegisterSend({Key? key}) : super(key: key);
 
@@ -199,17 +213,35 @@ class btnRegisterSend extends StatelessWidget {
       child: ElevatedButton(
         child: const Text("Register"),
         onPressed: () {
+          checkInputNull(context);
           sendUserData(context);
         },
       ),
     );
   }
 
+  void checkInputNull(BuildContext context) {
+    String? serverSource = serverSourceStr.text;
+    String? loginName = loginNameStr.text;
+    String? username = usernameStr.text;
+    String? password = passwordStr.text;
+    String? email = EmailStr.text;
+    String? ConfirmPassword = ConfirmPasswordStr.text;
+
+    if (serverSource == "" ||
+        loginName == "" ||
+        username == "" ||
+        password == "" ||
+        email == "" ||
+        ConfirmPassword == "") {
+      showFailAlert(context);
+    }
+  }
+
   // 使用者比對部分
   void sendUserData(BuildContext context) {
     String? password = passwordStr.text;
     String? ConfirmPassword = ConfirmPasswordStr.text;
-
     if (password != ConfirmPassword) {
       showSnackBar_FailPassword(context);
     } else {
@@ -222,12 +254,14 @@ class btnRegisterSend extends StatelessWidget {
     String? loginName = loginNameStr.text;
     String? username = usernameStr.text;
     String? password = passwordStr.text;
+    String? email = EmailStr.text;
 
     final Uri uri = Uri.http(serverSource, "/CreateUser");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,
-      "LoginName": loginName
+      "LoginName": loginName,
+      "email": email
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });
@@ -237,9 +271,9 @@ class btnRegisterSend extends StatelessWidget {
     if (data["code"] == "1") {
       showFinnshAlert(context);
     } else if (data["code"] == "0") {
-      showSnackBar_FailLogin(context);
+      showFailAlert(context);
     } else {
-      showSnackBar_FailCN(context);
+      showFailAlert(context);
     }
   }
 
@@ -264,9 +298,56 @@ class btnRegisterSend extends StatelessWidget {
     );
   }
 
+  //輸出註冊失敗
+  Future<void> showFailAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Register Fail!'),
+          content: const Text('Please check you are Input Data!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToRegister(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //輸出註冊失敗
+  Future<void> showFailPasswordAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Password Fail!'),
+          content: const Text('Please check you are Password!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToRegister(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
     Navigator.pushNamed(context, '/login');
+  }
+
+  //跳回註冊主頁
+  void pushToRegister(BuildContext context) {
+    Navigator.pushNamed(context, '/register');
   }
 
   // 顯示 SnackBar 訊息與自定義按鈕
@@ -298,7 +379,6 @@ class btnRegisterSend extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
 class btnClear extends StatelessWidget {
   const btnClear({super.key});
 
@@ -319,13 +399,13 @@ class btnClear extends StatelessWidget {
   void clearInput() {
     serverSourceStr.text = "";
     loginNameStr.text = "";
+    EmailStr.text = "";
     usernameStr.text = "";
     passwordStr.text = "";
     ConfirmPasswordStr.text = "";
   }
 }
 
-// ignore: camel_case_types
 class btnToLoginPage extends StatelessWidget {
   const btnToLoginPage({super.key});
 
