@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text("Login"),
         automaticallyImplyLeading: false,
       ),
       body: const InputGet(),
@@ -123,19 +123,32 @@ class btnView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        SizedBox(width: 15.0),
-        btnLoginSend(),
-        SizedBox(width: 15.0),
-        btnToRegisterPage(),
-        SizedBox(width: 15.0),
-        btnToforgetPage(),
-        SizedBox(width: 15.0),
-        btnClear(),
-        SizedBox(width: 15.0),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(width: 15.0),
+            btnLoginSend(),
+            SizedBox(width: 15.0),
+            btnToRegisterPage(),
+          ],
+        ),
+        SizedBox(height: 15),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(width: 15.0),
+            btnToforgetPage(),
+            SizedBox(width: 15.0),
+            btnClear(),
+            SizedBox(width: 15.0),
+          ],
+        )
       ],
     );
   }
@@ -146,7 +159,7 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 70.0,
+      width: 85.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
@@ -210,9 +223,9 @@ class btnLoginSend extends StatelessWidget {
             ),
           ));
     } else if (code == "0") {
-      showSnackBar_FailLogin(context);
+      showFailPasswordAlert(context);
     } else if (code == "-1") {
-      showSnackBar_FailCN(context);
+      showFailCNAlert(context);
     }
   }
 
@@ -237,28 +250,51 @@ class btnLoginSend extends StatelessWidget {
     );
   }
 
+  //輸入密碼失敗
+  Future<void> showFailPasswordAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Password Fail!'),
+          content: const Text('Please check you are Password!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToLogin(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //輸出登入失敗
+  Future<void> showFailCNAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Network Connection Fail!'),
+          content: const Text('Please check you are Network & Server!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToLogin(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
     Navigator.pushNamed(context, '/login');
-  }
-
-  // 顯示 SnackBar 訊息與自定義按鈕
-  void showSnackBar_FailLogin(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Login Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailCN(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Connect Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
   }
 }
 
@@ -268,7 +304,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 65.0,
+      width: 85.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -320,10 +356,10 @@ class btnToforgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 75.0,
+      width: 85.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("forget"),
+        child: const Text("Forget"),
         onPressed: () {
           pushToforget(context);
         },

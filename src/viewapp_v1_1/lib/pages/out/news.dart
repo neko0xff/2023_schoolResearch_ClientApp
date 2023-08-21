@@ -23,10 +23,61 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10.0),
-          Text("News"),
+          Data1(),
+          SizedBox(height: 10.0),
+          DataAQI()
         ]);
+  }
+}
+
+class Data1 extends StatelessWidget {
+  const Data1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+        child: Column(
+      children: [
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("官方資料",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+            ]),
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("資料來源： 行政院環境保護部(署)",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            ]),
+      ],
+    ));
+  }
+}
+
+class DataAQI extends StatelessWidget {
+  const DataAQI({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+        child: Column(
+      children: [
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("AQI",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(width: 10),
+            ]),
+      ],
+    ));
   }
 }

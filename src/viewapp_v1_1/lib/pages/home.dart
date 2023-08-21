@@ -61,7 +61,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// ignore: must_be_immutable
 @immutable
 class DrawerMenu extends StatelessWidget {
   String? username;

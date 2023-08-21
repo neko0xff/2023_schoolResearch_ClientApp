@@ -18,7 +18,7 @@ class UpdateUserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Update User Page"),
+        title: const Text("Update User Data"),
         automaticallyImplyLeading: true,
       ),
       body: const InputGet(),
@@ -201,13 +201,28 @@ class btnUpdateSend extends StatelessWidget {
     );
   }
 
+  //確認使用者是否少填資料
+  void checkInputNull(BuildContext context) {
+    String? ConfirmPassword = ConfirmPasswordStr.text;
+    String? password = passwordStr.text;
+    String? loginName = loginNameStr.text;
+    String? email = EmailStr.text;
+
+    if (loginName == "" ||
+        ConfirmPassword == "" ||
+        password == "" ||
+        email == "") {
+      showFailAlert(context);
+    }
+  }
+
   // 使用者比對部分
   void sendUserData(BuildContext context) {
     String? password = passwordStr.text;
     String? ConfirmPassword = ConfirmPasswordStr.text;
 
     if (password != ConfirmPassword) {
-      showSnackBar_FailPassword(context);
+      showFailPasswordAlert(context);
     } else {
       cnServer(context);
     }
@@ -236,9 +251,9 @@ class btnUpdateSend extends StatelessWidget {
     if (data["code"] == "1") {
       showFinnshAlert(context);
     } else if (data["code"] == "0") {
-      showSnackBar_FailUpdate(context);
+      showFailAlert(context);
     } else {
-      showSnackBar_FailCN(context);
+      showFailCNAlert(context);
     }
   }
 
@@ -263,37 +278,77 @@ class btnUpdateSend extends StatelessWidget {
     );
   }
 
+  //輸出更新資料失敗
+  Future<void> showFailAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('User Data Update Fail!'),
+          content: const Text('Please check you are Input Data!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToUpdateUser(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //連線失敗
+  Future<void> showFailCNAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Network Connection Fail!'),
+          content: const Text('Please check you are Network & Server!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToUpdateUser(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //輸入密碼失敗
+  Future<void> showFailPasswordAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Password Fail!'),
+          content: const Text('Please check you are Password!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToUpdateUser(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
     PreferencesUtil.clear();
     Navigator.pushNamed(context, '/login');
   }
 
-  // 顯示 SnackBar 訊息與自定義按鈕
-  void showSnackBar_FailUpdate(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Update Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailCN(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Connect Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailPassword(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Password Not Confirm"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
+  //跳回使用者資料更新主頁
+  void pushToUpdateUser(BuildContext context) {
+    Navigator.pushNamed(context, '/updateUser');
   }
 }

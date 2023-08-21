@@ -4,6 +4,7 @@ import 'package:viewapp_v1_1/pages/out/about.dart';
 import 'package:viewapp_v1_1/pages/user/forget.dart';
 import 'package:viewapp_v1_1/pages/user/login.dart';
 import 'package:viewapp_v1_1/pages/user/register.dart';
+import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
 void main() async {
   runApp(viewAppMain());
@@ -30,7 +31,8 @@ class viewAppMain extends StatelessWidget {
           '/login': (context) => const LoginPage(),
           '/about': (context) => const AboutPage(),
           '/register': (context) => const RegisterPage(),
-          '/forget': (context) => const forgetPage()
+          '/forget': (context) => const forgetPage(),
+          '/updateUser': (context) => const UpdateUserPage()
         });
   }
 }

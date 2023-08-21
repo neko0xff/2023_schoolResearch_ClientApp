@@ -8,3 +8,13 @@ class userData {
 
   userData({this.serverSource, this.username, this.LoginName});
 }
+
+/*忘記密碼時*/
+class userMeta {
+  final String? serverSource;
+  final String? username;
+  final String? LoginName;
+  final String? email;
+
+  userMeta({this.serverSource, this.username, this.LoginName, this.email});
+}

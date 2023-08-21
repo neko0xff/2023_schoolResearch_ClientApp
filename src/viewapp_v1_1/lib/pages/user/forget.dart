@@ -1,9 +1,12 @@
-// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types
+// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types, unused_local_variable
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:viewapp_v1_1/class/user.dart';
+import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
+import 'package:viewapp_v1_1/pages/user/changePassword.dart';
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
@@ -16,7 +19,7 @@ class forgetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("forget Password"),
+        title: const Text("Forget Password"),
         automaticallyImplyLeading: false,
       ),
       body: const InputGet(),
@@ -175,8 +178,9 @@ class btnforgetSend extends StatelessWidget {
       width: 90.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Forget?"),
+        child: const Text("Forget"),
         onPressed: () {
+          checkInputNull(context);
           cnServer(context);
         },
       ),
@@ -204,35 +208,26 @@ class btnforgetSend extends StatelessWidget {
     });
     final result = response.body;
     final data = jsonDecode(result);
+    final userMeta user = userMeta(
+        serverSource: serverSourceStr.text,
+        LoginName: data["LoginName"],
+        username: data["username"],
+        email: data["email"]);
 
     if (data["code"] == "1") {
-      showFinnshAlert(context);
+      PreferencesUtil.saveString('serverSource', serverSourceStr.text);
+      PreferencesUtil.saveString('username', data["username"]);
+      PreferencesUtil.saveString('LoginName', data["LoginName"]);
+      PreferencesUtil.saveString('email', data["email"]);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => changePasswordPage(key: null, user: user)));
     } else if (data["code"] == "0") {
-      showSnackBar_FailLogin(context);
+      showFailAlert(context);
     } else {
-      showSnackBar_FailCN(context);
+      showFailCNAlert(context);
     }
-  }
-
-  //輸出成功註冊
-  Future<void> showFinnshAlert(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Find username Finnish!'),
-          content: const Text('Please Go to Login Page,You now can Login!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () {
-                pushToLogin(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
   }
 
   //輸出註冊失敗
@@ -256,32 +251,29 @@ class btnforgetSend extends StatelessWidget {
     );
   }
 
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
+  //輸出登入失敗
+  Future<void> showFailCNAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Network Connection  Fail!'),
+          content: const Text('Please check you are Network & Server!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushToforget(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   //跳回忘記密碼主頁
   void pushToforget(BuildContext context) {
     Navigator.pushNamed(context, '/forget');
-  }
-
-  // 顯示 SnackBar 訊息與自定義按鈕
-  void showSnackBar_FailLogin(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("forget Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
-  }
-
-  void showSnackBar_FailCN(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text("Connect Fail"), // 簡單基本訊息
-        duration: Duration(seconds: 5), // 停留時間
-      ),
-    );
   }
 }

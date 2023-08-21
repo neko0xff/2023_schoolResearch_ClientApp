@@ -1,27 +1,35 @@
-// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types, unrelated_type_equality_checks
+// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types,use_build_context_synchronously, must_be_immutable
 
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:viewapp_v1_1/class/user.dart';
+import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
-// 定義輸入元件
-TextEditingController serverSourceStr = TextEditingController();
-TextEditingController usernameStr = TextEditingController();
-TextEditingController loginNameStr = TextEditingController();
-TextEditingController EmailStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
-class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class changePasswordPage extends StatelessWidget {
+  String? username;
+  String? LoginName;
+  String? serverSource;
+  String? email;
 
+  final userMeta user;
+  changePasswordPage({required Key? key, required this.user})
+      : super(key: key) {
+    username = user.username;
+    LoginName = user.LoginName;
+    serverSource = user.serverSource;
+    email = user.email;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register"),
-        automaticallyImplyLeading: false,
+        title: const Text("Change Password"),
+        automaticallyImplyLeading: true,
       ),
       body: const InputGet(),
     );
@@ -36,7 +44,7 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          RegisterStr(),
+          UpdateStr(),
           SizedBox(height: 10.0),
           btnView(),
           SizedBox(height: 10.0),
@@ -46,18 +54,20 @@ class InputGet extends StatelessWidget {
   }
 }
 
-class RegisterStr extends StatelessWidget {
-  const RegisterStr({super.key});
+class UpdateStr extends StatelessWidget {
+  const UpdateStr({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        tbServerSource(),
-        tbloginName(),
-        tbEmail(),
-        tbUsername(),
+        SizedBox(
+          width: 10,
+          height: 20,
+        ),
+        InputTip(),
         tbPassword(),
         tbConfirmPassword(),
       ],
@@ -65,78 +75,18 @@ class RegisterStr extends StatelessWidget {
   }
 }
 
-class tbEmail extends StatelessWidget {
-  const tbEmail({super.key});
+class InputTip extends StatelessWidget {
+  const InputTip({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: EmailStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          labelText: "Email",
-          hintText: "You are use a Email?",
-        ),
-      ),
-    );
-  }
-}
-
-class tbServerSource extends StatelessWidget {
-  const tbServerSource({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: serverSourceStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.info),
-          labelText: "Server",
-          hintText: "Your Server Address",
-        ),
-      ),
-    );
-  }
-}
-
-class tbUsername extends StatelessWidget {
-  const tbUsername({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: usernameStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Username",
-          hintText: "Your account username",
-        ),
-      ),
-    );
-  }
-}
-
-class tbloginName extends StatelessWidget {
-  const tbloginName({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: loginNameStr,
-        decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Login Name",
-          hintText: "Your account use a NickName",
-        ),
-      ),
+    return const Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text("Please Input New Password!",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+      ],
     );
   }
 }
@@ -153,8 +103,8 @@ class tbPassword extends StatelessWidget {
         obscureText: true,
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.lock),
-          labelText: "Password",
-          hintText: "Your account password",
+          labelText: "New Password",
+          hintText: "Your account New password",
         ),
       ),
     );
@@ -191,19 +141,40 @@ class btnView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         SizedBox(width: 20.0),
-        btnRegisterSend(),
+        btnUpdateSend(),
         SizedBox(width: 20.0),
         btnClear(),
-        SizedBox(width: 20.0),
-        btnToLoginPage(),
         SizedBox(width: 20.0),
       ],
     );
   }
 }
 
-class btnRegisterSend extends StatelessWidget {
-  const btnRegisterSend({Key? key}) : super(key: key);
+class btnClear extends StatelessWidget {
+  const btnClear({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 80.0,
+      height: 40.0,
+      child: ElevatedButton(
+        child: const Text("Clear"),
+        onPressed: () {
+          clearInput();
+        },
+      ),
+    );
+  }
+
+  void clearInput() {
+    passwordStr.text = "";
+    ConfirmPasswordStr.text = "";
+  }
+}
+
+class btnUpdateSend extends StatelessWidget {
+  const btnUpdateSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -211,29 +182,20 @@ class btnRegisterSend extends StatelessWidget {
       width: 90.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Register"),
+        child: const Text("Update"),
         onPressed: () {
-          checkInputNull(context);
           sendUserData(context);
         },
       ),
     );
   }
 
+  //確認使用者是否少填資料
   void checkInputNull(BuildContext context) {
-    String? serverSource = serverSourceStr.text;
-    String? loginName = loginNameStr.text;
-    String? username = usernameStr.text;
-    String? password = passwordStr.text;
-    String? email = EmailStr.text;
     String? ConfirmPassword = ConfirmPasswordStr.text;
+    String? password = passwordStr.text;
 
-    if (serverSource == "" ||
-        loginName == "" ||
-        username == "" ||
-        password == "" ||
-        email == "" ||
-        ConfirmPassword == "") {
+    if (ConfirmPassword == "" || password == "") {
       showFailAlert(context);
     }
   }
@@ -242,6 +204,7 @@ class btnRegisterSend extends StatelessWidget {
   void sendUserData(BuildContext context) {
     String? password = passwordStr.text;
     String? ConfirmPassword = ConfirmPasswordStr.text;
+
     if (password != ConfirmPassword) {
       showFailPasswordAlert(context);
     } else {
@@ -250,17 +213,18 @@ class btnRegisterSend extends StatelessWidget {
   }
 
   Future<dynamic> cnServer(BuildContext context) async {
-    String? serverSource = serverSourceStr.text;
-    String? loginName = loginNameStr.text;
-    String? username = usernameStr.text;
+    final String? serverSource =
+        await PreferencesUtil.getString("serverSource");
+    final String? username = await PreferencesUtil.getString("username");
+    final String? LoginName = await PreferencesUtil.getString("LoginName");
+    final String? email = await PreferencesUtil.getString("email");
     String? password = passwordStr.text;
-    String? email = EmailStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/CreateUser");
+    final Uri uri = Uri.http(serverSource!, "/UpdateUserData");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,
-      "LoginName": loginName,
+      "LoginName": LoginName,
       "email": email
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -283,7 +247,7 @@ class btnRegisterSend extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Register Finnish!'),
+          title: const Text('Update User Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
           actions: <Widget>[
             ElevatedButton(
@@ -298,40 +262,19 @@ class btnRegisterSend extends StatelessWidget {
     );
   }
 
-  //輸出註冊失敗
+  //輸出更新資料失敗
   Future<void> showFailAlert(BuildContext context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Register Fail!'),
+          title: const Text('User Data Update Fail!'),
           content: const Text('Please check you are Input Data!'),
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
               onPressed: () {
-                pushToRegister(context);
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  //輸入密碼失敗
-  Future<void> showFailPasswordAlert(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Password Fail!'),
-          content: const Text('Please check you are Password!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () {
-                pushToRegister(context);
+                pushTochangePassword(context);
               },
             ),
           ],
@@ -352,7 +295,28 @@ class btnRegisterSend extends StatelessWidget {
             ElevatedButton(
               child: const Text('OK'),
               onPressed: () {
-                pushToRegister(context);
+                pushTochangePassword(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  //輸入密碼失敗
+  Future<void> showFailPasswordAlert(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Password Fail!'),
+          content: const Text('Please check you are Password!'),
+          actions: <Widget>[
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                pushTochangePassword(context);
               },
             ),
           ],
@@ -363,61 +327,12 @@ class btnRegisterSend extends StatelessWidget {
 
   //跳回登入主頁
   void pushToLogin(BuildContext context) {
+    PreferencesUtil.clear();
     Navigator.pushNamed(context, '/login');
   }
 
-  //跳回註冊主頁
-  void pushToRegister(BuildContext context) {
-    Navigator.pushNamed(context, '/register');
-  }
-}
-
-class btnClear extends StatelessWidget {
-  const btnClear({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 80.0,
-      height: 40.0,
-      child: ElevatedButton(
-        child: const Text("Clear"),
-        onPressed: () {
-          clearInput();
-        },
-      ),
-    );
-  }
-
-  void clearInput() {
-    serverSourceStr.text = "";
-    loginNameStr.text = "";
-    EmailStr.text = "";
-    usernameStr.text = "";
-    passwordStr.text = "";
-    ConfirmPasswordStr.text = "";
-  }
-}
-
-class btnToLoginPage extends StatelessWidget {
-  const btnToLoginPage({super.key});
-
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 80.0,
-      height: 40.0,
-      child: ElevatedButton(
-        child: const Text("Login"),
-        onPressed: () {
-          pushToLogin(context);
-        },
-      ),
-    );
+  //跳回使用者資料更新主頁
+  void pushTochangePassword(BuildContext context) {
+    Navigator.of(context).pop();
   }
 }
