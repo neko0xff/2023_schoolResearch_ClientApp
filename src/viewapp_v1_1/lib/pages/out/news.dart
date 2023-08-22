@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:viewapp_v1_1/pages/table/api_aqi.dart';
 
 class NewsData extends StatelessWidget {
   const NewsData({Key? key}) : super(key: key);
@@ -68,6 +69,8 @@ class DataAQI extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
         child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
             mainAxisSize: MainAxisSize.min,
@@ -77,7 +80,25 @@ class DataAQI extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               SizedBox(width: 10),
             ]),
+        table_aqi()
       ],
     ));
+  }
+}
+
+class table_aqi extends StatelessWidget {
+  const table_aqi({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: AqiTable(), // Wrap AqiTable with Expanded
+        ),
+      ],
+    );
   }
 }
