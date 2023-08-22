@@ -80,7 +80,12 @@ class DataAQI extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               SizedBox(width: 10),
             ]),
-        table_aqi()
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              table_aqi()
+            ]),
       ],
     ));
   }
@@ -95,9 +100,7 @@ class table_aqi extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
-          child: AqiTable(), // Wrap AqiTable with Expanded
-        ),
+        AqiTable(),
       ],
     );
   }
