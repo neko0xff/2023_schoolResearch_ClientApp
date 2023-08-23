@@ -10,12 +10,12 @@ import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
+
 class changePasswordPage extends StatelessWidget {
   String? username;
   String? LoginName;
   String? serverSource;
   String? email;
-
   final userMeta user;
   changePasswordPage({required Key? key, required this.user})
       : super(key: key) {
@@ -31,23 +31,38 @@ class changePasswordPage extends StatelessWidget {
         title: const Text("Change Password"),
         automaticallyImplyLeading: true,
       ),
-      body: const InputGet(),
+      body: InputGet(key: null,
+          username: username,
+          LoginName: LoginName,
+          serverSource: serverSource,
+          email: email
+      ),
     );
   }
 }
 
 class InputGet extends StatelessWidget {
-  const InputGet({super.key});
+  String? username;
+  String? LoginName;
+  String? serverSource;
+  String? email;
+  InputGet({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          UpdateStr(),
-          SizedBox(height: 10.0),
-          btnView(),
-          SizedBox(height: 10.0),
+          UpdateStr(key: null,
+              username: username,
+              LoginName: LoginName,
+              serverSource: serverSource,
+              email: email,
+          ),
+          const SizedBox(height: 10.0),
+          const btnView(),
+          const SizedBox(height: 10.0),
         ],
       ),
     );
@@ -55,37 +70,64 @@ class InputGet extends StatelessWidget {
 }
 
 class UpdateStr extends StatelessWidget {
-  const UpdateStr({super.key});
+  String? username;
+  String? LoginName;
+  String? serverSource;
+  String? email;
+  UpdateStr({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        SizedBox(
+        const SizedBox(
           width: 10,
           height: 20,
         ),
-        InputTip(),
-        tbPassword(),
-        tbConfirmPassword(),
+        InputTip(key: null,
+          username: username,
+          LoginName: LoginName,
+          serverSource: serverSource,
+          email: email
+        ),
+        const tbPassword(),
+        const tbConfirmPassword(),
       ],
     );
   }
 }
 
 class InputTip extends StatelessWidget {
-  const InputTip({super.key});
+  String? username;
+  String? LoginName;
+  String? serverSource;
+  String? email;
+  InputTip({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text("Please Input New Password!",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+        Column(children: [
+          const Text("查詢結果",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
+          Text("帳戶: $username ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("顯示別名: $LoginName ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("email: $email ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+        ]
+        ),
+        const SizedBox(height: 10),
+        Column(children: [
+          const Text("Please Input New Password!",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10)
+        ],)
       ],
     );
   }

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
+String selectedLocation = '富貴角'; // 預設選擇的地點
+
 class AqiTable extends StatefulWidget {
   const AqiTable({Key? key}) : super(key: key);
 
@@ -15,15 +17,18 @@ class AqiTable extends StatefulWidget {
 class _AqiTableState extends State<AqiTable> {
   late Future<List<Map<String, dynamic>>> _dataFuture;
   final List<String> columns = ['測站編號', '地點', 'AQI'];
+  String setLocal = "富貴角";
+  // List of items in our dropdown menu
+  var items = ['板橋','淡水','基隆','富貴角','金門','林口','新莊','士林','中山','新店','汐止','松山','萬華'];
 
   @override
   void initState() {
     super.initState();
     _dataFuture = getData();
+    selectedLocation = setLocal; // 初始化選定的地點
   }
 
   Future<List<Map<String, dynamic>>> getData() async {
-    const String setLocal = "板橋";
     final String? serverSource =
         await PreferencesUtil.getString("serverSource");
     final Uri uri =
@@ -51,13 +56,43 @@ class _AqiTableState extends State<AqiTable> {
     );
   }
 
-  Widget view(List<dynamic> data) {
-    return Column(
-      children: <Widget>[
-        UpdateDay(data),
-        output(data),
-      ],
+  Widget btnx(BuildContext context){
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownButton(
+            value: setLocal,
+            icon: const Icon(Icons.keyboard_arrow_down),
+            items: items.map((String items) {
+              return DropdownMenuItem(
+                value: items,
+                child: Text(items),
+              );
+            }).toList(),
+            // After selecting the desired option,it will
+            // change button value to selected value
+            onChanged: (String? newValue) {
+              setState(() {
+                setLocal = newValue!;
+                _dataFuture = getData(); //取得新的資料
+              });
+            },
+          ),
+        ],
+      ),
     );
+  }
+
+  Widget view(List<dynamic> data) {
+    return Center(child: Column(
+      children: <Widget>[
+        Row(children: [btnx(context)]),
+        SizedBox(width: 25.0, height: 10.0),
+        Column(children: [UpdateDay(data),
+          output(data),])
+      ],
+    ));
   }
 
   Widget UpdateDay(List<dynamic> data) {
