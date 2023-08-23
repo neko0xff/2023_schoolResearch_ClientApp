@@ -10,7 +10,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("About Page"),
+        title: const Text("About"),
         automaticallyImplyLeading: true,
       ),
       body: const AboutGet(),
@@ -36,20 +36,40 @@ class data1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
         child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        SizedBox(width: 25.0),
-        Text("About Dev",
+        SizedBox(width: 25.0, height: 10.0),
+        Text("關於開發者部分",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-        SizedBox(width: 25.0),
-        Text("這是neko0xff學校專題，該APP客戶端是使用Flutter進行撰寫且試著使用API串接伺服端呈現後端的運行狀態！",
+        SizedBox(width: 25.0, height: 10.0),
+        Text("這是neko0xff學校專題",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text("該客戶端可檢視伺服端上的所有資訊&控制項",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text("(ex: IoT,爬蟲,使用者資料)",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(width: 25.0, height: 10.0),
+        Text("使用框架部分",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+        SizedBox(width: 25.0, height: 10.0),
+        Text("前端： Flutter",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text("後端： nodejs",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text("資料庫： mysql(MariaDB)",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(width: 25.0, height: 10.0),
+        Text("其它", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+        SizedBox(width: 25.0, height: 10.0),
         Text("撰寫時間: 2023/07/01~now",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(width: 25.0),
         Text("釋出版本： V1.1",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-        SizedBox(width: 25.0),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(width: 25.0, height: 10.0),
+        Text("Ask Author",
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         btnView(),
       ],
     ));
@@ -65,7 +85,7 @@ class btnView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        SizedBox(height: 25),
+        SizedBox(height: 10),
         btnGithub(),
         SizedBox(height: 25),
         btnTwitter(),
@@ -89,7 +109,7 @@ class btnGithub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 130.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
@@ -111,11 +131,11 @@ class btnTwitter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 130.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
-        child: const Text("Twitter"),
+        child: const Text("X(Twitter)"),
       ),
     );
   }
@@ -125,7 +145,7 @@ class btnTwitter extends StatelessWidget {
 class btnMastdon extends StatelessWidget {
   const btnMastdon({super.key});
 
-  final String URL = 'https://g0v.social/@neko_0xff';
+  final String URL = 'https://mas.to/@neko_0xff';
   launchURL() {
     launch(URL);
   }
@@ -133,11 +153,11 @@ class btnMastdon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 130.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
-        child: const Text("Mastdon"),
+        child: const Text("Mastdon(mas.to)"),
       ),
     );
   }

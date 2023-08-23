@@ -20,12 +20,12 @@ void main() async {
 class viewAppMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VisualDensity density = Theme.of(context).visualDensity;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "View App v1.1",
-        theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-        ),
+        theme:
+            ThemeData(primarySwatch: Colors.blueGrey, visualDensity: density),
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
@@ -24,9 +25,9 @@ class _AqiTableState extends State<AqiTable> {
   Future<List<Map<String, dynamic>>> getData() async {
     const String setLocal = "板橋";
     final String? serverSource =
-    await PreferencesUtil.getString("serverSource");
+        await PreferencesUtil.getString("serverSource");
     final Uri uri =
-    Uri.http(serverSource!, "/crawler/AQI/site", {"sitename": setLocal});
+        Uri.http(serverSource!, "/crawler/AQI/site", {"sitename": setLocal});
     final response = await http.get(uri);
     final result = response.body;
     final jsonData = jsonDecode(result);
@@ -53,9 +54,21 @@ class _AqiTableState extends State<AqiTable> {
   Widget view(List<dynamic> data) {
     return Column(
       children: <Widget>[
+        UpdateDay(data),
         output(data),
       ],
     );
+  }
+
+  Widget UpdateDay(List<dynamic> data) {
+    return Center(
+        child: Column(
+      children: <Widget>[
+        Text("Update Time", style: TextStyle(fontSize: 20)),
+        Text("Date= ${data[0]["monitordate"].toString()}",
+            style: TextStyle(fontSize: 20)),
+      ],
+    ));
   }
 
   Widget output(List<dynamic> data) {
@@ -73,28 +86,29 @@ class _AqiTableState extends State<AqiTable> {
             label: Text(
               '地點',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),),
+            ),
+          ),
           DataColumn(
             label: Text(
               'AQI',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),),
-
+            ),
+          ),
         ],
         rows: List<DataRow>.generate(
           data.length,
-              (index) => DataRow(
+          (index) => DataRow(
             cells: <DataCell>[
               DataCell(
-                Text("1",
+                Text(data[0]["siteid"].toString(),
                     style: const TextStyle(fontSize: 25)),
               ),
               DataCell(
-                Text('2',
+                Text(data[0]["sitename"].toString(),
                     style: const TextStyle(fontSize: 25)),
               ),
               DataCell(
-                Text('3',
+                Text(data[0]["aqi"].toString(),
                     style: const TextStyle(fontSize: 25)),
               ),
             ],

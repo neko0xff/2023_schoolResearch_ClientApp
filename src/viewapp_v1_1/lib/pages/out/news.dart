@@ -77,15 +77,13 @@ class DataAQI extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("AQI",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               SizedBox(width: 10),
             ]),
         Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              table_aqi()
-            ]),
+            children: [table_aqi()]),
       ],
     ));
   }

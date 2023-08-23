@@ -65,8 +65,8 @@ class _SensorTable1State extends State<SensorTable1> {
         child: Column(
       children: <Widget>[
         Text("Update Time", style: TextStyle(fontSize: 20)),
-        Text("Date= " + data["date"], style: TextStyle(fontSize: 20)),
-        Text("Time= " + data["time"], style: TextStyle(fontSize: 20)),
+        Text("Date= ${data["date"]}", style: TextStyle(fontSize: 20)),
+        Text("Time= ${data["time"]}", style: TextStyle(fontSize: 20)),
       ],
     ));
   }
