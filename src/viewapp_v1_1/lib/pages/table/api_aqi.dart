@@ -19,7 +19,21 @@ class _AqiTableState extends State<AqiTable> {
   final List<String> columns = ['測站編號', '地點', 'AQI'];
   String setLocal = "富貴角";
   // List of items in our dropdown menu
-  var items = ['板橋','淡水','基隆','富貴角','金門','林口','新莊','士林','中山','新店','汐止','松山','萬華'];
+  var items = [
+    '板橋',
+    '淡水',
+    '基隆',
+    '富貴角',
+    '金門',
+    '林口',
+    '新莊',
+    '士林',
+    '中山',
+    '新店',
+    '汐止',
+    '松山',
+    '萬華'
+  ];
 
   @override
   void initState() {
@@ -56,7 +70,7 @@ class _AqiTableState extends State<AqiTable> {
     );
   }
 
-  Widget btnx(BuildContext context){
+  Widget btnx(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -67,7 +81,9 @@ class _AqiTableState extends State<AqiTable> {
             items: items.map((String items) {
               return DropdownMenuItem(
                 value: items,
-                child: Text(items),
+                child: Text(items,
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               );
             }).toList(),
             // After selecting the desired option,it will
@@ -85,12 +101,19 @@ class _AqiTableState extends State<AqiTable> {
   }
 
   Widget view(List<dynamic> data) {
-    return Center(child: Column(
+    return Center(
+        child: Column(
       children: <Widget>[
-        Row(children: [btnx(context)]),
+        Row(children: [
+          Text("查詢位置： ",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          btnx(context)
+        ]),
         SizedBox(width: 25.0, height: 10.0),
-        Column(children: [UpdateDay(data),
-          output(data),])
+        Column(children: [
+          UpdateDay(data),
+          output(data),
+        ])
       ],
     ));
   }

@@ -54,8 +54,8 @@ class _SensorTable1State extends State<SensorTable1> {
   Widget view(Map<String, dynamic> data) {
     return Column(
       children: <Widget>[
-        output(data),
         UpdateDay(data),
+        output(data),
       ],
     );
   }

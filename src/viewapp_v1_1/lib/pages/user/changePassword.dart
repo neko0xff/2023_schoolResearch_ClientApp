@@ -117,16 +117,16 @@ class InputTip extends StatelessWidget {
         Column(children: [
           const Text("查詢結果",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
-          Text("帳戶: $username ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text("顯示別名: $LoginName ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text("email: $email ",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+          Text("帳戶: $username ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("顯示別名: $LoginName ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("email: $email ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
         ]
         ),
         const SizedBox(height: 10),
-        Column(children: [
-          const Text("Please Input New Password!",
+        const Column(children: [
+          Text("Please Input New Password!",
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10)
+          SizedBox(height: 10)
         ],)
       ],
     );
