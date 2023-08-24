@@ -2,7 +2,9 @@ version: '3'
 services:
     web:
       restart: always # 跟系統服務一起重啟
-      network_mode: host # 網路: 使用實體機
+      #network_mode: host # 網路: 使用實體機
+      ports:
+        - 8082:80
       # 編譯時的設置
       build:
         context: .
