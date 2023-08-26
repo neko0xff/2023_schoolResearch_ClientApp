@@ -24,8 +24,7 @@ class viewAppMain extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "View App v1.1",
-        theme:
-            ThemeData(primarySwatch: Colors.blueGrey, visualDensity: density),
+        theme: ThemeData(primarySwatch: Colors.green, visualDensity: density),
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
