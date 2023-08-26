@@ -2,15 +2,25 @@
 
 use School Research
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 己實作功能
+- 使用者
+    * Auth
+    * 基本資料更新
+    * 忘記密碼
+- 資料
+    * 實時感測
+    * 自訂數值
+    * 開關控制&記錄
+---
+## 如何編譯
+### Linux
+```bash
+  $flutter build linux
+```
+### Android
+```bash
+  $flutter build apk
+```
+### Web
+- 編譯成web容器: `$make`
+- Debug階段(使用本地的chrome輸出編譯結果): `$flutter run -d chrome`
