@@ -81,7 +81,7 @@ class _UserCustomValueState extends State<UserCustomValue> {
     final String? username = await PreferencesUtil.getString("username");
 
     // UserValue01
-    final Uri uri = Uri.http(serverSource!, "/UserCustomValue01");
+    final Uri uri = Uri.http(serverSource!, "/Set/UserCustomValue01");
     final response = await http.post(uri, body: {
       "username": username, // You need to define 'username'
       "customvar01": _setValue01
