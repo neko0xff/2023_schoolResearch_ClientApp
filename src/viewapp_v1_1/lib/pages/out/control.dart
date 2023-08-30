@@ -21,7 +21,8 @@ class ControlPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -40,7 +41,7 @@ class ControlPage extends StatelessWidget {
         Control2(),
         SizedBox(height: 10.0),
       ],
-    );
+    ));
   }
 }
 

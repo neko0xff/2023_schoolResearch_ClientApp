@@ -22,7 +22,8 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return SingleChildScrollView(
+        child: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -45,7 +46,7 @@ class MainPage extends StatelessWidget {
         SizedBox(height: 10.0),
         SizedBox(height: 10.0),
       ],
-    );
+    ));
   }
 }
 

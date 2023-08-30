@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
-
-import 'dart:html';
-import 'dart:ui_web' as ui;
+// ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
 import 'package:local_notifier/local_notifier.dart';
@@ -12,10 +9,6 @@ import 'package:viewapp_v1_1/pages/user/register.dart';
 import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
 void main() async {
-  ui.platformViewRegistry.registerViewFactory(
-      'WebApp', (_) => DivElement()..innerText = 'View App v1.1');
-  ui.debugEmulateFlutterTesterEnvironment = false;
-
   runApp(viewAppMain());
   /* localNotifier: Only Windows,Linux.macOS */
   await localNotifier.setup(
@@ -28,11 +21,10 @@ void main() async {
 class viewAppMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    VisualDensity density = Theme.of(context).visualDensity;
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "View App v1.1",
-        theme: ThemeData(primarySwatch: Colors.green, visualDensity: density),
+        theme: ThemeData(primarySwatch: Colors.green),
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
