@@ -5,21 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: UserCustomValue(),
-    );
-  }
-}
-
 class UserCustomValue extends StatefulWidget {
   const UserCustomValue({Key? key}) : super(key: key);
 
@@ -29,18 +14,37 @@ class UserCustomValue extends StatefulWidget {
 
 class _UserCustomValueState extends State<UserCustomValue> {
   late TextEditingController userSelectedValue01;
-  String _setValue01 = "0";
+  late TextEditingController userSelectedValue02;
+  late TextEditingController userSelectedValue03;
+  late TextEditingController userSelectedValue04;
+  late TextEditingController userSelectedValue05;
+  late TextEditingController userSelectedValue06;
+  late TextEditingController userSelectedValue07;
+  String _setValue = "";
+  String _setNum = "0";
 
   @override
   void initState() {
     super.initState();
     userSelectedValue01 = TextEditingController();
+    userSelectedValue02 = TextEditingController();
+    userSelectedValue03 = TextEditingController();
+    userSelectedValue04 = TextEditingController();
+    userSelectedValue05 = TextEditingController();
+    userSelectedValue06 = TextEditingController();
+    userSelectedValue07 = TextEditingController();
     _getUserValueStatus();
   }
 
   @override
   void dispose() {
     userSelectedValue01.dispose();
+    userSelectedValue02.dispose();
+    userSelectedValue03.dispose();
+    userSelectedValue04.dispose();
+    userSelectedValue05.dispose();
+    userSelectedValue06.dispose();
+    userSelectedValue07.dispose();
     super.dispose();
   }
 
@@ -54,8 +58,81 @@ class _UserCustomValueState extends State<UserCustomValue> {
             userSelectedValue01: userSelectedValue01,
             onChanged: (value) {
               setState(() {
-                _setValue01 = value;
+                _setValue = "customvar01";
+                _setNum = value;
                 PreferencesUtil.saveString("UserValue1", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue02ctr(
+            userSelectedValue02: userSelectedValue02,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar02";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue2", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue03ctr(
+            userSelectedValue03: userSelectedValue03,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar03";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue3", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue04ctr(
+            userSelectedValue04: userSelectedValue04,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar04";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue4", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue05ctr(
+            userSelectedValue05: userSelectedValue05,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar05";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue5", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue06ctr(
+            userSelectedValue06: userSelectedValue06,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar06";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue6", value);
+              });
+              _connectToServer(context);
+            },
+          ),
+          const SizedBox(height: 20),
+          UserValue07ctr(
+            userSelectedValue07: userSelectedValue07,
+            onChanged: (value) {
+              setState(() {
+                _setValue = "customvar07";
+                _setNum = value;
+                PreferencesUtil.saveString("UserValue7", value);
               });
               _connectToServer(context);
             },
@@ -70,7 +147,50 @@ class _UserCustomValueState extends State<UserCustomValue> {
     String? userValue1Status = await PreferencesUtil.getString("UserValue1");
     if (userValue1Status != null) {
       setState(() {
-        _setValue01 = userValue1Status;
+        _setNum = userValue1Status;
+        _setValue = "customvar01";
+      });
+    }
+    String? userValue2Status = await PreferencesUtil.getString("UserValue2");
+    if (userValue2Status != null) {
+      setState(() {
+        _setNum = userValue2Status;
+        _setValue = "customvar02";
+      });
+    }
+    String? userValue3Status = await PreferencesUtil.getString("UserValue3");
+    if (userValue3Status != null) {
+      setState(() {
+        _setNum = userValue3Status;
+        _setValue = "customvar03";
+      });
+    }
+    String? userValue4Status = await PreferencesUtil.getString("UserValue4");
+    if (userValue4Status != null) {
+      setState(() {
+        _setNum = userValue4Status;
+        _setValue = "customvar04";
+      });
+    }
+    String? userValue5Status = await PreferencesUtil.getString("UserValue5");
+    if (userValue5Status != null) {
+      setState(() {
+        _setNum = userValue5Status;
+        _setValue = "customvar05";
+      });
+    }
+    String? userValue6Status = await PreferencesUtil.getString("UserValue6");
+    if (userValue6Status != null) {
+      setState(() {
+        _setNum = userValue6Status;
+        _setValue = "customvar06";
+      });
+    }
+    String? userValue7Status = await PreferencesUtil.getString("UserValue7");
+    if (userValue7Status != null) {
+      setState(() {
+        _setNum = userValue7Status;
+        _setValue = "customvar07";
       });
     }
   }
@@ -81,10 +201,11 @@ class _UserCustomValueState extends State<UserCustomValue> {
     final String? username = await PreferencesUtil.getString("username");
 
     // UserValue01
-    final Uri uri = Uri.http(serverSource!, "/Set/UserCustomValue01");
+    final Uri uri = Uri.http(serverSource!, "/Set/UserCustomValue");
     final response = await http.post(uri, body: {
-      "username": username, // You need to define 'username'
-      "customvar01": _setValue01
+      "username": username,
+      "ValueName": _setValue,
+      "num": _setNum
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });
@@ -193,6 +314,216 @@ class UserValue01ctr extends StatelessWidget {
         ElevatedButton(
             onPressed: () {
               onChanged(userSelectedValue01.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue02ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue02;
+  final ValueChanged<String> onChanged;
+
+  const UserValue02ctr({
+    Key? key,
+    required this.userSelectedValue02,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue02,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 02",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue02.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue03ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue03;
+  final ValueChanged<String> onChanged;
+
+  const UserValue03ctr({
+    Key? key,
+    required this.userSelectedValue03,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue03,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 03",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue03.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue04ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue04;
+  final ValueChanged<String> onChanged;
+
+  const UserValue04ctr({
+    Key? key,
+    required this.userSelectedValue04,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue04,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 04",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue04.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue05ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue05;
+  final ValueChanged<String> onChanged;
+
+  const UserValue05ctr({
+    Key? key,
+    required this.userSelectedValue05,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue05,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 05",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue05.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue06ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue06;
+  final ValueChanged<String> onChanged;
+
+  const UserValue06ctr({
+    Key? key,
+    required this.userSelectedValue06,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue06,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 06",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue06.text);
+            },
+            child: const Text("Send")),
+        const SizedBox(width: 20),
+      ],
+    );
+  }
+}
+
+class UserValue07ctr extends StatelessWidget {
+  final TextEditingController userSelectedValue07;
+  final ValueChanged<String> onChanged;
+
+  const UserValue07ctr({
+    Key? key,
+    required this.userSelectedValue07,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextFormField(
+            controller: userSelectedValue07,
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.numbers),
+              labelText: "User Custom Value 07",
+            ),
+          ),
+        ),
+        ElevatedButton(
+            onPressed: () {
+              onChanged(userSelectedValue07.text);
             },
             child: const Text("Send")),
         const SizedBox(width: 20),
