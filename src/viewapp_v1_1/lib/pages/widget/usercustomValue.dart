@@ -13,26 +13,19 @@ class UserCustomValue extends StatefulWidget {
 }
 
 class _UserCustomValueState extends State<UserCustomValue> {
-  late TextEditingController userSelectedValue01;
-  late TextEditingController userSelectedValue02;
-  late TextEditingController userSelectedValue03;
-  late TextEditingController userSelectedValue04;
-  late TextEditingController userSelectedValue05;
-  late TextEditingController userSelectedValue06;
-  late TextEditingController userSelectedValue07;
+  late TextEditingController userSelectedValue01 = TextEditingController();
+  late TextEditingController userSelectedValue02 = TextEditingController();
+  late TextEditingController userSelectedValue03 = TextEditingController();
+  late TextEditingController userSelectedValue04 = TextEditingController();
+  late TextEditingController userSelectedValue05 = TextEditingController();
+  late TextEditingController userSelectedValue06 = TextEditingController();
+  late TextEditingController userSelectedValue07 = TextEditingController();
   String _setValue = "";
   String _setNum = "0";
 
   @override
   void initState() {
     super.initState();
-    userSelectedValue01 = TextEditingController();
-    userSelectedValue02 = TextEditingController();
-    userSelectedValue03 = TextEditingController();
-    userSelectedValue04 = TextEditingController();
-    userSelectedValue05 = TextEditingController();
-    userSelectedValue06 = TextEditingController();
-    userSelectedValue07 = TextEditingController();
     _getUserValueStatus();
   }
 
@@ -143,50 +136,52 @@ class _UserCustomValueState extends State<UserCustomValue> {
     );
   }
 
+  //記錄使用者輸入的狀態
   Future<void> _getUserValueStatus() async {
     String? userValue1Status = await PreferencesUtil.getString("UserValue1");
+    String? userValue2Status = await PreferencesUtil.getString("UserValue2");
+    String? userValue3Status = await PreferencesUtil.getString("UserValue3");
+    String? userValue4Status = await PreferencesUtil.getString("UserValue4");
+    String? userValue5Status = await PreferencesUtil.getString("UserValue5");
+    String? userValue6Status = await PreferencesUtil.getString("UserValue6");
+    String? userValue7Status = await PreferencesUtil.getString("UserValue7");
+
     if (userValue1Status != null) {
       setState(() {
         _setNum = userValue1Status;
         _setValue = "customvar01";
       });
     }
-    String? userValue2Status = await PreferencesUtil.getString("UserValue2");
     if (userValue2Status != null) {
       setState(() {
         _setNum = userValue2Status;
         _setValue = "customvar02";
       });
     }
-    String? userValue3Status = await PreferencesUtil.getString("UserValue3");
     if (userValue3Status != null) {
       setState(() {
         _setNum = userValue3Status;
         _setValue = "customvar03";
       });
     }
-    String? userValue4Status = await PreferencesUtil.getString("UserValue4");
     if (userValue4Status != null) {
       setState(() {
         _setNum = userValue4Status;
         _setValue = "customvar04";
       });
     }
-    String? userValue5Status = await PreferencesUtil.getString("UserValue5");
     if (userValue5Status != null) {
       setState(() {
         _setNum = userValue5Status;
         _setValue = "customvar05";
       });
     }
-    String? userValue6Status = await PreferencesUtil.getString("UserValue6");
     if (userValue6Status != null) {
       setState(() {
         _setNum = userValue6Status;
         _setValue = "customvar06";
       });
     }
-    String? userValue7Status = await PreferencesUtil.getString("UserValue7");
     if (userValue7Status != null) {
       setState(() {
         _setNum = userValue7Status;

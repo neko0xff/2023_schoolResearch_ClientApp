@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
               Tab(icon: Icon(Icons.home), text: "Main"),
-              Tab(icon: Icon(Icons.list), text: "Data Table"),
+              Tab(icon: Icon(Icons.list), text: "Data"),
               Tab(icon: Icon(Icons.switch_right_sharp), text: "Control"),
               Tab(icon: Icon(Icons.account_balance_outlined), text: "News"),
             ],

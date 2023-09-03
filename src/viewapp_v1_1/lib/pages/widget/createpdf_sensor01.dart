@@ -97,7 +97,7 @@ class _PDFScreenState extends State<PDFScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 20.0),
-              const BtnViewTable(),
+              const BtnGoBack(),
               const SizedBox(width: 10.0),
               ElevatedButton(
                 onPressed: () {
@@ -259,8 +259,8 @@ class _PDFScreenState extends State<PDFScreen> {
   }
 }
 
-class BtnViewTable extends StatelessWidget {
-  const BtnViewTable({Key? key}) : super(key: key);
+class BtnGoBack extends StatelessWidget {
+  const BtnGoBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

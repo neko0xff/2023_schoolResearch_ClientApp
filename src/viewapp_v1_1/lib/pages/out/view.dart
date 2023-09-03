@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:viewapp_v1_1/pages/table/sensor01.dart';
-import 'package:viewapp_v1_1/pages/widget/createpdf_sensor01.dart';
+import 'package:viewapp_v1_1/pages/btn/tableView.dart';
 
 class ViewData extends StatelessWidget {
   const ViewData({Key? key}) : super(key: key);
@@ -25,21 +24,19 @@ class ViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
+      child: Center(
+          child: Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10.0),
-          Text('Data View',
+          Text('檢視方式',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10.0),
-          Text('Sensor01',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          const Data1(),
+          SizedBox(height: 20.0),
           btn1(),
           SizedBox(height: 15.0),
         ],
-      ),
+      )),
     );
   }
 }
@@ -52,19 +49,9 @@ class btn1 extends StatelessWidget {
     return ElevatedButton(
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CreatePDFViewPage()));
+              MaterialPageRoute(builder: (context) => tableViewPage()));
         },
-        child: Text('Create a PDF'));
-  }
-}
-
-class Data1 extends StatelessWidget {
-  const Data1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: SensorTable1(),
-    );
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        child: Text('Table'));
   }
 }

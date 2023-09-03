@@ -123,7 +123,8 @@ class btnView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return const Center(
+        child: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -150,7 +151,7 @@ class btnView extends StatelessWidget {
           ],
         )
       ],
-    );
+    ));
   }
 }
 
