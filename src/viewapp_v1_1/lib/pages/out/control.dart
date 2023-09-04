@@ -66,6 +66,6 @@ class btn2 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => valueCtrPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
-        child: Text('User Custom Value'));
+        child: Text('User\nCustom\nValue', textAlign: TextAlign.center));
   }
 }

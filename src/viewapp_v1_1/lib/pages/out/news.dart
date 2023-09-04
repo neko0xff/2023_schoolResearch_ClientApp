@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:viewapp_v1_1/pages/table/api_aqi.dart';
+import 'package:viewapp_v1_1/pages/btn/aqiTable.dart';
 
 class NewsData extends StatelessWidget {
   const NewsData({Key? key}) : super(key: key);
@@ -22,14 +22,12 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10.0),
           Data1(),
-          SizedBox(height: 10.0),
-          DataAQI()
         ]);
   }
 }
@@ -39,8 +37,10 @@ class Data1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
         child: Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
             mainAxisSize: MainAxisSize.min,
@@ -50,56 +50,29 @@ class Data1 extends StatelessWidget {
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
               SizedBox(width: 10),
             ]),
+        SizedBox(height: 10),
         Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("資料來源： 行政院環境保護部(署)",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              btn1(),
             ]),
       ],
     ));
   }
 }
 
-class DataAQI extends StatelessWidget {
-  const DataAQI({super.key});
+class btn1 extends StatelessWidget {
+  const btn1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("AQI",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-            ]),
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [table_aqi()]),
-      ],
-    ));
-  }
-}
-
-class table_aqi extends StatelessWidget {
-  const table_aqi({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AqiTable(),
-      ],
-    );
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => aqiTablePage()));
+        },
+        child: Text('AQI', textAlign: TextAlign.center));
   }
 }
