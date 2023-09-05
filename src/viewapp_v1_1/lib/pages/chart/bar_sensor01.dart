@@ -23,6 +23,7 @@ class _BarChartView1State extends State<BarView1> {
     _dataFuture = getData();
   }
 
+  //連線部分
   Future<Map<String, dynamic>?> getData() async {
     const String setboards = "Sensor01";
     final String? serverSource =
@@ -76,6 +77,7 @@ class _BarChartView1State extends State<BarView1> {
     ));
   }
 
+  /*折線圖*/
   Widget bar1(BuildContext context, Map<String, dynamic> data) {
     return BarChart(
       BarChartData(
@@ -113,6 +115,7 @@ class _BarChartView1State extends State<BarView1> {
         ),
       );
 
+  //文字
   Widget getTitles(double value, TitleMeta meta) {
     final style = TextStyle(
       color: Colors.blue,
@@ -186,6 +189,7 @@ class _BarChartView1State extends State<BarView1> {
         end: Alignment.topCenter,
       );
 
+  //數值
   List<BarChartGroupData> get barGroups => [
         BarChartGroupData(
           x: 0,
