@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/pages/btn/barchartView.dart';
+import 'package:viewapp_v1_1/pages/btn/linechartView.dart';
 import 'package:viewapp_v1_1/pages/btn/tableView.dart';
 
 class ViewData extends StatelessWidget {
@@ -38,6 +39,8 @@ class ViewPage extends StatelessWidget {
           SizedBox(height: 15.0),
           btn2(),
           SizedBox(height: 15.0),
+          btn3(),
+          SizedBox(height: 15.0),
         ],
       )),
     );
@@ -71,5 +74,20 @@ class btn2 extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
         child: Text('Bar\nChart', textAlign: TextAlign.center));
+  }
+}
+
+class btn3 extends StatelessWidget {
+  const btn3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => linecartViewPage()));
+        },
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        child: Text('Line\nChart', textAlign: TextAlign.center));
   }
 }
