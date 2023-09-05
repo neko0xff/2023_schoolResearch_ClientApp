@@ -37,6 +37,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^22.1.39
   printing: ^5.11.0
   flutter_local_notifications: ^15.1.0+1
+  fl_chart: ^0.63.0
   flutter_launcher_icons: ^0.13.1
   flutter:
     sdk: flutter

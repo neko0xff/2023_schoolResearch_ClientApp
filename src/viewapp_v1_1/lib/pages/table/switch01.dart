@@ -50,11 +50,12 @@ class _SwitchTable1State extends State<SwitchTable1> {
   }
 
   Widget view(List<dynamic> data) {
-    return Column(
+    return SingleChildScrollView(
+        child: Column(
       children: <Widget>[
         output(data),
       ],
-    );
+    ));
   }
 
   Widget output(List<dynamic> data) {

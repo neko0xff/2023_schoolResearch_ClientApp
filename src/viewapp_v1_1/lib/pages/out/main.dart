@@ -123,7 +123,10 @@ class Data3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: SwitchTable1(),
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [SwitchTable1()]),
     );
   }
 }
