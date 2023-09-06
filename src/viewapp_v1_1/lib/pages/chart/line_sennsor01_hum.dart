@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable, file_names, unused_field
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class LineView1 extends StatefulWidget {
   /*圖表色彩設置*/
@@ -43,18 +47,38 @@ class LineView1 extends StatefulWidget {
 }
 
 class _LineView1State extends State<LineView1> {
+  late dynamic _dataFuture1;
   late double touchedValue;
+  dynamic _data1;
   List<String> get datanum => const ['0', '1', '2', '3', '4', '5', '6', '7'];
   List<double> get yValues => const [0, 100, 20, 30, 100, 50, 300, 200];
   bool fitInsideBottomTitle = true;
   bool fitInsideLeftTitle = false;
-  double usercustomValue = 50.0;
 
   @override
   void initState() {
-    touchedValue = -1;
     super.initState();
+    touchedValue = -1;
+    _dataFuture1 = getData1();
   }
+
+  //連線部分
+  Future<dynamic> getData1() async {
+    final String? serverSource =
+    await PreferencesUtil.getString("serverSource");
+    final String? username =
+    await PreferencesUtil.getString("username");
+    final Uri uri = Uri.http(
+        serverSource!, "/read/UserCustomValueStatus",
+        <String, String> {"username": "$username", "ValueName": "customvar01"});
+    final response = await http.get(uri);
+    final result = response.body;
+    final data = jsonDecode(result);
+    print(data);
+    _data1 = data;
+    return _data1;
+  }
+
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     if (value % 1 != 0) {
@@ -287,7 +311,7 @@ class _LineView1State extends State<LineView1> {
                 extraLinesData: ExtraLinesData(
                   horizontalLines: [
                     HorizontalLine(
-                      y: usercustomValue,
+                      y: 50,
                       color: widget.averageLineColor,
                       strokeWidth: 3,
                       dashArray: [20, 10],
