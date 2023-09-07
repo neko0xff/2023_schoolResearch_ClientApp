@@ -49,10 +49,10 @@ class LineViewpm25 extends StatefulWidget {
 
 class _LineViewpm25State extends State<LineViewpm25> {
   late Future<dynamic> _dataFuture1;
-  late Future<List<dynamic>> _dataFuture2;
+  late Future<List<dynamic>?> _dataFuture2;
   late double touchedValue;
   dynamic? data1;
-  late List<dynamic> data2;
+  List<dynamic>? data2;
   List<String> get datanum => const ['0', '1', '2', '3', '4', '5', '6', '7'];
   bool fitInsideBottomTitle = true;
   bool fitInsideLeftTitle = false;
@@ -84,10 +84,10 @@ class _LineViewpm25State extends State<LineViewpm25> {
   }
 
   //感測器數值連線部分
-  Future<List<dynamic>> getData2() async {
+  Future<List<dynamic>?> getData2() async {
     const String setboards = "Sensor01";
     final String? serverSource =
-    await PreferencesUtil.getString("serverSource");
+        await PreferencesUtil.getString("serverSource");
     final Uri uri = Uri.http(serverSource!, "/read/$setboards/pm25");
     final response = await http.get(uri);
     final result = response.body;
@@ -173,7 +173,24 @@ class _LineViewpm25State extends State<LineViewpm25> {
   @override
   Widget build(BuildContext context) {
     var customValue = (data1?["customvar06"] as int?) ?? 0.0;
-    List<double> yValues = [data2[0]["pm25"], data2[1]["pm25"], data2[3]["pm25"], data2[4]["pm25"], data2[5]["pm25"], data2[6]["pm25"], data2[7]["pm25"]];
+    final doubleValue0 = data2?[0]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue1 = data2?[1]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue2 = data2?[2]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue3 = data2?[3]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue4 = data2?[4]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue5 = data2?[5]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue6 = data2?[6]["pm25"]?.toDouble() ?? 0.0;
+    final doubleValue7 = data2?[7]["pm25"]?.toDouble() ?? 0.0;
+    List<double> yValues = [
+      doubleValue0,
+      doubleValue1,
+      doubleValue2,
+      doubleValue3,
+      doubleValue4,
+      doubleValue5,
+      doubleValue6,
+      doubleValue7
+    ];
 
     return Column(
       mainAxisSize: MainAxisSize.min,

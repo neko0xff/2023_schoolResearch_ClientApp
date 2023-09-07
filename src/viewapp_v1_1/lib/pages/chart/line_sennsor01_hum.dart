@@ -49,10 +49,10 @@ class LineViewhum extends StatefulWidget {
 
 class _LineViewhumState extends State<LineViewhum> {
   late Future<dynamic> _dataFuture1;
-  late Future<List<dynamic>> _dataFuture2;
+  late Future<List<dynamic>?> _dataFuture2;
   late double touchedValue;
   dynamic? data1;
-  late List<dynamic> data2;
+  List<dynamic>? data2;
   List<String> get datanum => const ['0', '1', '2', '3', '4', '5', '6', '7'];
   bool fitInsideBottomTitle = true;
   bool fitInsideLeftTitle = false;
@@ -84,7 +84,7 @@ class _LineViewhumState extends State<LineViewhum> {
   }
 
   //感測器數值連線部分
-  Future<List<dynamic>> getData2() async {
+  Future<List<dynamic>?> getData2() async {
     const String setboards = "Sensor01";
     final String? serverSource =
         await PreferencesUtil.getString("serverSource");
@@ -173,7 +173,24 @@ class _LineViewhumState extends State<LineViewhum> {
   @override
   Widget build(BuildContext context) {
     var customValue = (data1?["customvar01"] as int?) ?? 0.0;
-    List<double> yValues = [data2[0]["hum"], data2[1]["hum"], data2[3]["hum"], data2[4]["hum"], data2[5]["hum"], data2[6]["hum"], data2[7]["hum"]];
+    final doubleValue0 = data2?[0]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue1 = data2?[1]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue2 = data2?[2]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue3 = data2?[3]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue4 = data2?[4]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue5 = data2?[5]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue6 = data2?[6]["hum"]?.toDouble() ?? 0.0;
+    final doubleValue7 = data2?[7]["hum"]?.toDouble() ?? 0.0;
+    List<double> yValues = [
+      doubleValue0,
+      doubleValue1,
+      doubleValue2,
+      doubleValue3,
+      doubleValue4,
+      doubleValue5,
+      doubleValue6,
+      doubleValue7
+    ];
 
     return Column(
       mainAxisSize: MainAxisSize.min,
