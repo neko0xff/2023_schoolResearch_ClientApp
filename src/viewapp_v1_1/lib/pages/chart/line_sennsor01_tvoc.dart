@@ -115,6 +115,15 @@ class _LineViewtvocState extends State<LineViewtvoc> {
       case 10:
         text = '10';
         break;
+      case 15:
+        text = '15';
+        break;
+      case 20:
+        text = '20';
+        break;
+      case 25:
+        text = '25';
+        break;
       case 50:
         text = '50';
         break;
