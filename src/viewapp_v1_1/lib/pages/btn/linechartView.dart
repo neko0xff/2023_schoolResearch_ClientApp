@@ -1,6 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable, file_names, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_co.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_co2.dart';
 import 'package:viewapp_v1_1/pages/chart/line_sennsor01_hum.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_o3.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_pm25.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_temp.dart';
+import 'package:viewapp_v1_1/pages/chart/line_sennsor01_tvoc.dart';
 import 'package:viewapp_v1_1/pages/out/view.dart';
 
 class linecartViewPage extends StatelessWidget {
@@ -30,31 +36,6 @@ class chartView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           SizedBox(height: 10.0),
-          Text('Sensor01',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          SizedBox(height: 5.0),
-          Text('Temp',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('Hum',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('TVOC',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('Co',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('Co2',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('PM2.5',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          Text('O3',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          LineView1(),
-          SizedBox(height: 10.0),
           Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,6 +43,31 @@ class chartView extends StatelessWidget {
                 SizedBox(width: 10),
                 btnGoBack(),
               ]),
+          SizedBox(height: 10.0),
+          Text('Sensor01',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          SizedBox(height: 5.0),
+          Text('Temp',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewtemp(),
+          Text('Hum',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewhum(),
+          Text('TVOC',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewtvoc(),
+          Text('Co',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewco(),
+          Text('Co2',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewco2(),
+          Text('PM2.5',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewpm25(),
+          Text('O3',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          LineViewo3(),
           SizedBox(height: 15.0),
         ],
       )),

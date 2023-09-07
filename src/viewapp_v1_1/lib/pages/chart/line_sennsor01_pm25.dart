@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
-class LineViewhum extends StatefulWidget {
+class LineViewpm25 extends StatefulWidget {
   /*圖表色彩設置*/
-  const LineViewhum({
+  const LineViewpm25({
     super.key,
     Color? lineColor,
     Color? indicatorLineColor,
@@ -44,10 +44,10 @@ class LineViewhum extends StatefulWidget {
   final Color tooltipTextColor;
 
   @override
-  State createState() => _LineViewhumState();
+  State createState() => _LineViewpm25State();
 }
 
-class _LineViewhumState extends State<LineViewhum> {
+class _LineViewpm25State extends State<LineViewpm25> {
   late Future<dynamic> _dataFuture1;
   late Future<Map<String, dynamic>?> _dataFuture2;
   late double touchedValue;
@@ -80,7 +80,7 @@ class _LineViewhumState extends State<LineViewhum> {
         await PreferencesUtil.getString("serverSource");
     final String? username = await PreferencesUtil.getString("username");
     final Uri uri = Uri.http(serverSource!, "/read/UserCustomValueStatus",
-        <String, String>{"username": "$username", "ValueName": "customvar01"});
+        <String, String>{"username": "$username", "ValueName": "customvar06"});
     final response = await http.get(uri);
     final result = response.body;
     final data1 = jsonDecode(result);
@@ -177,7 +177,7 @@ class _LineViewhumState extends State<LineViewhum> {
 
   @override
   Widget build(BuildContext context) {
-    var customValue = (data1?["customvar01"] as int?) ?? 0.0;
+    var customValue = (data1?["customvar06"] as int?) ?? 0.0;
     List<double> yValues = [50, 200, 300, 250, 30, 50, 20];
 
     return Column(

@@ -33,7 +33,7 @@ class _BarChartView1State extends State<BarView1> {
     final result = response.body;
     final data = jsonDecode(result);
     print(data[0]);
-    _data = Map<String, dynamic>.from(data[0]); // 将data赋值给成员变量
+    _data = Map<String, dynamic>.from(data[0]);
     return _data;
   }
 
