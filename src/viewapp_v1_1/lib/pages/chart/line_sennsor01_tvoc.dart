@@ -26,7 +26,7 @@ class LineViewtvoc extends StatefulWidget {
         indicatorSpotStrokeColor = indicatorSpotStrokeColor ?? Colors.yellow,
         indicatorTouchedSpotStrokeColor =
             indicatorTouchedSpotStrokeColor ?? Colors.blue,
-        bottomTextColor = bottomTextColor ?? Colors.yellow,
+        bottomTextColor = bottomTextColor ?? Colors.black,
         bottomTouchedTextColor = bottomTouchedTextColor ?? Colors.yellow,
         averageLineColor = averageLineColor ?? Colors.green,
         tooltipBgColor = tooltipBgColor ?? Colors.orange,
@@ -49,10 +49,10 @@ class LineViewtvoc extends StatefulWidget {
 
 class _LineViewtvocState extends State<LineViewtvoc> {
   late Future<dynamic> _dataFuture1;
-  late Future<Map<String, dynamic>?> _dataFuture2;
+  late Future<List<dynamic>> _dataFuture2;
   late double touchedValue;
   dynamic? data1;
-  late Map<String, dynamic> data2;
+  late List<dynamic> data2;
   List<String> get datanum => const ['0', '1', '2', '3', '4', '5', '6', '7'];
   bool fitInsideBottomTitle = true;
   bool fitInsideLeftTitle = false;
@@ -66,12 +66,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
         data1 = data;
       });
     });
-    _dataFuture2 = getData1().then((data) {
-      setState(() {
-        data2 = data;
-      });
-      return null;
-    });
+    _dataFuture2 = getData2();
   }
 
   //自訂值連線部分
@@ -89,16 +84,16 @@ class _LineViewtvocState extends State<LineViewtvoc> {
   }
 
   //感測器數值連線部分
-  Future<Map<String, dynamic>?> getData() async {
+  Future<List<dynamic>> getData2() async {
     const String setboards = "Sensor01";
     final String? serverSource =
-        await PreferencesUtil.getString("serverSource");
-    final Uri uri = Uri.http(serverSource!, "/read/$setboards/hum");
+    await PreferencesUtil.getString("serverSource");
+    final Uri uri = Uri.http(serverSource!, "/read/$setboards/tvoc");
     final response = await http.get(uri);
     final result = response.body;
     final data = jsonDecode(result);
-    print(data[0]);
-    data2 = Map<String, dynamic>.from(data[0]);
+    print(data);
+    data2 = List<dynamic>.from(data);
     return data2;
   }
 
@@ -178,7 +173,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
   @override
   Widget build(BuildContext context) {
     var customValue = (data1?["customvar03"] as int?) ?? 0.0;
-    List<double> yValues = [50, 200, 300, 250, 30, 50, 20];
+    List<double> yValues = [data2[0]["tvoc"], data2[1]["tvoc"], data2[3]["tvoc"], data2[4]["tvoc"], data2[5]["tvoc"], data2[6]["tvoc"], data2[7]["tvoc"]];
 
     return Column(
       mainAxisSize: MainAxisSize.min,
