@@ -256,7 +256,7 @@ class btnRegisterSend extends StatelessWidget {
     String? password = passwordStr.text;
     String? email = EmailStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/CreateUser");
+    final Uri uri = Uri.http(serverSource, "/auth/CreateUser");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,

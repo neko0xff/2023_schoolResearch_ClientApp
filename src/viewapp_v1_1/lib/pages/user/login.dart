@@ -189,7 +189,7 @@ class btnLoginSend extends StatelessWidget {
     String? username = usernameStr.text;
     String? password = passwordStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/Login");
+    final Uri uri = Uri.http(serverSource, "/auth/Login");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password

@@ -236,7 +236,7 @@ class btnUpdateSend extends StatelessWidget {
     String? password = passwordStr.text;
     String? email = EmailStr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/UpdateUserData");
+    final Uri uri = Uri.http(serverSource!, "/auth/UpdateUserData");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,

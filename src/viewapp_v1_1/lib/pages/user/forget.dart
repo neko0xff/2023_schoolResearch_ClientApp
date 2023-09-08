@@ -200,7 +200,7 @@ class btnforgetSend extends StatelessWidget {
     String? serverSource = serverSourceStr.text;
     String? email = EmailStr.text;
 
-    final Uri uri = Uri.http(serverSource, "/emailAuthCheck");
+    final Uri uri = Uri.http(serverSource, "/auth/emailAuthCheck");
     final response = await http.post(uri, body: {
       "email": email
     }, headers: {

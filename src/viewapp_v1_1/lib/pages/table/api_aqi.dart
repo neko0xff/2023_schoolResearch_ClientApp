@@ -45,8 +45,8 @@ class _AqiTableState extends State<AqiTable> {
   Future<List<Map<String, dynamic>>> getData() async {
     final String? serverSource =
         await PreferencesUtil.getString("serverSource");
-    final Uri uri =
-        Uri.http(serverSource!, "/crawler/AQI/site", {"sitename": setLocal});
+    final Uri uri = Uri.http(
+        serverSource!, "/read/crawler/AQI/site", {"sitename": setLocal});
     final response = await http.get(uri);
     final result = response.body;
     final jsonData = jsonDecode(result);

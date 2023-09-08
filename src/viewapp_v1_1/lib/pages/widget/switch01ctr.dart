@@ -39,9 +39,9 @@ class _Switch01ctrState extends State<Switch01ctr> {
     String status_fan1 = _switchSelectedFan1 ? '1' : '0';
     String status_fan2 = _switchSelectedFan2 ? '1' : '0';
     var url_fan1 = Uri.parse(
-        'http://$serverSource/switchCtr/$setboards/fan1?status=$status_fan1');
+        'http://$serverSource/set/switchCtr/$setboards/fan1?status=$status_fan1');
     var url_fan2 = Uri.parse(
-        'http://$serverSource/switchCtr/$setboards/fan2?status=$status_fan2');
+        'http://$serverSource/set/switchCtr/$setboards/fan2?status=$status_fan2');
 
     /*送出封包*/
     try {

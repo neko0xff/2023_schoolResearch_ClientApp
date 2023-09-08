@@ -10,7 +10,6 @@ import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
-
 class changePasswordPage extends StatelessWidget {
   String? username;
   String? LoginName;
@@ -31,12 +30,12 @@ class changePasswordPage extends StatelessWidget {
         title: const Text("Change Password"),
         automaticallyImplyLeading: true,
       ),
-      body: InputGet(key: null,
+      body: InputGet(
+          key: null,
           username: username,
           LoginName: LoginName,
           serverSource: serverSource,
-          email: email
-      ),
+          email: email),
     );
   }
 }
@@ -46,7 +45,12 @@ class InputGet extends StatelessWidget {
   String? LoginName;
   String? serverSource;
   String? email;
-  InputGet({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+  InputGet(
+      {required Key? key,
+      this.username,
+      this.LoginName,
+      this.serverSource,
+      this.email})
       : super(key: key);
 
   @override
@@ -54,11 +58,12 @@ class InputGet extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          UpdateStr(key: null,
-              username: username,
-              LoginName: LoginName,
-              serverSource: serverSource,
-              email: email,
+          UpdateStr(
+            key: null,
+            username: username,
+            LoginName: LoginName,
+            serverSource: serverSource,
+            email: email,
           ),
           const SizedBox(height: 10.0),
           const btnView(),
@@ -74,7 +79,12 @@ class UpdateStr extends StatelessWidget {
   String? LoginName;
   String? serverSource;
   String? email;
-  UpdateStr({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+  UpdateStr(
+      {required Key? key,
+      this.username,
+      this.LoginName,
+      this.serverSource,
+      this.email})
       : super(key: key);
 
   @override
@@ -87,12 +97,12 @@ class UpdateStr extends StatelessWidget {
           width: 10,
           height: 20,
         ),
-        InputTip(key: null,
-          username: username,
-          LoginName: LoginName,
-          serverSource: serverSource,
-          email: email
-        ),
+        InputTip(
+            key: null,
+            username: username,
+            LoginName: LoginName,
+            serverSource: serverSource,
+            email: email),
         const tbPassword(),
         const tbConfirmPassword(),
       ],
@@ -105,7 +115,12 @@ class InputTip extends StatelessWidget {
   String? LoginName;
   String? serverSource;
   String? email;
-  InputTip({required Key? key, this.username, this.LoginName, this.serverSource, this.email})
+  InputTip(
+      {required Key? key,
+      this.username,
+      this.LoginName,
+      this.serverSource,
+      this.email})
       : super(key: key);
 
   @override
@@ -115,19 +130,26 @@ class InputTip extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Column(children: [
-          const Text("查詢結果",style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+          const Text("查詢結果",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
-          Text("帳戶: $username ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text("顯示別名: $LoginName ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text("email: $email ",style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
-        ]
-        ),
+          Text("帳戶: $username ",
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("顯示別名: $LoginName ",
+              style:
+                  const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text("email: $email ",
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+        ]),
         const SizedBox(height: 10),
-        const Column(children: [
-          Text("Please Input New Password!",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10)
-        ],)
+        const Column(
+          children: [
+            Text("Please Input New Password!",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10)
+          ],
+        )
       ],
     );
   }
@@ -262,7 +284,7 @@ class btnUpdateSend extends StatelessWidget {
     final String? email = await PreferencesUtil.getString("email");
     String? password = passwordStr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/UpdateUserData");
+    final Uri uri = Uri.http(serverSource!, "/auth/UpdateUserData");
     final response = await http.post(uri, body: {
       "username": username,
       "password": password,

@@ -24,7 +24,8 @@ class _SwitchTable1State extends State<SwitchTable1> {
     const String setboards = "Switch01";
     final String? serverSource =
         await PreferencesUtil.getString("serverSource");
-    final Uri uri = Uri.http(serverSource!, "/statusNow/$setboards/viewALL");
+    final Uri uri =
+        Uri.http(serverSource!, "/read/statusNow/$setboards/viewALL");
     final response = await http.get(uri);
     final result = response.body;
     final data = jsonDecode(result);
