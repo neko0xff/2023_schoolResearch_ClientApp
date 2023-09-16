@@ -10,6 +10,7 @@ import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
 void main() async {
   runApp(viewAppMain());
+  await Future.delayed(Duration(seconds: 1));
   /* localNotifier: Only Windows,Linux.macOS */
   await localNotifier.setup(
     appName: 'View App v1.1',
