@@ -31,5 +31,10 @@
             "type": "image/png",
             "purpose": "maskable"
         }
-    ]
+    ],
+    "screenshots": [{
+        "src": "images/app_screenshot.webp",
+        "platform": "windows",
+        "label": "PWA is the way!"
+    }]
 }

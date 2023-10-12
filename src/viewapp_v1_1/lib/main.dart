@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:local_notifier/local_notifier.dart';
+import 'package:pwa_install/pwa_install.dart';
 import 'package:viewapp_v1_1/pages/out/about.dart';
 import 'package:viewapp_v1_1/pages/user/forget.dart';
 import 'package:viewapp_v1_1/pages/user/login.dart';
@@ -9,6 +10,11 @@ import 'package:viewapp_v1_1/pages/user/register.dart';
 import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
 void main() async {
+
+  PWAInstall().setup(installCallback: () {
+    debugPrint('APP INSTALLED!');
+  });
+  //PWAInstall().promptInstall_();
   runApp(viewAppMain());
   await Future.delayed(Duration(seconds: 1));
   /* localNotifier: Only Windows,Linux.macOS */

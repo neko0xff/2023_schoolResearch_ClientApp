@@ -33,6 +33,7 @@ dependencies:
   url_launcher: ^6.1.11
   path_provider: ^2.0.15
   local_notifier: ^0.1.5
+  pwa_install: ^0.0.5
   pdf: ^3.10.4
   syncfusion_flutter_pdfviewer: ^22.1.39
   printing: ^5.11.0
