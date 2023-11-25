@@ -87,7 +87,7 @@ class _BarChartView1State extends State<BarView1> {
         barGroups: barGroups,
         gridData: const FlGridData(show: false),
         alignment: BarChartAlignment.spaceAround,
-        maxY: 200,
+        maxY: 500,
       ),
     );
   }

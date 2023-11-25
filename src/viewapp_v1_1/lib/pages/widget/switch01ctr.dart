@@ -105,6 +105,23 @@ class Fan1ctr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MaterialStateProperty<Color?> overlayColor =
+    MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        // Material color when switch is selected.
+        if (states.contains(MaterialState.selected)) {
+          return Colors.amber.withOpacity(0.54);
+        }
+        // Material color when switch is disabled.
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey.shade400;
+        }
+        // Otherwise return null to set default material color
+        // for remaining states such as when the switch is
+        // hovered, or focused.
+        return null;
+      },
+    );
     return Row(
       children: <Widget>[
         const SizedBox(width: 20),
@@ -115,7 +132,10 @@ class Fan1ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan1,
+          activeColor: Colors.green,
           onChanged: onChanged,
+          overlayColor: overlayColor,
+          thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
         ),
       ],
     );
@@ -135,6 +155,23 @@ class Fan2ctr extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MaterialStateProperty<Color?> overlayColor =
+    MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+        // Material color when switch is selected.
+        if (states.contains(MaterialState.selected)) {
+          return Colors.amber.withOpacity(0.54);
+        }
+        // Material color when switch is disabled.
+        if (states.contains(MaterialState.disabled)) {
+          return Colors.grey.shade400;
+        }
+        // Otherwise return null to set default material color
+        // for remaining states such as when the switch is
+        // hovered, or focused.
+        return null;
+      },
+    );
     return Row(
       children: <Widget>[
         const SizedBox(width: 20),
@@ -145,7 +182,10 @@ class Fan2ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan2,
+          activeColor: Colors.green,
           onChanged: onChanged,
+          overlayColor: overlayColor,
+          thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
         ),
       ],
     );

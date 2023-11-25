@@ -109,7 +109,7 @@ class btnGithub extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.0,
+      width: 200.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
@@ -131,7 +131,7 @@ class btnTwitter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.0,
+      width: 200.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
@@ -153,7 +153,7 @@ class btnMastdon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150.0,
+      width: 200.0,
       height: 40.0,
       child: ElevatedButton(
         onPressed: launchURL,
