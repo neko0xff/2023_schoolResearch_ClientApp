@@ -73,6 +73,12 @@ class tbServerSource extends StatelessWidget {
           prefixIcon: Icon(Icons.info),
           labelText: "Server",
           hintText: "Your Server Address",
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black)
+          ),
+          focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green)
+          )
         ),
       ),
     );
@@ -92,6 +98,12 @@ class tbUsername extends StatelessWidget {
           prefixIcon: Icon(Icons.person),
           labelText: "Username",
           hintText: "Your account username",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -112,6 +124,12 @@ class tbPassword extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           labelText: "Password",
           hintText: "Your account password",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -161,7 +179,7 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 85.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
@@ -306,7 +324,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 85.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -335,7 +353,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 85.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -358,7 +376,7 @@ class btnToforgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 85.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Forget"),

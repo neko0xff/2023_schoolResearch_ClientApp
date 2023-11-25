@@ -303,6 +303,12 @@ class UserValue01ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 01",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -338,6 +344,12 @@ class UserValue02ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 02",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -373,6 +385,12 @@ class UserValue03ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 03",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -408,6 +426,12 @@ class UserValue04ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 04",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -443,6 +467,12 @@ class UserValue05ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 05",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -478,6 +508,12 @@ class UserValue06ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 06",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),
@@ -513,6 +549,12 @@ class UserValue07ctr extends StatelessWidget {
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.numbers),
               labelText: "User Custom Value 07",
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                ),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green)
+                )
             ),
           ),
         ),

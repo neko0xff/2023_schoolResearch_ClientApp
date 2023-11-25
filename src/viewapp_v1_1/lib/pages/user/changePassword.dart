@@ -169,6 +169,12 @@ class tbPassword extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           labelText: "New Password",
           hintText: "Your account New password",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -189,6 +195,12 @@ class tbConfirmPassword extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           labelText: "Confirm Password",
           hintText: "Password Check",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -220,7 +232,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -243,7 +255,7 @@ class btnUpdateSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 90.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Update"),

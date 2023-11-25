@@ -33,6 +33,8 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           titleSpacing: 0.0,
           title: const TabBar(
+            labelColor: Colors.white,
+            dividerColor: Colors.white,
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
               Tab(icon: Icon(Icons.home), text: "Main"),

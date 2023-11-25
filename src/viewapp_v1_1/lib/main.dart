@@ -31,15 +31,16 @@ class viewAppMain extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "View App v1.1",
         theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(
-                primary: Colors.green, // 未按下
-                secondary: Colors.green, // 己按下
-                seedColor: Colors.green,
-                tertiary: Colors.green,
-                surface: Colors.green,
-                shadow: Colors.white,
-                background: Colors.white)),
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+          appBarTheme: const AppBarTheme(
+            color: Colors.green,
+              foregroundColor: Colors.white,
+              shadowColor: Colors.green,
+              surfaceTintColor: Colors.white,
+          ),
+         ),
+
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),

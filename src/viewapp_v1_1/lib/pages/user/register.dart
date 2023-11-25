@@ -78,6 +78,12 @@ class tbEmail extends StatelessWidget {
           prefixIcon: Icon(Icons.mail),
           labelText: "Email",
           hintText: "You are use a Email?",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -97,6 +103,12 @@ class tbServerSource extends StatelessWidget {
           prefixIcon: Icon(Icons.info),
           labelText: "Server",
           hintText: "Your Server Address",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -116,6 +128,12 @@ class tbUsername extends StatelessWidget {
           prefixIcon: Icon(Icons.person),
           labelText: "Username",
           hintText: "Your account username",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -135,6 +153,12 @@ class tbloginName extends StatelessWidget {
           prefixIcon: Icon(Icons.person),
           labelText: "Login Name",
           hintText: "Your account use a NickName",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -155,6 +179,12 @@ class tbPassword extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           labelText: "Password",
           hintText: "Your account password",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -175,6 +205,12 @@ class tbConfirmPassword extends StatelessWidget {
           prefixIcon: Icon(Icons.lock),
           labelText: "Confirm Password",
           hintText: "Password Check",
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green)
+            )
         ),
       ),
     );
@@ -208,7 +244,7 @@ class btnRegisterSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 90.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -378,7 +414,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -410,7 +446,7 @@ class btnToLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 80.0,
+      width: 100.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Login"),
