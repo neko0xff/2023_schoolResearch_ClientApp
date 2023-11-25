@@ -10,13 +10,12 @@ import 'package:viewapp_v1_1/pages/user/register.dart';
 import 'package:viewapp_v1_1/pages/user/updateUser.dart';
 
 void main() async {
-
   PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
   });
   //PWAInstall().promptInstall_();
   runApp(viewAppMain());
-  await Future.delayed(Duration(seconds: 1));
+  await Future.delayed(const Duration(seconds: 1));
   /* localNotifier: Only Windows,Linux.macOS */
   await localNotifier.setup(
     appName: 'View App v1.1',
@@ -31,7 +30,16 @@ class viewAppMain extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "View App v1.1",
-        theme: ThemeData(primarySwatch: Colors.green),
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(
+                primary: Colors.green, // 未按下
+                secondary: Colors.green, // 己按下
+                seedColor: Colors.green,
+                tertiary: Colors.green,
+                surface: Colors.green,
+                shadow: Colors.white,
+                background: Colors.white)),
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
