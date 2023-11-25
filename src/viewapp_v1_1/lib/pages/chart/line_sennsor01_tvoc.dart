@@ -69,6 +69,24 @@ class _LineViewtvocState extends State<LineViewtvoc> {
     _dataFuture2 = getData2();
   }
 
+  final MaterialStateProperty<Color?> overlayColor =
+  MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+      // Material color when switch is selected.
+      if (states.contains(MaterialState.selected)) {
+        return Colors.amber.withOpacity(0.54);
+      }
+      // Material color when switch is disabled.
+      if (states.contains(MaterialState.disabled)) {
+        return Colors.grey.shade400;
+      }
+      // Otherwise return null to set default material color
+      // for remaining states such as when the switch is
+      // hovered, or focused.
+      return null;
+    },
+  );
+
   //自訂值連線部分
   Future<dynamic> getData1() async {
     final String? serverSource =
@@ -504,6 +522,8 @@ class _LineViewtvocState extends State<LineViewtvoc> {
                   onChanged: (value) => setState(() {
                     fitInsideLeftTitle = value;
                   }),
+                  overlayColor: overlayColor,
+                  thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
                 ),
                 const Text('Bottom Title'),
                 Switch(
@@ -511,6 +531,8 @@ class _LineViewtvocState extends State<LineViewtvoc> {
                   onChanged: (value) => setState(() {
                     fitInsideBottomTitle = value;
                   }),
+                  overlayColor: overlayColor,
+                  thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
                 )
               ],
             ),

@@ -34,14 +34,15 @@ class InputGet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SizedBox(height: 10.0),
-          LoginStr(),
-          SizedBox(height: 15.0),
-          btnView(),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
+          const LoginStr(),
+          const SizedBox(height: 15.0),
+          const btnView(),
+          wallpaperLogin(),
+          const SizedBox(height: 10.0),
         ],
       ),
     );
@@ -384,6 +385,22 @@ class btnToforgetPage extends StatelessWidget {
           pushToforget(context);
         },
       ),
+    );
+  }
+}
+
+class wallpaperLogin extends StatelessWidget{
+
+  String wallpaper_path = "images/login_wallpaper.png";
+
+  wallpaperLogin({super.key});
+  @override
+  Widget build(BuildContext context){
+    return Image.asset(
+        wallpaper_path,
+        width: 1500.0,
+        height: 700.0,
+        fit: BoxFit.fill,
     );
   }
 }

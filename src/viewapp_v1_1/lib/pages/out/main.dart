@@ -15,7 +15,7 @@ class Main extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
         ),
-        home: Scaffold(
+        home: const Scaffold(
           body: MainPage(),
         ));
   }
