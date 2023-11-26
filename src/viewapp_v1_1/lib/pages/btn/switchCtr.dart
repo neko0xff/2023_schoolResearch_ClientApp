@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/pages/out/control.dart';
 import 'package:viewapp_v1_1/pages/widget/switch01ctr.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 class switchCtrPage extends StatelessWidget {
-  const switchCtrPage({Key? key}) : super(key: key);
+  const switchCtrPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,8 @@ class switchCtrPage extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+          colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.green, backgroundColor: Colors.white),
         ),
         home: Scaffold(
           body: ControlPage(),
@@ -21,7 +23,7 @@ class switchCtrPage extends StatelessWidget {
 }
 
 class ControlPage extends StatelessWidget {
-  const ControlPage({Key? key}) : super(key: key);
+  const ControlPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +42,15 @@ class ControlPage extends StatelessWidget {
         Control1(),
         SizedBox(height: 10.0),
         btnGoBack(),
+        SizedBox(height: 5.0),
+        wallpaperLogin(),
       ],
     ));
   }
 }
 
 class Control1 extends StatelessWidget {
-  const Control1({Key? key}) : super(key: key);
+  const Control1({super.key});
   @override
   Widget build(BuildContext context) {
     return Center(child: Switch01ctr());
@@ -54,7 +58,7 @@ class Control1 extends StatelessWidget {
 }
 
 class btnGoBack extends StatelessWidget {
-  const btnGoBack({Key? key}) : super(key: key);
+  const btnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

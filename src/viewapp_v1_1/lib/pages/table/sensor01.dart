@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class SensorTable1 extends StatefulWidget {
-  const SensorTable1({Key? key}) : super(key: key);
+  const SensorTable1({super.key});
 
   @override
   _SensorTable1State createState() => _SensorTable1State();

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1_1/pages/table/switch01.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -13,7 +14,8 @@ class Main extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+          colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.green, backgroundColor: Colors.white),
         ),
         home: const Scaffold(
           body: MainPage(),
@@ -26,13 +28,13 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        SizedBox(height: 10.0),
-        Row(
+        const SizedBox(height: 10.0),
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Data1(),
@@ -40,15 +42,15 @@ class MainPage extends StatelessWidget {
             Data2(),
           ],
         ),
-        SizedBox(height: 10.0),
-        Text('Switch Status',
+        const SizedBox(height: 10.0),
+        const Text('Switch Status',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10.0),
-        Text('Switch01',
+        const SizedBox(height: 10.0),
+        const Text('Switch01',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Data3(),
-        SizedBox(height: 10.0),
-        SizedBox(height: 10.0),
+        const Data3(),
+        const SizedBox(height: 10.0),
+        wallpaperLogin(),
       ],
     ));
   }
@@ -69,7 +71,7 @@ class Data1 extends StatelessWidget {
 }
 
 class Data2 extends StatefulWidget {
-  const Data2({Key? key}) : super(key: key);
+  const Data2({super.key});
 
   @override
   _Data2State createState() => _Data2State();
@@ -122,7 +124,7 @@ class _Data2State extends State<Data2> {
 }
 
 class Data3 extends StatelessWidget {
-  const Data3({Key? key}) : super(key: key);
+  const Data3({super.key});
 
   @override
   Widget build(BuildContext context) {

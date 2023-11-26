@@ -8,7 +8,7 @@ import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 String selectedLocation = '富貴角'; // 預設選擇的地點
 
 class AqiTable extends StatefulWidget {
-  const AqiTable({Key? key}) : super(key: key);
+  const AqiTable({super.key});
 
   @override
   _AqiTableState createState() => _AqiTableState();

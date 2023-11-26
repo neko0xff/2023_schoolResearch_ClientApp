@@ -16,8 +16,7 @@ class changePasswordPage extends StatelessWidget {
   String? serverSource;
   String? email;
   final userMeta user;
-  changePasswordPage({required Key? key, required this.user})
-      : super(key: key) {
+  changePasswordPage({required super.key, required this.user}) {
     username = user.username;
     LoginName = user.LoginName;
     serverSource = user.serverSource;
@@ -46,12 +45,11 @@ class InputGet extends StatelessWidget {
   String? serverSource;
   String? email;
   InputGet(
-      {required Key? key,
+      {required super.key,
       this.username,
       this.LoginName,
       this.serverSource,
-      this.email})
-      : super(key: key);
+      this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -80,12 +78,11 @@ class UpdateStr extends StatelessWidget {
   String? serverSource;
   String? email;
   UpdateStr(
-      {required Key? key,
+      {required super.key,
       this.username,
       this.LoginName,
       this.serverSource,
-      this.email})
-      : super(key: key);
+      this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +113,11 @@ class InputTip extends StatelessWidget {
   String? serverSource;
   String? email;
   InputTip(
-      {required Key? key,
+      {required super.key,
       this.username,
       this.LoginName,
       this.serverSource,
-      this.email})
-      : super(key: key);
+      this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -166,16 +162,13 @@ class tbPassword extends StatelessWidget {
         controller: passwordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "New Password",
-          hintText: "Your account New password",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "New Password",
+            hintText: "Your account New password",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -192,16 +185,13 @@ class tbConfirmPassword extends StatelessWidget {
         controller: ConfirmPasswordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Confirm Password",
-          hintText: "Password Check",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Confirm Password",
+            hintText: "Password Check",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -250,7 +240,7 @@ class btnClear extends StatelessWidget {
 }
 
 class btnUpdateSend extends StatelessWidget {
-  const btnUpdateSend({Key? key}) : super(key: key);
+  const btnUpdateSend({super.key});
 
   @override
   Widget build(BuildContext context) {

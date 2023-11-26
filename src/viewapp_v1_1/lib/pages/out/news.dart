@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/pages/btn/aqiTable.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 class NewsData extends StatelessWidget {
-  const NewsData({Key? key}) : super(key: key);
+  const NewsData({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,8 @@ class NewsData extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: NewsPage(),
@@ -26,13 +28,17 @@ class NewsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 10.0),
-          Data1(),
-        ]);
+    return SingleChildScrollView(
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            Data1(),
+            SizedBox(height: 5.0),
+            wallpaperLogin(),
+          ]),
+    );
   }
 }
 

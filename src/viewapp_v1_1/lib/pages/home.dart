@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
   String? serverSource;
 
   final userData user;
-  HomePage({required Key? key, required this.user}) : super(key: key) {
+  HomePage({required super.key, required this.user}) {
     username = user.username;
     LoginName = user.LoginName;
     serverSource = user.serverSource;
@@ -69,8 +69,7 @@ class DrawerMenu extends StatelessWidget {
   String? LoginName;
   String? serverSource;
   DrawerMenu(
-      {required Key? key, this.username, this.LoginName, this.serverSource})
-      : super(key: key);
+      {required super.key, this.username, this.LoginName, this.serverSource});
 
   @override
   Widget build(BuildContext context) {

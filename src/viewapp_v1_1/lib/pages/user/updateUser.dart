@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 TextEditingController loginNameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
@@ -31,13 +32,16 @@ class InputGet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          UpdateStr(),
-          SizedBox(height: 10.0),
-          btnView(),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 5.0),
+          const UpdateStr(),
+          const SizedBox(height: 10.0),
+          const btnView(),
+          const SizedBox(height: 10.0),
+          const SizedBox(height: 5.0),
+          wallpaperLogin(),
         ],
       ),
     );
@@ -72,16 +76,13 @@ class tbloginName extends StatelessWidget {
       child: TextFormField(
         controller: loginNameStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Login Name",
-          hintText: "Your account use a NickName",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.person),
+            labelText: "Login Name",
+            hintText: "Your account use a NickName",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -97,16 +98,13 @@ class tbEmail extends StatelessWidget {
       child: TextFormField(
         controller: EmailStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          labelText: "Email",
-          hintText: "You are use a Email?",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.mail),
+            labelText: "Email",
+            hintText: "You are use a Email?",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -123,16 +121,13 @@ class tbPassword extends StatelessWidget {
         controller: passwordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "New Password",
-          hintText: "Your account New password",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "New Password",
+            hintText: "Your account New password",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -149,16 +144,13 @@ class tbConfirmPassword extends StatelessWidget {
         controller: ConfirmPasswordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Confirm Password",
-          hintText: "Password Check",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Confirm Password",
+            hintText: "Password Check",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -209,7 +201,7 @@ class btnClear extends StatelessWidget {
 }
 
 class btnUpdateSend extends StatelessWidget {
-  const btnUpdateSend({Key? key}) : super(key: key);
+  const btnUpdateSend({super.key});
 
   @override
   Widget build(BuildContext context) {

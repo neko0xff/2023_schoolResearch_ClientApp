@@ -14,7 +14,7 @@ TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,7 @@ class InputGet extends StatelessWidget {
     return const SingleChildScrollView(
       child: Column(
         children: <Widget>[
+          SizedBox(height: 5.0),
           RegisterStr(),
           SizedBox(height: 10.0),
           btnView(),
@@ -75,16 +76,13 @@ class tbEmail extends StatelessWidget {
       child: TextFormField(
         controller: EmailStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          labelText: "Email",
-          hintText: "You are use a Email?",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.mail),
+            labelText: "Email",
+            hintText: "You are use a Email?",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -100,16 +98,13 @@ class tbServerSource extends StatelessWidget {
       child: TextFormField(
         controller: serverSourceStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.info),
-          labelText: "Server",
-          hintText: "Your Server Address",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.info),
+            labelText: "Server",
+            hintText: "Your Server Address",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -125,16 +120,13 @@ class tbUsername extends StatelessWidget {
       child: TextFormField(
         controller: usernameStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Username",
-          hintText: "Your account username",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.person),
+            labelText: "Username",
+            hintText: "Your account username",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -150,16 +142,13 @@ class tbloginName extends StatelessWidget {
       child: TextFormField(
         controller: loginNameStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Login Name",
-          hintText: "Your account use a NickName",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.person),
+            labelText: "Login Name",
+            hintText: "Your account use a NickName",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -176,16 +165,13 @@ class tbPassword extends StatelessWidget {
         controller: passwordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Password",
-          hintText: "Your account password",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Password",
+            hintText: "Your account password",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -202,16 +188,13 @@ class tbConfirmPassword extends StatelessWidget {
         controller: ConfirmPasswordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Confirm Password",
-          hintText: "Password Check",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Confirm Password",
+            hintText: "Password Check",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -239,12 +222,12 @@ class btnView extends StatelessWidget {
 }
 
 class btnRegisterSend extends StatelessWidget {
-  const btnRegisterSend({Key? key}) : super(key: key);
+  const btnRegisterSend({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 110.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),

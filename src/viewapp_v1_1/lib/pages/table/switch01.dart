@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class SwitchTable1 extends StatefulWidget {
-  const SwitchTable1({Key? key}) : super(key: key);
+  const SwitchTable1({super.key});
 
   @override
   _SwitchTable1State createState() => _SwitchTable1State();

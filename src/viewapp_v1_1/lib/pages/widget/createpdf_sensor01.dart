@@ -26,7 +26,7 @@ Future<pw.Font> getNotoSerifHKMediumFont() async {
 }
 
 class CreatePDFViewPage extends StatelessWidget {
-  const CreatePDFViewPage({Key? key}) : super(key: key);
+  const CreatePDFViewPage({super.key});
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -36,7 +36,7 @@ class CreatePDFViewPage extends StatelessWidget {
 }
 
 class PDFScreen extends StatefulWidget {
-  const PDFScreen({Key? key}) : super(key: key);
+  const PDFScreen({super.key});
 
   @override
   _PDFScreenState createState() => _PDFScreenState();
@@ -260,7 +260,7 @@ class _PDFScreenState extends State<PDFScreen> {
 }
 
 class BtnGoBack extends StatelessWidget {
-  const BtnGoBack({Key? key}) : super(key: key);
+  const BtnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

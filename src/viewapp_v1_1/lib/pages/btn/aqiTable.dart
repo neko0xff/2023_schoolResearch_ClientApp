@@ -5,7 +5,7 @@ import 'package:viewapp_v1_1/pages/out/news.dart';
 import 'package:viewapp_v1_1/pages/table/api_aqi.dart';
 
 class aqiTablePage extends StatelessWidget {
-  const aqiTablePage({Key? key}) : super(key: key);
+  const aqiTablePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,8 @@ class aqiTablePage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: crdata(),
@@ -71,7 +72,7 @@ class DataAQI extends StatelessWidget {
 }
 
 class table_aqi extends StatelessWidget {
-  const table_aqi({Key? key}) : super(key: key);
+  const table_aqi({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,7 @@ class table_aqi extends StatelessWidget {
 }
 
 class btnGoBack extends StatelessWidget {
-  const btnGoBack({Key? key}) : super(key: key);
+  const btnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

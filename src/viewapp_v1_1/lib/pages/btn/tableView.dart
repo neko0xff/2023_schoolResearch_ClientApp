@@ -5,7 +5,7 @@ import 'package:viewapp_v1_1/pages/table/sensor01.dart';
 import 'package:viewapp_v1_1/pages/widget/createpdf_sensor01.dart';
 
 class tableViewPage extends StatelessWidget {
-  const tableViewPage({Key? key}) : super(key: key);
+  const tableViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,8 @@ class tableViewPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: tableView(),
@@ -23,7 +24,7 @@ class tableViewPage extends StatelessWidget {
 }
 
 class tableView extends StatelessWidget {
-  tableView({Key? key}) : super(key: key);
+  tableView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,7 @@ class btn1 extends StatelessWidget {
 }
 
 class Data1 extends StatelessWidget {
-  const Data1({Key? key}) : super(key: key);
+  const Data1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class Data1 extends StatelessWidget {
 }
 
 class btnGoBack extends StatelessWidget {
-  const btnGoBack({Key? key}) : super(key: key);
+  const btnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

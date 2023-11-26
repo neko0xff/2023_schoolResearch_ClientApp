@@ -2,9 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/pages/btn/switchCtr.dart';
 import 'package:viewapp_v1_1/pages/btn/valueCtr.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 class Control extends StatelessWidget {
-  const Control({Key? key}) : super(key: key);
+  const Control({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,8 @@ class Control extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+          colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.green, backgroundColor: Colors.white),
         ),
         home: Scaffold(
           body: ControlPage(),
@@ -21,7 +23,7 @@ class Control extends StatelessWidget {
 }
 
 class ControlPage extends StatelessWidget {
-  const ControlPage({Key? key}) : super(key: key);
+  const ControlPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,8 @@ class ControlPage extends StatelessWidget {
         btn1(),
         SizedBox(height: 10.0),
         btn2(),
-        SizedBox(height: 10.0),
+        SizedBox(height: 5.0),
+        wallpaperLogin(),
       ],
     )));
   }

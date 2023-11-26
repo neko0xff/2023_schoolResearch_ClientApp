@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class Switch01ctr extends StatefulWidget {
-  const Switch01ctr({Key? key}) : super(key: key);
+  const Switch01ctr({super.key});
 
   @override
   _Switch01ctrState createState() => _Switch01ctrState();
@@ -98,16 +98,16 @@ class Fan1ctr extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const Fan1ctr({
-    Key? key,
+    super.key,
     required this.switchSelectedFan1,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final MaterialStateProperty<Color?> overlayColor =
-    MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
+        MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
         // Material color when switch is selected.
         if (states.contains(MaterialState.selected)) {
           return Colors.amber.withOpacity(0.54);
@@ -148,16 +148,16 @@ class Fan2ctr extends StatelessWidget {
   final ValueChanged<bool> onChanged;
 
   const Fan2ctr({
-    Key? key,
+    super.key,
     required this.switchSelectedFan2,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final MaterialStateProperty<Color?> overlayColor =
-    MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
+        MaterialStateProperty.resolveWith<Color?>(
+      (Set<MaterialState> states) {
         // Material color when switch is selected.
         if (states.contains(MaterialState.selected)) {
           return Colors.amber.withOpacity(0.54);

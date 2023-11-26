@@ -10,7 +10,7 @@ import 'package:viewapp_v1_1/pages/chart/line_sennsor01_tvoc.dart';
 import 'package:viewapp_v1_1/pages/out/view.dart';
 
 class linecartViewPage extends StatelessWidget {
-  const linecartViewPage({Key? key}) : super(key: key);
+  const linecartViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class linecartViewPage extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: chartView(),
@@ -28,7 +29,7 @@ class linecartViewPage extends StatelessWidget {
 }
 
 class chartView extends StatelessWidget {
-  chartView({Key? key}) : super(key: key);
+  chartView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,7 @@ class chartView extends StatelessWidget {
 }
 
 class btnGoBack extends StatelessWidget {
-  const btnGoBack({Key? key}) : super(key: key);
+  const btnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

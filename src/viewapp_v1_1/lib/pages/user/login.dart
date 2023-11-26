@@ -8,6 +8,7 @@ import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_v1_1/class/user.dart';
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1_1/pages/home.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
@@ -15,7 +16,7 @@ TextEditingController usernameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +42,7 @@ class InputGet extends StatelessWidget {
           const LoginStr(),
           const SizedBox(height: 15.0),
           const btnView(),
+          const SizedBox(height: 5.0),
           wallpaperLogin(),
           const SizedBox(height: 10.0),
         ],
@@ -71,16 +73,13 @@ class tbServerSource extends StatelessWidget {
       child: TextFormField(
         controller: serverSourceStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.info),
-          labelText: "Server",
-          hintText: "Your Server Address",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black)
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.green)
-          )
-        ),
+            prefixIcon: Icon(Icons.info),
+            labelText: "Server",
+            hintText: "Your Server Address",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -96,16 +95,13 @@ class tbUsername extends StatelessWidget {
       child: TextFormField(
         controller: usernameStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.person),
-          labelText: "Username",
-          hintText: "Your account username",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.person),
+            labelText: "Username",
+            hintText: "Your account username",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -122,16 +118,13 @@ class tbPassword extends StatelessWidget {
         controller: passwordStr,
         obscureText: true,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.lock),
-          labelText: "Password",
-          hintText: "Your account password",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.lock),
+            labelText: "Password",
+            hintText: "Your account password",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -175,7 +168,7 @@ class btnView extends StatelessWidget {
 }
 
 class btnLoginSend extends StatelessWidget {
-  const btnLoginSend({Key? key}) : super(key: key);
+  const btnLoginSend({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -354,7 +347,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 110.0,
       height: 40.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -385,22 +378,6 @@ class btnToforgetPage extends StatelessWidget {
           pushToforget(context);
         },
       ),
-    );
-  }
-}
-
-class wallpaperLogin extends StatelessWidget{
-
-  String wallpaper_path = "images/login_wallpaper.png";
-
-  wallpaperLogin({super.key});
-  @override
-  Widget build(BuildContext context){
-    return Image.asset(
-        wallpaper_path,
-        width: 1500.0,
-        height: 700.0,
-        fit: BoxFit.fill,
     );
   }
 }

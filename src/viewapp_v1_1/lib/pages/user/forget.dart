@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types, unused_local_variable
+// ignore_for_file: non_constant_identifier_names,use_build_context_synchronously, camel_case_types, unused_local_variable, must_be_immutable
 
 import 'dart:convert';
 
@@ -7,13 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/class/user.dart';
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 import 'package:viewapp_v1_1/pages/user/changePassword.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
 TextEditingController EmailStr = TextEditingController();
 
 class forgetPage extends StatelessWidget {
-  const forgetPage({Key? key}) : super(key: key);
+  const forgetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +33,22 @@ class InputGet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: <Widget>[
-          SizedBox(height: 10.0),
-          Text("請輸入註冊時所輸入email！",
+          const SizedBox(height: 10.0),
+          const Text("請輸入註冊時所輸入email！",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10.0),
-          Text("送出後則會自動查詢是否有該使用者存在",
+          const SizedBox(height: 10.0),
+          const Text("送出後則會自動查詢是否有該使用者存在",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10.0),
-          forgetStr(),
-          SizedBox(height: 10.0),
-          btnView(),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
+          const forgetStr(),
+          const SizedBox(height: 10.0),
+          const btnView(),
+          const SizedBox(height: 5.0),
+          wallpaperLogin(),
+          const SizedBox(height: 10.0),
         ],
       ),
     );
@@ -74,16 +77,13 @@ class tbServerSource extends StatelessWidget {
       child: TextFormField(
         controller: serverSourceStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.info),
-          labelText: "Server",
-          hintText: "Your Server Address",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.info),
+            labelText: "Server",
+            hintText: "Your Server Address",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -99,16 +99,13 @@ class tbEmail extends StatelessWidget {
       child: TextFormField(
         controller: EmailStr,
         decoration: const InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          labelText: "Email",
-          hintText: "You are use a Email?",
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.black)
-            ),
+            prefixIcon: Icon(Icons.mail),
+            labelText: "Email",
+            hintText: "You are use a Email?",
+            enabledBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green)
-            )
-        ),
+                borderSide: BorderSide(color: Colors.green))),
       ),
     );
   }
@@ -182,7 +179,7 @@ class btnClear extends StatelessWidget {
 }
 
 class btnforgetSend extends StatelessWidget {
-  const btnforgetSend({Key? key}) : super(key: key);
+  const btnforgetSend({super.key});
 
   @override
   Widget build(BuildContext context) {

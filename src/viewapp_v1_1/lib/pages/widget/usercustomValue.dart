@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class UserCustomValue extends StatefulWidget {
-  const UserCustomValue({Key? key}) : super(key: key);
+  const UserCustomValue({super.key});
 
   @override
   _UserCustomValueState createState() => _UserCustomValueState();
@@ -287,10 +287,10 @@ class UserValue01ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue01ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue01,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -301,15 +301,12 @@ class UserValue01ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue01,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 01",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 01",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -328,10 +325,10 @@ class UserValue02ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue02ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue02,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -342,15 +339,12 @@ class UserValue02ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue02,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 02",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 02",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -369,10 +363,10 @@ class UserValue03ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue03ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue03,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -383,15 +377,12 @@ class UserValue03ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue03,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 03",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 03",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -410,10 +401,10 @@ class UserValue04ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue04ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue04,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -424,15 +415,12 @@ class UserValue04ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue04,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 04",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 04",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -451,10 +439,10 @@ class UserValue05ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue05ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue05,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -465,15 +453,12 @@ class UserValue05ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue05,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 05",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 05",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -492,10 +477,10 @@ class UserValue06ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue06ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue06,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -506,15 +491,12 @@ class UserValue06ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue06,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 06",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 06",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(
@@ -533,10 +515,10 @@ class UserValue07ctr extends StatelessWidget {
   final ValueChanged<String> onChanged;
 
   const UserValue07ctr({
-    Key? key,
+    super.key,
     required this.userSelectedValue07,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -547,15 +529,12 @@ class UserValue07ctr extends StatelessWidget {
           child: TextFormField(
             controller: userSelectedValue07,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.numbers),
-              labelText: "User Custom Value 07",
+                prefixIcon: Icon(Icons.numbers),
+                labelText: "User Custom Value 07",
                 enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black)
-                ),
+                    borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green)
-                )
-            ),
+                    borderSide: BorderSide(color: Colors.green))),
           ),
         ),
         ElevatedButton(

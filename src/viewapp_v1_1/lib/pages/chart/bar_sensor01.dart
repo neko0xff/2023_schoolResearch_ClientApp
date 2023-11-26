@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_v1_1/modules/PreferencesUtil.dart';
 
 class BarView1 extends StatefulWidget {
-  const BarView1({Key? key}) : super(key: key);
+  const BarView1({super.key});
 
   @override
   State<StatefulWidget> createState() => _BarChartView1State();

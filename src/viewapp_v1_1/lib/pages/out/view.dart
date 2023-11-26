@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:viewapp_v1_1/pages/btn/barchartView.dart';
 import 'package:viewapp_v1_1/pages/btn/linechartView.dart';
 import 'package:viewapp_v1_1/pages/btn/tableView.dart';
+import 'package:viewapp_v1_1/pages/widget/wallpaper.dart';
 
 class ViewData extends StatelessWidget {
-  const ViewData({Key? key}) : super(key: key);
+  const ViewData({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,8 @@ class ViewData extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green,backgroundColor: Colors.white),
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.green, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: ViewPage(),
@@ -25,7 +27,7 @@ class ViewData extends StatelessWidget {
 
 class ViewPage extends StatelessWidget {
   var isScrollable = true;
-  ViewPage({Key? key}) : super(key: key);
+  ViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,8 @@ class ViewPage extends StatelessWidget {
           btn2(),
           SizedBox(height: 15.0),
           btn3(),
-          SizedBox(height: 15.0),
+          SizedBox(height: 5.0),
+          wallpaperLogin(),
         ],
       )),
     );
