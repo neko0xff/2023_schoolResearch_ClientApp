@@ -10,7 +10,7 @@ class wallpaperLogin extends StatelessWidget {
     return Image.asset(
       wallpaper_path,
       width: 1500.0,
-      height: 500.0,
+      height: 550.0,
       fit: BoxFit.contain,
     );
   }
