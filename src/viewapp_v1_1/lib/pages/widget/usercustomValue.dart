@@ -302,7 +302,7 @@ class UserValue01ctr extends StatelessWidget {
             controller: userSelectedValue01,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 01",
+                labelText: "User Custom Value 01(hum)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -340,7 +340,7 @@ class UserValue02ctr extends StatelessWidget {
             controller: userSelectedValue02,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 02",
+                labelText: "User Custom Value 02(temp)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -378,7 +378,7 @@ class UserValue03ctr extends StatelessWidget {
             controller: userSelectedValue03,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 03",
+                labelText: "User Custom Value 03(tvoc)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -416,7 +416,7 @@ class UserValue04ctr extends StatelessWidget {
             controller: userSelectedValue04,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 04",
+                labelText: "User Custom Value 04(co)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -454,7 +454,7 @@ class UserValue05ctr extends StatelessWidget {
             controller: userSelectedValue05,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 05",
+                labelText: "User Custom Value 05(co2)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -492,7 +492,7 @@ class UserValue06ctr extends StatelessWidget {
             controller: userSelectedValue06,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 06",
+                labelText: "User Custom Value 06(co2)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
@@ -530,7 +530,7 @@ class UserValue07ctr extends StatelessWidget {
             controller: userSelectedValue07,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 07",
+                labelText: "User Custom Value 07(o3)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
