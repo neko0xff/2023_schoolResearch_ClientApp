@@ -70,8 +70,8 @@ class _LineViewhumState extends State<LineViewhum> {
   }
 
   final MaterialStateProperty<Color?> overlayColor =
-  MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) {
+      MaterialStateProperty.resolveWith<Color?>(
+    (Set<MaterialState> states) {
       // Material color when switch is selected.
       if (states.contains(MaterialState.selected)) {
         return Colors.amber.withOpacity(0.54);
@@ -159,6 +159,27 @@ class _LineViewhumState extends State<LineViewhum> {
         break;
       case 300:
         text = '300';
+        break;
+      case 400:
+        text = '400';
+        break;
+      case 500:
+        text = '500';
+        break;
+      case 600:
+        text = '600';
+        break;
+      case 700:
+        text = '700';
+        break;
+      case 800:
+        text = '800';
+        break;
+      case 900:
+        text = '900';
+        break;
+      case 1000:
+        text = '1000';
         break;
       default:
         return Container();
@@ -523,7 +544,8 @@ class _LineViewhumState extends State<LineViewhum> {
                     fitInsideLeftTitle = value;
                   }),
                   overlayColor: overlayColor,
-                  thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+                  thumbColor:
+                      const MaterialStatePropertyAll<Color>(Colors.black),
                 ),
                 const Text('Bottom Title'),
                 Switch(
@@ -532,7 +554,8 @@ class _LineViewhumState extends State<LineViewhum> {
                     fitInsideBottomTitle = value;
                   }),
                   overlayColor: overlayColor,
-                  thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+                  thumbColor:
+                      const MaterialStatePropertyAll<Color>(Colors.black),
                 )
               ],
             ),
