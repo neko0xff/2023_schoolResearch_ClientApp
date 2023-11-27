@@ -24,7 +24,7 @@ class viewAppMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "View App v1.1",
+        title: "View App v2.1",
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(
