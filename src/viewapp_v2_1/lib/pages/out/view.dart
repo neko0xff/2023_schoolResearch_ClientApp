@@ -64,7 +64,7 @@ class btn1 extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => tableViewPage()));
         },
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         child: Text('Table', textAlign: TextAlign.center));
   }
 }
@@ -79,7 +79,7 @@ class btn2 extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => barchartViewPage()));
         },
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         child: Text('Bar\nChart', textAlign: TextAlign.center));
   }
 }
@@ -94,7 +94,7 @@ class btn3 extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => linecartViewPage()));
         },
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         child: Text('Line\nChart', textAlign: TextAlign.center));
   }
 }

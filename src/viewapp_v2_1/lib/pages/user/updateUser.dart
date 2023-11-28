@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types,use_build_context_synchronously
+// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types,use_build_context_synchronously, prefer_const_constructors
 
 import 'dart:convert';
 
@@ -17,9 +17,12 @@ class UpdateUserPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: InputGet(),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("更改使用者資料"),
+          automaticallyImplyLeading: true,
+        ),
+        body: InputGet());
   }
 }
 
@@ -177,8 +180,8 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Clear"),
         onPressed: () {
@@ -202,8 +205,8 @@ class btnUpdateSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Update"),
         onPressed: () {

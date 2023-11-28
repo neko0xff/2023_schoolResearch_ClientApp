@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names
+// ignore_for_file: camel_case_types, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names, sort_child_properties_last
 import 'package:flutter/material.dart';
 import 'package:viewapp_v2_1/pages/out/control.dart';
 import 'package:viewapp_v2_1/pages/widget/switch01ctr.dart';
@@ -68,6 +68,7 @@ class btnGoBack extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => Control()));
       },
       child: const Text('Go Back'),
+      style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
     );
   }
 }

@@ -78,7 +78,7 @@ class btn1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => aqiTablePage()));

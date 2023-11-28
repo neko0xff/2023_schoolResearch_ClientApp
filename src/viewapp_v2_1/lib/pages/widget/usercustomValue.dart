@@ -228,10 +228,11 @@ class _UserCustomValueState extends State<UserCustomValue> {
           content: const Text('Value is upload data!'),
           actions: <Widget>[
             ElevatedButton(
-              child: const Text('OK'),
               onPressed: () {
                 Navigator.pop(context);
               },
+              style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -270,10 +271,11 @@ class _UserCustomValueState extends State<UserCustomValue> {
           content: const Text('Please check you are Input Data!'),
           actions: <Widget>[
             ElevatedButton(
-              child: const Text('OK'),
               onPressed: () {
                 Navigator.pop(context);
               },
+              style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+              child: const Text('OK'),
             ),
           ],
         );
@@ -309,10 +311,12 @@ class UserValue01ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
             onPressed: () {
               onChanged(userSelectedValue01.text);
             },
+            style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
             child: const Text("Send")),
         const SizedBox(width: 20),
       ],
@@ -347,10 +351,12 @@ class UserValue02ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
             onPressed: () {
               onChanged(userSelectedValue02.text);
             },
+            style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
             child: const Text("Send")),
         const SizedBox(width: 20),
       ],
@@ -385,11 +391,14 @@ class UserValue03ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
-            onPressed: () {
-              onChanged(userSelectedValue03.text);
-            },
-            child: const Text("Send")),
+          onPressed: () {
+            onChanged(userSelectedValue03.text);
+          },
+          style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+          child: const Text("Send"),
+        ),
         const SizedBox(width: 20),
       ],
     );
@@ -423,11 +432,14 @@ class UserValue04ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
-            onPressed: () {
-              onChanged(userSelectedValue04.text);
-            },
-            child: const Text("Send")),
+          onPressed: () {
+            onChanged(userSelectedValue04.text);
+          },
+          style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+          child: const Text("Send"),
+        ),
         const SizedBox(width: 20),
       ],
     );
@@ -461,10 +473,12 @@ class UserValue05ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
             onPressed: () {
               onChanged(userSelectedValue05.text);
             },
+            style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
             child: const Text("Send")),
         const SizedBox(width: 20),
       ],
@@ -499,10 +513,12 @@ class UserValue06ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
             onPressed: () {
               onChanged(userSelectedValue06.text);
             },
+            style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
             child: const Text("Send")),
         const SizedBox(width: 20),
       ],
@@ -537,11 +553,14 @@ class UserValue07ctr extends StatelessWidget {
                     borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
+        const SizedBox(width: 10),
         ElevatedButton(
-            onPressed: () {
-              onChanged(userSelectedValue07.text);
-            },
-            child: const Text("Send")),
+          onPressed: () {
+            onChanged(userSelectedValue07.text);
+          },
+          style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+          child: const Text("Send"),
+        ),
         const SizedBox(width: 20),
       ],
     );

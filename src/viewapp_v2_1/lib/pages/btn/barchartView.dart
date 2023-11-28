@@ -61,11 +61,12 @@ class btnGoBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ViewData()));
-      },
-      child: const Text('Go Back'),
-    );
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ViewData()));
+        },
+        // ignore: sort_child_properties_last
+        child: const Text('Go Back'),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)));
   }
 }

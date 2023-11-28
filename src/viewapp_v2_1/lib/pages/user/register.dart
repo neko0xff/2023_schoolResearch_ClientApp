@@ -204,17 +204,28 @@ class btnView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        SizedBox(width: 20.0),
-        btnRegisterSend(),
-        SizedBox(width: 20.0),
-        btnClear(),
-        SizedBox(width: 20.0),
-        btnToLoginPage(),
-        SizedBox(width: 20.0),
+    return const Column(
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            //SizedBox(width: 20.0),
+            btnRegisterSend(),
+            SizedBox(width: 20.0),
+            btnClear(),
+          ],
+        ),
+        SizedBox(height: 10.0),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            SizedBox(width: 20.0),
+            btnToLoginPage(),
+            SizedBox(width: 20.0),
+          ],
+        ),
       ],
     );
   }
@@ -226,8 +237,8 @@ class btnRegisterSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 110.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Register"),
         onPressed: () {
@@ -396,8 +407,8 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Clear"),
         onPressed: () {
@@ -428,8 +439,8 @@ class btnToLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Login"),
         onPressed: () {

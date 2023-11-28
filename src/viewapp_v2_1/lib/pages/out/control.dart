@@ -34,7 +34,7 @@ class ControlPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(height: 10.0),
-        Text('Control Unit',
+        Text('控制單元',
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         SizedBox(height: 10.0),
         btn1(),
@@ -57,7 +57,7 @@ class btn1 extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => switchCtrPage()));
         },
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         child: Text('Switch'));
   }
 }
@@ -72,7 +72,7 @@ class btn2 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => valueCtrPage()));
         },
-        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         child: Text('User\nCustom\nValue', textAlign: TextAlign.center));
   }
 }

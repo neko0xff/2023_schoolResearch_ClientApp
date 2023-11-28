@@ -112,17 +112,26 @@ class btnView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        SizedBox(width: 20.0),
-        btnforgetSend(),
-        SizedBox(width: 20.0),
-        btnClear(),
-        SizedBox(width: 20.0),
-        btnToLoginPage(),
-        SizedBox(width: 20.0),
+    return const Column(
+      children: [
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(width: 20.0),
+              btnforgetSend(),
+              SizedBox(width: 20.0),
+              btnClear(),
+            ]),
+        SizedBox(height: 20.0),
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(width: 20.0),
+              btnToLoginPage(),
+              SizedBox(width: 20.0),
+            ]),
       ],
     );
   }
@@ -139,8 +148,8 @@ class btnToLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Login"),
         onPressed: () {
@@ -157,8 +166,8 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Clear"),
         onPressed: () {
@@ -180,8 +189,8 @@ class btnforgetSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
-      height: 40.0,
+      width: 150.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Forget"),
         onPressed: () {

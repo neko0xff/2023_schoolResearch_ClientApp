@@ -10,7 +10,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("About"),
+        title: const Text("關於本App"),
         automaticallyImplyLeading: true,
       ),
       body: const AboutGet(),
@@ -53,9 +53,9 @@ class data1 extends StatelessWidget {
         SizedBox(width: 25.0, height: 10.0),
         Text("前端： Flutter",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Text("後端： nodejs",
+        Text("後端： nodejs(JavaScript)",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Text("資料庫： mysql(MariaDB)",
+        Text("資料庫： MariaDB(MySQL)",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(width: 25.0, height: 10.0),
         Text("其它", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
@@ -108,7 +108,7 @@ class btnGithub extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200.0,
-      height: 40.0,
+      height: 50.0,
       child: ElevatedButton(
         onPressed: launchURL,
         child: const Text("Github"),
@@ -130,7 +130,7 @@ class btnTwitter extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200.0,
-      height: 40.0,
+      height: 50.0,
       child: ElevatedButton(
         onPressed: launchURL,
         child: const Text("X(Twitter)"),
@@ -152,7 +152,7 @@ class btnMastdon extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200.0,
-      height: 40.0,
+      height: 50.0,
       child: ElevatedButton(
         onPressed: launchURL,
         child: const Text("Mastdon(mas.to)"),

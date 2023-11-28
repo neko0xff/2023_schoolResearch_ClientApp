@@ -62,6 +62,7 @@ class btn1 extends StatelessWidget {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => CreatePDFViewPage()));
         },
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
         child: Text('Create a PDF'));
   }
 }
@@ -87,6 +88,7 @@ class btnGoBack extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ViewData()));
       },
+      style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
       child: const Text('Go Back'),
     );
   }
