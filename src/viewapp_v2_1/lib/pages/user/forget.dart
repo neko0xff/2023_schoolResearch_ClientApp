@@ -78,8 +78,8 @@ class tbServerSource extends StatelessWidget {
             hintText: "Your Server Address",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -100,8 +100,8 @@ class tbEmail extends StatelessWidget {
             hintText: "You are use a Email?",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }

@@ -63,7 +63,7 @@ class data1 extends StatelessWidget {
         Text("撰寫時間: 2023/07/01~now",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(width: 25.0),
-        Text("釋出版本： V1.1",
+        Text("釋出版本： V2.1",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(width: 25.0, height: 10.0),
         Text("Ask Author",

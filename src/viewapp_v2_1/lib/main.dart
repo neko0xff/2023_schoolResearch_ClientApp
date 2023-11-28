@@ -28,11 +28,11 @@ class viewAppMain extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.green, backgroundColor: Colors.white),
+              primarySwatch: Colors.blue, backgroundColor: Colors.white),
           appBarTheme: const AppBarTheme(
-            color: Colors.green,
+            color: Colors.blue,
             foregroundColor: Colors.white,
-            shadowColor: Colors.green,
+            shadowColor: Colors.blue,
             surfaceTintColor: Colors.white,
           ),
         ),

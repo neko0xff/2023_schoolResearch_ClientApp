@@ -132,7 +132,7 @@ class Fan1ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan1,
-          activeColor: Colors.green,
+          activeColor: Colors.blue,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
@@ -182,7 +182,7 @@ class Fan2ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan2,
-          activeColor: Colors.green,
+          activeColor: Colors.blue,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),

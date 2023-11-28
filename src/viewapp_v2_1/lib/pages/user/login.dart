@@ -72,8 +72,8 @@ class tbServerSource extends StatelessWidget {
             hintText: "Your Server Address",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -94,8 +94,8 @@ class tbUsername extends StatelessWidget {
             hintText: "Your account username",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -117,8 +117,8 @@ class tbPassword extends StatelessWidget {
             hintText: "Your account password",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -138,9 +138,8 @@ class btnView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 15.0),
             btnLoginSend(),
-            SizedBox(width: 15.0),
+            SizedBox(width: 50.0),
             btnToRegisterPage(),
           ],
         ),
@@ -149,11 +148,9 @@ class btnView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 15.0),
             btnToforgetPage(),
-            SizedBox(width: 15.0),
+            SizedBox(width: 50.0),
             btnClear(),
-            SizedBox(width: 15.0),
           ],
         )
       ],
@@ -167,7 +164,7 @@ class btnLoginSend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 150.0,
       height: 100.0,
       child: ElevatedButton(
         child: const Text("Login"),
@@ -312,7 +309,7 @@ class btnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 150.0,
       height: 100.0,
       child: ElevatedButton(
         child: const Text("Clear"),
@@ -341,7 +338,7 @@ class btnToRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 110.0,
+      width: 150.0,
       height: 100.0,
       child: ElevatedButton(
         child: const Text("Register"),
@@ -364,7 +361,7 @@ class btnToforgetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 150.0,
       height: 100.0,
       child: ElevatedButton(
         child: const Text("Forget"),

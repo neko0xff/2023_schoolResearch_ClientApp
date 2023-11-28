@@ -163,8 +163,8 @@ class tbPassword extends StatelessWidget {
             hintText: "Your account New password",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -186,8 +186,8 @@ class tbConfirmPassword extends StatelessWidget {
             hintText: "Password Check",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }

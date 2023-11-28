@@ -306,7 +306,7 @@ class UserValue01ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -344,7 +344,7 @@ class UserValue02ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -382,7 +382,7 @@ class UserValue03ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -420,7 +420,7 @@ class UserValue04ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -458,7 +458,7 @@ class UserValue05ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -496,7 +496,7 @@ class UserValue06ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(
@@ -534,7 +534,7 @@ class UserValue07ctr extends StatelessWidget {
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           ),
         ),
         ElevatedButton(

@@ -77,8 +77,8 @@ class tbloginName extends StatelessWidget {
             hintText: "Your account use a NickName",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -99,8 +99,8 @@ class tbEmail extends StatelessWidget {
             hintText: "You are use a Email?",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -122,8 +122,8 @@ class tbPassword extends StatelessWidget {
             hintText: "Your account New password",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }
@@ -145,8 +145,8 @@ class tbConfirmPassword extends StatelessWidget {
             hintText: "Password Check",
             enabledBorder:
                 OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.green))),
+            focusedBorder:
+                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
       ),
     );
   }

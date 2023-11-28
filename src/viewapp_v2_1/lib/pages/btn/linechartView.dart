@@ -19,7 +19,7 @@ class linecartViewPage extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.green, backgroundColor: Colors.white),
+            primarySwatch: Colors.blue, backgroundColor: Colors.white),
       ),
       home: Scaffold(
         body: chartView(),
