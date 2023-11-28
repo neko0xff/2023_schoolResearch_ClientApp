@@ -1,5 +1,5 @@
 // ignore: duplicate_ignore
-// ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names, prefer_const_constructors
+// ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:local_notifier/local_notifier.dart';
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: const <Widget>[
+          children: <Widget>[
             Main(),
             ViewData(),
             Control(),
@@ -81,7 +81,7 @@ class DrawerMenu extends StatelessWidget {
             accountEmail: Text('$username@$serverSource'),
             //設定大頭照
             currentAccountPicture: const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/user.png"),
+              backgroundImage: AssetImage("assets/images/twitter.webp"),
             ),
           ),
           const BtnAbout(),

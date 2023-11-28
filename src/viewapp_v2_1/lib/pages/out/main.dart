@@ -43,7 +43,7 @@ class MainPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10.0),
-        const Text('Switch Status',
+        const Text('開關狀態',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const SizedBox(height: 10.0),
         const Text('Switch01',
@@ -63,7 +63,7 @@ class Data1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text(
-        "Hello",
+        "歡迎",
         style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
       ),
     );
@@ -72,7 +72,6 @@ class Data1 extends StatelessWidget {
 
 class Data2 extends StatefulWidget {
   const Data2({super.key});
-
   @override
   _Data2State createState() => _Data2State();
 }
@@ -87,8 +86,8 @@ class _Data2State extends State<Data2> {
   }
 
   Future<String?> getData() async {
-    final String? loginName = await PreferencesUtil.getString("LoginName");
-    return loginName;
+    final String? LoginName = await PreferencesUtil.getString("LoginName");
+    return LoginName;
   }
 
   @override
@@ -96,25 +95,25 @@ class _Data2State extends State<Data2> {
     return FutureBuilder<String?>(
       future: _dataFuture,
       builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
-        final loginName = snapshot.data;
-        return output(loginName);
+        final LoginName = snapshot.data;
+        return output(LoginName);
       },
     );
   }
 
-  Widget output(String? loginName) {
+  Widget output(String? LoginName) {
     return Column(
       children: <Widget>[
-        outLoginName(loginName),
+        outLoginName(LoginName),
       ],
     );
   }
 
-  Widget outLoginName(String? loginName) {
+  Widget outLoginName(String? LoginName) {
     return Center(
       child: Column(
         children: <Widget>[
-          Text('$loginName',
+          Text('$LoginName',
               style:
                   const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
         ],
