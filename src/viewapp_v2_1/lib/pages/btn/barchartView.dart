@@ -34,12 +34,7 @@ class chartView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          SizedBox(height: 10.0),
-          Text('Sensor01',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10.0),
-          BarView1(),
-          SizedBox(height: 10.0),
+          SizedBox(height: 15.0),
           Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,6 +43,12 @@ class chartView extends StatelessWidget {
                 btnGoBack(),
               ]),
           SizedBox(height: 15.0),
+          SizedBox(height: 10.0),
+          Text('Sensor01',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+          SizedBox(height: 10.0),
+          BarView1(),
+          SizedBox(height: 10.0),
         ],
       )),
     );

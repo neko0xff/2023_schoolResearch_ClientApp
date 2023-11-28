@@ -168,7 +168,7 @@ class btnLoginSend extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100.0,
-      height: 40.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Login"),
         onPressed: () {
@@ -313,7 +313,7 @@ class btnClear extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100.0,
-      height: 40.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Clear"),
         onPressed: () {
@@ -342,7 +342,7 @@ class btnToRegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 110.0,
-      height: 40.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Register"),
         onPressed: () {
@@ -365,7 +365,7 @@ class btnToforgetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 100.0,
-      height: 40.0,
+      height: 100.0,
       child: ElevatedButton(
         child: const Text("Forget"),
         onPressed: () {
