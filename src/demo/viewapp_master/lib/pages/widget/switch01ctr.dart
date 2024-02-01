@@ -136,6 +136,7 @@ class Fan1ctr extends StatelessWidget {
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+          inactiveTrackColor: Colors.green,
         ),
       ],
     );
@@ -186,6 +187,7 @@ class Fan2ctr extends StatelessWidget {
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+          inactiveTrackColor: Colors.green,
         ),
       ],
     );

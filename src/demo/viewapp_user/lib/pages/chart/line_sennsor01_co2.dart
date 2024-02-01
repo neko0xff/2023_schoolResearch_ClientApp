@@ -546,6 +546,7 @@ class _LineViewco2State extends State<LineViewco2> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 ),
                 const Text('Bottom Title'),
                 Switch(
@@ -556,6 +557,7 @@ class _LineViewco2State extends State<LineViewco2> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 )
               ],
             ),

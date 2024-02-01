@@ -23,6 +23,7 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: InputGet(),
+      backgroundColor: Colors.white,
     );
   }
 }

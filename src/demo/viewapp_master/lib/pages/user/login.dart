@@ -24,6 +24,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Colors.white60,
       body: InputGet(),
     );
   }
@@ -38,6 +39,7 @@ class InputGet extends StatelessWidget {
       child: Column(
         children: <Widget>[
           wallpaperLogin(),
+          const SizedBox(height: 10.0),
           const LoginStr(),
           const SizedBox(height: 10.0),
           const btnView(),

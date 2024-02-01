@@ -525,6 +525,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 ),
                 const Text('Bottom Title'),
                 Switch(
@@ -535,6 +536,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 )
               ],
             ),

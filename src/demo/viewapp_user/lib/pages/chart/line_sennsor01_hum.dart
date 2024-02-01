@@ -546,6 +546,7 @@ class _LineViewhumState extends State<LineViewhum> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 ),
                 const Text('Bottom Title'),
                 Switch(
@@ -556,6 +557,7 @@ class _LineViewhumState extends State<LineViewhum> {
                   overlayColor: overlayColor,
                   thumbColor:
                       const MaterialStatePropertyAll<Color>(Colors.black),
+                  inactiveTrackColor: Colors.green,
                 )
               ],
             ),

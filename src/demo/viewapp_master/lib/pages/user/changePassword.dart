@@ -28,6 +28,7 @@ class changePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: InputGet(
           key: null,
           username: username,

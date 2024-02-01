@@ -25,6 +25,7 @@ class UpdateUserPage extends StatelessWidget {
           title: const Text("更改使用者資料"),
           automaticallyImplyLeading: true,
         ),
+        backgroundColor: Colors.white,
         body: InputGet());
   }
 }

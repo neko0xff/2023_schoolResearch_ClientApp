@@ -13,6 +13,7 @@ class AboutPage extends StatelessWidget {
         title: const Text("關於本App"),
         automaticallyImplyLeading: true,
       ),
+      backgroundColor: Colors.white,
       body: const AboutGet(),
     );
   }
