@@ -9,6 +9,7 @@ import 'package:viewapp_master/pages/out/control.dart';
 import 'package:viewapp_master/pages/out/main.dart';
 import 'package:viewapp_master/pages/out/news.dart';
 import 'package:viewapp_master/pages/out/view.dart';
+import 'package:viewapp_master/pages/out/account.dart';
 import 'package:viewapp_master/pages/user/updateUser.dart';
 
 // ignore: must_be_immutable
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           titleSpacing: 0.0,
@@ -41,6 +42,7 @@ class HomePage extends StatelessWidget {
               Tab(icon: Icon(Icons.list), text: "Data"),
               Tab(icon: Icon(Icons.switch_right_sharp), text: "Control"),
               Tab(icon: Icon(Icons.account_balance_outlined), text: "News"),
+              Tab(icon: Icon(Icons.account_box), text: "Account")
             ],
           ),
         ),
@@ -50,6 +52,7 @@ class HomePage extends StatelessWidget {
             ViewData(),
             Control(),
             NewsData(),
+            AccountData()
           ],
         ),
         drawer: DrawerMenu(

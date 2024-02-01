@@ -177,7 +177,7 @@ class Fan2ctr extends StatelessWidget {
       children: <Widget>[
         const SizedBox(width: 20),
         const Text(
-          "Fan2 ",
+          "Fan2",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: 10),
