@@ -4,6 +4,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:viewapp_master/pages/out/account.dart';
+
 
 // 定義輸入元件
 TextEditingController serverSourceStr = TextEditingController();
@@ -226,7 +228,7 @@ class btnView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             SizedBox(width: 20.0),
-            btnToLoginPage(),
+            btnGoBack(),
             SizedBox(width: 20.0),
           ],
         ),
@@ -320,11 +322,13 @@ class btnRegisterSend extends StatelessWidget {
           content: const Text('Please Go to Login Page,You now can Login!'),
           actions: <Widget>[
             ElevatedButton(
-              child: const Text('OK'),
               onPressed: () {
-                pushToLogin(context);
+                //pushToRegister(context);
+                Navigator.of(context).pop();
               },
-            ),
+              style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+              child: const Text('Go Back'),
+            )
           ],
         );
       },
@@ -343,7 +347,8 @@ class btnRegisterSend extends StatelessWidget {
             ElevatedButton(
               child: const Text('OK'),
               onPressed: () {
-                pushToRegister(context);
+                //pushToRegister(context);
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -364,7 +369,8 @@ class btnRegisterSend extends StatelessWidget {
             ElevatedButton(
               child: const Text('OK'),
               onPressed: () {
-                pushToRegister(context);
+                //pushToRegister(context);
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -385,7 +391,8 @@ class btnRegisterSend extends StatelessWidget {
             ElevatedButton(
               child: const Text('OK'),
               onPressed: () {
-                pushToRegister(context);
+                //pushToRegister(context);
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -394,10 +401,6 @@ class btnRegisterSend extends StatelessWidget {
     );
   }
 
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
 
   //跳回註冊主頁
   void pushToRegister(BuildContext context) {
@@ -432,25 +435,18 @@ class btnClear extends StatelessWidget {
   }
 }
 
-class btnToLoginPage extends StatelessWidget {
-  const btnToLoginPage({super.key});
-
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
+class btnGoBack extends StatelessWidget {
+  const btnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150.0,
-      height: 100.0,
-      child: ElevatedButton(
-        child: const Text("Login"),
-        onPressed: () {
-          pushToLogin(context);
-        },
-      ),
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const AccountData()));
+      },
+      style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+      child: const Text('Go Back'),
     );
   }
 }

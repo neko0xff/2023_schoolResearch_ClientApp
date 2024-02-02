@@ -45,7 +45,7 @@ class viewAppMain extends StatelessWidget {
           '/about': (context) => const AboutPage(),
           '/register': (context) => const RegisterPage(),
           '/forget': (context) => const forgetPage(),
-          '/updateUser': (context) => const UpdateUserPage()
+          '/updateUser': (context) => const UpdateUserPage(),
         });
   }
 }

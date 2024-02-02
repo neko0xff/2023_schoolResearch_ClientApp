@@ -144,8 +144,7 @@ class btnView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             btnLoginSend(),
-            SizedBox(width: 50.0),
-            btnToRegisterPage(),
+            SizedBox(width: 50.0)
           ],
         ),
         SizedBox(height: 15),
@@ -329,29 +328,6 @@ class btnClear extends StatelessWidget {
     serverSourceStr.text = "";
     usernameStr.text = "";
     passwordStr.text = "";
-  }
-}
-
-class btnToRegisterPage extends StatelessWidget {
-  const btnToRegisterPage({super.key});
-
-  //跳回登入主頁
-  void pushToRegister(BuildContext context) {
-    Navigator.pushNamed(context, '/register');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150.0,
-      height: 100.0,
-      child: ElevatedButton(
-        child: const Text("Register"),
-        onPressed: () {
-          pushToRegister(context);
-        },
-      ),
-    );
   }
 }
 
