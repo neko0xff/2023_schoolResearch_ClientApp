@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/btn/userlistView.dart';
+import 'package:viewapp_master/pages/btn/customValueView.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 import 'package:viewapp_master/pages/user/register.dart';
 
@@ -66,6 +67,13 @@ class Data1 extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  btn2(),
+                ]),
+            SizedBox(height: 10),
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   btn1(),
                 ]),
             SizedBox(height: 10),
@@ -73,7 +81,7 @@ class Data1 extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  btn2(),
+                  btn3(),
                 ]),
           ],
         ));
@@ -95,7 +103,6 @@ class btn1 extends StatelessWidget {
   }
 }
 
-
 class btn2 extends StatelessWidget {
   const btn2({super.key});
 
@@ -108,5 +115,20 @@ class btn2 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => RegisterPage()));
         },
         child: Text('使用者建立', textAlign: TextAlign.center));
+  }
+}
+
+class btn3 extends StatelessWidget {
+  const btn3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => customValueViewPage()));
+        },
+        child: Text('使用者自訂值', textAlign: TextAlign.center));
   }
 }
