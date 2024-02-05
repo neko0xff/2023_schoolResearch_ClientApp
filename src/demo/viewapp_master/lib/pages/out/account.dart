@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/btn/userlistView.dart';
 import 'package:viewapp_master/pages/btn/customValueView.dart';
 import 'package:viewapp_master/pages/btn/modeTable.dart';
+import 'package:viewapp_master/pages/btn/modeChoose.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 import 'package:viewapp_master/pages/user/register.dart';
 
@@ -81,6 +82,14 @@ class Data1 extends StatelessWidget {
                   SizedBox(width: 10),
                   btn4(),
                 ]),
+            SizedBox(height: 10),
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  btn5(),
+                  SizedBox(width: 10),
+                ]),
           ]),
         );
   }
@@ -143,5 +152,20 @@ class btn4 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => userModeTablePage()));
         },
         child: Text('使用者目前方案', textAlign: TextAlign.center));
+  }
+}
+
+class btn5 extends StatelessWidget {
+  const btn5({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => modeChoosePage()));
+        },
+        child: Text('使用者方案選擇', textAlign: TextAlign.center));
   }
 }
