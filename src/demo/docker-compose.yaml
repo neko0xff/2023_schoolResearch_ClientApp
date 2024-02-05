@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app1:
+    container_name: master-cont  # 自定義容器名稱
+    restart: always # 跟系統服務一起重啟
+    ports:
+        - 8082:80 # 通訊埠: 8082
+    build:
+      context: ./viewapp_master
+      dockerfile: Dockerfile.env
+  app2:
+    container_name: user-cont  # 自定義容器名稱
+    restart: always # 跟系統服務一起重啟
+    ports:
+        - 8081:80 # 通訊埠: 8081
+    build:
+      context: ./viewapp_user
+      dockerfile: Dockerfile.env
