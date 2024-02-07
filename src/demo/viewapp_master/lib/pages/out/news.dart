@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/btn/aqiTable.dart';
+import 'package:viewapp_master/pages/btn/Cfoot.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 
 class NewsData extends StatelessWidget {
@@ -64,9 +65,14 @@ class Data1 extends StatelessWidget {
         Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              btn1(),
-            ]),
+            children: [btn1()]
+        ),
+        SizedBox(height: 10.0),
+        Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [btn2()]
+        ),
       ],
     ));
   }
@@ -84,5 +90,20 @@ class btn1 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => aqiTablePage()));
         },
         child: Text('AQI', textAlign: TextAlign.center));
+  }
+}
+
+class btn2 extends StatelessWidget {
+  const btn2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CfootPage()));
+        },
+        child: Text('碳排放', textAlign: TextAlign.center));
   }
 }
