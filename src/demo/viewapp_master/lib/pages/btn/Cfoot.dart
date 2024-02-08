@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable, file_names, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/out/news.dart';
-import 'package:viewapp_master/pages/table/api_aqi.dart';
+import 'package:viewapp_master/pages/widget/Cfoot/traffic.dart';
 
 class CfootPage extends StatelessWidget {
   const CfootPage({super.key});
@@ -14,7 +16,7 @@ class CfootPage extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.blue, backgroundColor: Colors.white),
       ),
-      home: Scaffold(
+      home: const Scaffold(
         body: crdata(),
       ),
     );
@@ -47,21 +49,15 @@ class DataAQI extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("AQI",
+                  Text("碳排放",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(width: 10),
                 ]),
+            SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("資料來源： 行政院環境保護部(署)",
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-                ]),
-            Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [table_aqi()]),
+                children: [ btn1() ]),
             SizedBox(height: 10),
             btnGoBack(),
           ],
@@ -69,18 +65,19 @@ class DataAQI extends StatelessWidget {
   }
 }
 
-class table_aqi extends StatelessWidget {
-  const table_aqi({super.key});
+
+class btn1 extends StatelessWidget {
+  const btn1({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        AqiTable(),
-      ],
-    );
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Cfoot_traffic()));
+        },
+        child: Text('交通', textAlign: TextAlign.center));
   }
 }
 
@@ -92,10 +89,10 @@ class btnGoBack extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => NewsData()));
+            context, MaterialPageRoute(builder: (context) => const NewsData()));
       },
-      child: const Text('Go Back'),
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
+      child: const Text('Go Back'),
     );
   }
 }
