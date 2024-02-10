@@ -8,13 +8,13 @@ import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
 // 定義輸入組件
 final TextEditingController CPLstr = TextEditingController();
-final TextEditingController diststr = TextEditingController();
+final TextEditingController totalstr = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
-class CfootTraffic extends StatelessWidget {
-  const CfootTraffic({super.key});
+class CBAMemissions extends StatelessWidget {
+  const CBAMemissions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "碳排放-交通部分",
+                "CBAM-排放量",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),
@@ -59,7 +59,7 @@ class _InputGetState extends State<InputGet> {
           SizedBox(height: 10.0),
           PostStr(),
           SizedBox(height: 10.0),
-          Text("公式: 排放因數 * 旅行的距離"),
+          Text("公式: 排放量= 使用量*排放因數"),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),
@@ -84,8 +84,8 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        TbCPL(),
-        TbDist(),
+        TbTotal(),
+        TbCPL()
       ],
     );
   }
@@ -116,18 +116,18 @@ class TbCPL extends StatelessWidget {
   }
 }
 
-class TbDist extends StatelessWidget {
-  const TbDist({super.key});
+class TbTotal extends StatelessWidget {
+  const TbTotal({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: diststr,
+        controller: totalstr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "行走距離",
+          labelText: "使用量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -160,7 +160,7 @@ class BtnClear extends StatelessWidget {
 
   void clearInput() {
     CPLstr.text = "";
-    diststr.text = "";
+    totalstr.text = "";
   }
 }
 
@@ -216,9 +216,9 @@ class BtnStrSend extends StatelessWidget {
 
   void checkInputNull(BuildContext context) {
     final String CPL = CPLstr.text;
-    final String dist = diststr.text;
+    final String total = totalstr.text;
 
-    if (CPL.isEmpty || dist.isEmpty) {
+    if (CPL.isEmpty || total.isEmpty) {
       showFailAlert(context);
     } else {
       sendUserData(context);
@@ -229,12 +229,12 @@ class BtnStrSend extends StatelessWidget {
   Future<void> sendUserData(BuildContext context) async {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
     final String CPL = CPLstr.text;
-    final String dist = diststr.text;
+    final String total = totalstr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/Cfoot/traffic");
+    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/emissions");
     final response = await http.post(uri, body: {
-      "CPL": CPL,
-      "dist": dist
+      "GWP": CPL,
+      "use": total
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });

@@ -7,14 +7,14 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
 // 定義輸入組件
-final TextEditingController CPLstr = TextEditingController();
-final TextEditingController diststr = TextEditingController();
+final TextEditingController emissionsstr = TextEditingController();
+final TextEditingController productionstr = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
-class CfootTraffic extends StatelessWidget {
-  const CfootTraffic({super.key});
+class CBAMCCsimple extends StatelessWidget {
+  const CBAMCCsimple({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "碳排放-交通部分",
+                "CBAM-碳含量_簡單與中間產品",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),
@@ -59,7 +59,7 @@ class _InputGetState extends State<InputGet> {
           SizedBox(height: 10.0),
           PostStr(),
           SizedBox(height: 10.0),
-          Text("公式: 排放因數 * 旅行的距離"),
+          Text("公式: 產品碳含量= 排放量/產品活動數據(生產量)"),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),
@@ -84,25 +84,25 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        TbCPL(),
-        TbDist(),
+        Tbemissions(),
+        Tbproduction()
       ],
     );
   }
 }
 
-class TbCPL extends StatelessWidget {
-  const TbCPL({super.key});
+class Tbemissions extends StatelessWidget {
+  const Tbemissions({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: CPLstr,
+        controller: emissionsstr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "排放因素",
+          labelText: "排放量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -116,18 +116,18 @@ class TbCPL extends StatelessWidget {
   }
 }
 
-class TbDist extends StatelessWidget {
-  const TbDist({super.key});
+class Tbproduction extends StatelessWidget {
+  const Tbproduction({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: diststr,
+        controller: productionstr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "行走距離",
+          labelText: "生產量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -159,8 +159,8 @@ class BtnClear extends StatelessWidget {
   }
 
   void clearInput() {
-    CPLstr.text = "";
-    diststr.text = "";
+    emissionsstr.text = "";
+    productionstr.text = "";
   }
 }
 
@@ -215,10 +215,10 @@ class BtnStrSend extends StatelessWidget {
   }
 
   void checkInputNull(BuildContext context) {
-    final String CPL = CPLstr.text;
-    final String dist = diststr.text;
+    final String emissions = emissionsstr.text;
+    final String production = productionstr.text;
 
-    if (CPL.isEmpty || dist.isEmpty) {
+    if (emissions.isEmpty || production.isEmpty) {
       showFailAlert(context);
     } else {
       sendUserData(context);
@@ -228,13 +228,13 @@ class BtnStrSend extends StatelessWidget {
   // 使用者比較部分
   Future<void> sendUserData(BuildContext context) async {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
-    final String CPL = CPLstr.text;
-    final String dist = diststr.text;
+    final String emissions = emissionsstr.text;
+    final String production = productionstr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/Cfoot/traffic");
+    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_simple");
     final response = await http.post(uri, body: {
-      "CPL": CPL,
-      "dist": dist
+      "emissions": emissions,
+      "production": production
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });
