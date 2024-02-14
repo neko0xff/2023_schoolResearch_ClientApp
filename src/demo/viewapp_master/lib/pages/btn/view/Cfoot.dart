@@ -32,10 +32,13 @@ class crdata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[SizedBox(height: 10.0), DataAQI()]);
+        children: <Widget>[SizedBox(height: 10.0), DataAQI()])
+    );
   }
 }
 
@@ -61,17 +64,12 @@ class DataAQI extends StatelessWidget {
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn1() ]),
+                children: [ btn1(),SizedBox(width: 10), btn2() ]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn2() ]),
-            SizedBox(height: 10),
-            Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn3() ]),
+                children: [ btn3()]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
@@ -131,7 +129,7 @@ class btn3 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CBAMemissions()));
         },
-        child: Text('CBAM-排放量', textAlign: TextAlign.center));
+        child: Text('CBAM \n 排放量', textAlign: TextAlign.center));
   }
 }
 
@@ -146,7 +144,7 @@ class btn4 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CBAMCCsimple()));
         },
-        child: Text('CBAM-碳含量_簡單與中間產品', textAlign: TextAlign.center));
+        child: Text('CBAM \n 碳含量_簡單與中間產品', textAlign: TextAlign.center));
   }
 }
 
@@ -161,7 +159,7 @@ class btn5 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CBAMCCcops()));
         },
-        child: Text('CBAM-碳含量_複雜產品', textAlign: TextAlign.center));
+        child: Text('CBAM \n 碳含量_複雜產品', textAlign: TextAlign.center));
   }
 }
 

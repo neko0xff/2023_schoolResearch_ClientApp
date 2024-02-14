@@ -40,6 +40,8 @@ class _InputGetState extends State<InputGet> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10.0),
           Row(
@@ -47,7 +49,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "CBAM-碳含量_複雜產品",
+                "CBAM \n 碳含量_複雜產品",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),
@@ -61,7 +63,27 @@ class _InputGetState extends State<InputGet> {
           SizedBox(height: 10.0),
           PostStr(),
           SizedBox(height: 10.0),
-          Text("公式: 複雜產品=特定產品碳含量+((中間產品活動數據/產品活動數據)*中間產品碳含量)"),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "公式\n",
+                style: TextStyle(fontSize: 15),
+              ),
+              SizedBox(height: 10),
+            ],
+          ),
+          SizedBox(height: 5.0),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "特定產品碳含量\n+\n((中間產品活動數據/產品活動數據)*中間產品碳含量)",
+              ),
+            ],
+          ),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),

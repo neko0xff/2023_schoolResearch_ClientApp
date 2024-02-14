@@ -7,6 +7,7 @@ import 'package:viewapp_master/pages/btn/table/modeTable.dart';
 import 'package:viewapp_master/pages/btn/ctr/modeChoose.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 import 'package:viewapp_master/pages/user/register.dart';
+import 'package:viewapp_master/pages/btn/view/usermailView.dart';
 
 class AccountData extends StatelessWidget {
   const AccountData({super.key});
@@ -89,7 +90,9 @@ class Data1 extends StatelessWidget {
                 children: [
                   btn5(),
                   SizedBox(width: 10),
+                  btn6(),
                 ]),
+            SizedBox(height: 10),
           ]),
         );
   }
@@ -167,5 +170,20 @@ class btn5 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => modeChoosePage()));
         },
         child: Text('使用者方案選擇', textAlign: TextAlign.center));
+  }
+}
+
+class btn6 extends StatelessWidget {
+  const btn6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => usermailTablePage()));
+        },
+        child: Text('使用者信箱', textAlign: TextAlign.center));
   }
 }

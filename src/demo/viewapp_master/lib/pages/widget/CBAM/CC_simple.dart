@@ -45,7 +45,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "CBAM-碳含量_簡單與中間產品",
+                "CBAM\n碳含量_簡單與中間產品",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),

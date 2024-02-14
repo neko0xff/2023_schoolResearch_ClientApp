@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
-class userlistTable extends StatefulWidget {
-  const userlistTable({super.key});
+class usermailTable extends StatefulWidget {
+  const usermailTable({super.key});
 
   @override
-  _userlistTableState createState() => _userlistTableState();
+  _usermailTableState createState() => _usermailTableState();
 }
 
-class _userlistTableState extends State<userlistTable> {
+class _usermailTableState extends State<usermailTable> {
   late Future<List<Map<String, dynamic>>> _dataFuture;
-  final List<String> columns = ['使用者', '登入名'];
+  final List<String> columns = ['使用者', 'email'];
 
   @override
   void initState() {
@@ -66,35 +66,35 @@ class _userlistTableState extends State<userlistTable> {
     return SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: DataTable(
-        columns: const <DataColumn>[
-          DataColumn(
-            label: Text(
-              '使用者',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          columns: const <DataColumn>[
+            DataColumn(
+              label: Text(
+                '使用者',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'email',
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+          rows: List<DataRow>.generate(
+            data.length,
+                (index) => DataRow(
+              cells: <DataCell>[
+                DataCell(
+                  Text(data[index]["username"].toString(),
+                      style: const TextStyle(fontSize: 20)),
+                ),
+                DataCell(
+                  Text(data[index]["email"].toString(),
+                      style: const TextStyle(fontSize: 20)),
+                ),
+              ],
             ),
           ),
-          DataColumn(
-            label: Text(
-              '登入名',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
-        rows: List<DataRow>.generate(
-          data.length,
-              (index) => DataRow(
-            cells: <DataCell>[
-              DataCell(
-                Text(data[index]["username"].toString(),
-                    style: const TextStyle(fontSize: 25)),
-              ),
-              DataCell(
-                Text(data[index]["LoginName"].toString(),
-                    style: const TextStyle(fontSize: 25)),
-              ),
-            ],
-          ),
-        ),
-    ));
+        ));
   }
 }

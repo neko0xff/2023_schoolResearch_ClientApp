@@ -15,7 +15,7 @@ TextEditingController serverSourceStr = TextEditingController();
 TextEditingController usernameStr = TextEditingController();
 TextEditingController passwordStr = TextEditingController();
 
-var focusedcolor = Colors.yellow;
+var focusedcolor = Colors.green;
 var enablecolor = Colors.black;
 
 class LoginPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.white60,
+      backgroundColor: Colors.white,
       body: InputGet(),
     );
   }
@@ -136,7 +136,7 @@ class btnView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
         child: Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Row(
@@ -284,6 +284,7 @@ class btnLoginSend extends StatelessWidget {
   Future<void> showFailCNAlert(BuildContext context) {
     return showDialog<void>(
       context: context,
+        barrierColor: Colors.yellow,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),

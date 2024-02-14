@@ -2,10 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/out/account.dart';
-import 'package:viewapp_master/pages/table/userlist.dart';
+import 'package:viewapp_master/pages/table/usermail.dart';
 
-class userTablePage extends StatelessWidget {
-  const userTablePage({super.key});
+class usermailTablePage extends StatelessWidget {
+  const usermailTablePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class crdata extends StatelessWidget {
         child: Center(child:Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[SizedBox(height: 10.0), DataUserlist()]))
+            children: <Widget>[SizedBox(height: 10.0), DataUserlist()]))
     );
   }
 }
@@ -55,21 +55,21 @@ class DataUserlist extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("使用者列表",
+                  Text("使用者信箱",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(width: 10),
                 ]),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [table_userlist()]),
+                children: [table_usermail()]),
           ],
         ));
   }
 }
 
-class table_userlist extends StatelessWidget {
-  const table_userlist({super.key});
+class table_usermail extends StatelessWidget {
+  const table_usermail({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class table_userlist extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          userlistTable(),
+          usermailTable(),
         ]
     );
   }
