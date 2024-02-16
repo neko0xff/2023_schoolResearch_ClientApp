@@ -68,49 +68,49 @@ class _customvarTableState extends State<customvarTable> {
         DataColumn(
           label: Text(
             '登入名',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值1',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值2',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值3',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值4',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值5',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值6',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
         DataColumn(
           label: Text(
             '自訂值7',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
       ],
@@ -120,35 +120,35 @@ class _customvarTableState extends State<customvarTable> {
           cells: <DataCell>[
             DataCell(
               Text(data[index]["LoginName"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar01"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar02"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar03"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar04"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar05"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar06"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
             DataCell(
               Text(data[index]["customvar07"].toString(),
-                  style: const TextStyle(fontSize: 25)),
+                  style: const TextStyle(fontSize: 12)),
             ),
           ],
         ),

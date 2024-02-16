@@ -37,7 +37,6 @@ class NewsPage extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 10.0),
             Data1(),
-            SizedBox(height: 1),
             wallpaperLogin(),
           ]),
     );
@@ -90,7 +89,7 @@ class btn1 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => aqiTablePage()));
         },
-        child: Text('AQI', textAlign: TextAlign.center));
+        child: Text('各測站點AQI', textAlign: TextAlign.center));
   }
 }
 

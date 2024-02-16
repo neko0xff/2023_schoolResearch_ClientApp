@@ -46,7 +46,6 @@ class ViewPage extends StatelessWidget {
           btn2(),
           SizedBox(height: 15.0),
           btn3(),
-          SizedBox(height: 5.0),
           wallpaperLogin(),
         ],
       )),

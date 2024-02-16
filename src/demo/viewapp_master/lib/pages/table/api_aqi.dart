@@ -16,37 +16,44 @@ class AqiTable extends StatefulWidget {
 
 class _AqiTableState extends State<AqiTable> {
   late Future<List<Map<String, dynamic>>> _dataFuture;
-  final List<String> columns = ['測站編號', '地點', 'AQI'];
-  String setLocal = "富貴角";
-  // List of items in our dropdown menu
-  var items = [
-    '板橋',
-    '淡水',
-    '基隆',
-    '富貴角',
-    '金門',
-    '林口',
-    '新莊',
-    '士林',
-    '中山',
-    '新店',
-    '汐止',
-    '松山',
-    '萬華'
-  ];
+  final List<String> items1 = [];
+  String selectedItem1 = "富貴角";
+  String setname = "富貴角";
 
   @override
   void initState() {
     super.initState();
-    _dataFuture = getData();
-    selectedLocation = setLocal; // 初始化選定的地點
+    _dataFuture = fetchData1();
   }
 
-  Future<List<Map<String, dynamic>>> getData() async {
-    final String? serverSource =
-        await PreferencesUtil.getString("serverSource");
+  // 更新選單的內容
+  Future<List<Map<String, dynamic>>> fetchData1() async {
+    try {
+      final String? serverSource = await PreferencesUtil.getString("serverSource");
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/AQI/ALL');
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+        setState(() {
+          items1.clear();
+          items1.addAll(data.map<String>((item) => item['sitename']).toList());
+          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
+        });
+
+        return getData(setname); // 返回取得的數據
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getData(String selectedName) async {
+    final String? serverSource = await PreferencesUtil.getString("serverSource");
     final Uri uri = Uri.http(
-        serverSource!, "/read/crawler/AQI/site", {"sitename": setLocal});
+        serverSource!, "/read/crawler/AQI/site", {"sitename": setname});
     final response = await http.get(uri);
     final result = response.body;
     final jsonData = jsonDecode(result);
@@ -76,9 +83,9 @@ class _AqiTableState extends State<AqiTable> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           DropdownButton(
-            value: setLocal,
+            value: setname,
             icon: const Icon(Icons.keyboard_arrow_down),
-            items: items.map((String items) {
+            items: items1.map((String items) {
               return DropdownMenuItem(
                 value: items,
                 child: Text(items,
@@ -90,8 +97,9 @@ class _AqiTableState extends State<AqiTable> {
             // change button value to selected value
             onChanged: (String? newValue) {
               setState(() {
-                setLocal = newValue!;
-                _dataFuture = getData(); //取得新的資料
+                selectedItem1 = newValue!;
+                setname = selectedItem1; // 更新setname变量
+                _dataFuture = getData(selectedItem1); // 取得新的資料
               });
             },
           ),
@@ -136,12 +144,6 @@ class _AqiTableState extends State<AqiTable> {
         columns: const <DataColumn>[
           DataColumn(
             label: Text(
-              '編號',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            ),
-          ),
-          DataColumn(
-            label: Text(
               '地點',
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
@@ -158,15 +160,11 @@ class _AqiTableState extends State<AqiTable> {
           (index) => DataRow(
             cells: <DataCell>[
               DataCell(
-                Text(data[0]["siteid"].toString(),
+                Text(data[index]["sitename"].toString(),
                     style: const TextStyle(fontSize: 25)),
               ),
               DataCell(
-                Text(data[0]["sitename"].toString(),
-                    style: const TextStyle(fontSize: 25)),
-              ),
-              DataCell(
-                Text(data[0]["aqi"].toString(),
+                Text(data[index]["aqi"].toString(),
                     style: const TextStyle(fontSize: 25)),
               ),
             ],

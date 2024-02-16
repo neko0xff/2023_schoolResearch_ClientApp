@@ -17,6 +17,7 @@ class _CfootTableState extends State<CfootTable> {
   late Future<List<Map<String, dynamic>>> _dataFuture;
   final List<String> items1 = [];
   String selectedItem1 = "標籤紙(PET)";
+  String setname = "標籤紙(PET)";
 
   @override
   void initState() {
@@ -33,13 +34,20 @@ class _CfootTableState extends State<CfootTable> {
 
       if (response.statusCode == 200) {
         List<dynamic> data = json.decode(response.body);
+
+        // 清空列表
+        items1.clear();
+
+        // 添加項目之前過濾重複的項目
+        List<String> uniqueItems = data.map<String>((item) => item['name'].toString()).toSet().toList();
+
+        // 將過濾後的項目添加到列表
         setState(() {
-          items1.clear();
-          items1.addAll(data.map<String>((item) => item['name']).toList());
+          items1.addAll(uniqueItems);
           selectedItem1 = items1.isNotEmpty ? items1[0] : '';
         });
 
-        return getData(); // 返回取得的數據
+        return getData(setname); // 返回取得的數據
       } else {
         throw Exception('Failed to load data');
       }
@@ -48,17 +56,13 @@ class _CfootTableState extends State<CfootTable> {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getData() async {
-    try {
-      final String? serverSource = await PreferencesUtil.getString("serverSource");
-      final Uri uri = Uri.http(serverSource!, "/read/crawler/CFoot/ALL", {"name": selectedItem1});
-      final response = await http.get(uri);
-      final result = response.body;
-      final jsonData = jsonDecode(result);
-      return List<Map<String, dynamic>>.from(jsonData);
-    } catch (e) {
-      throw Exception('Failed to get data: $e');
-    }
+  Future<List<Map<String, dynamic>>> getData(String selectedName) async {
+    final String? serverSource = await PreferencesUtil.getString("serverSource");
+    final Uri uri = Uri.http(serverSource!, "/read/crawler/Cfoot/name", {"name": selectedName});
+    final response = await http.get(uri);
+    final result = response.body;
+    final jsonData = jsonDecode(result);
+    return List<Map<String, dynamic>>.from(jsonData);
   }
 
   @override
@@ -91,14 +95,15 @@ class _CfootTableState extends State<CfootTable> {
                 value: items,
                 child: Text(
                   items,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                 ),
               );
             }).toList(),
             onChanged: (String? newValue) {
               setState(() {
                 selectedItem1 = newValue!;
-                _dataFuture = getData(); // 取得新的資料
+                setname = selectedItem1;
+                _dataFuture = getData(selectedItem1);
               });
             },
           ),
@@ -111,16 +116,18 @@ class _CfootTableState extends State<CfootTable> {
     return Center(
       child: Column(
         children: <Widget>[
+          SizedBox(width: 15.0, height: 15.0),
           Row(
             children: [
               Text(
-                "查詢位置： ",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                "查詢物品",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
-              btnx(context)
             ],
           ),
-          SizedBox(width: 25.0, height: 10.0),
+          SizedBox(width: 15.0, height: 15.0),
+          btnx(context),
+          SizedBox(width: 15.0, height: 15.0),
           Column(
             children: [
               output(data),
