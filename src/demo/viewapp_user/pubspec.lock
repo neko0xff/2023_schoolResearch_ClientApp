@@ -114,7 +114,7 @@ packages:
     source: hosted
     version: "3.0.3"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: cupertino_icons
       sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "7.0.0"
   fl_chart:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: fl_chart
       sha256: "5a74434cc83bf64346efb562f1a06eefaf1bcb530dc3d96a104f631a1eff8d79"
@@ -183,7 +183,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_launcher_icons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_launcher_icons
       sha256: "526faf84284b86a4cb36d20a5e45147747b7563d921373d4ee0559c54fcdbcea"
@@ -209,7 +209,7 @@ packages:
     source: sdk
     version: "0.0.0"
   http:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: http
       sha256: a2bbf9d017fcced29139daa8ed2bba4ece450ab222871df93ca9eec6f80c34ba
@@ -289,7 +289,7 @@ packages:
     source: hosted
     version: "2.1.1"
   local_notifier:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: local_notifier
       sha256: cc855aa6362c8840e3d3b35b1c3b058a3a8becdb2b03d5a9aa3f3a1e861f0a03
@@ -345,7 +345,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path_provider:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: path_provider
       sha256: b27217933eeeba8ff24845c34003b003b2b22151de3c908d0e679e8fe1aa078b
@@ -393,7 +393,7 @@ packages:
     source: hosted
     version: "2.2.1"
   pdf:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: pdf
       sha256: "93cbb2c06de9bab91844550f19896b2373e7a5ce25173995e7e5ec5e1741429d"
@@ -433,7 +433,7 @@ packages:
     source: hosted
     version: "3.7.4"
   printing:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: printing
       sha256: ad39a42a5f83125952457dfd94f395c8cf0eb1f7759583dadb769be5c7f99d24
@@ -441,7 +441,7 @@ packages:
     source: hosted
     version: "5.11.1"
   pwa_install:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: pwa_install
       sha256: "79a6c38e67db12da98489258ead7e025ce4860c9010cde226d0b53ad6d403fd9"
@@ -457,7 +457,7 @@ packages:
     source: hosted
     version: "3.0.1"
   share_plus:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: share_plus
       sha256: "3ef39599b00059db0990ca2e30fca0a29d8b37aae924d60063f8e0184cf20900"
@@ -473,7 +473,7 @@ packages:
     source: hosted
     version: "3.3.1"
   shared_preferences:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: shared_preferences
       sha256: "81429e4481e1ccfb51ede496e916348668fd0921627779233bd24cc3ff6abd02"
@@ -582,7 +582,7 @@ packages:
     source: hosted
     version: "23.2.7"
   syncfusion_flutter_pdfviewer:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: syncfusion_flutter_pdfviewer
       sha256: "202a8f39dc80b5e9f24dd59cb3979aae73fa5cd2533597d07baaf4638084eadc"
@@ -654,7 +654,7 @@ packages:
     source: hosted
     version: "1.3.2"
   url_launcher:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: url_launcher
       sha256: c512655380d241a337521703af62d2c122bf7b77a46ff7dd750092aa9433499c
@@ -742,13 +742,13 @@ packages:
     source: hosted
     version: "13.0.0"
   web:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: web
-      sha256: afe077240a270dcfd2aafe77602b4113645af95d0ad31128cc02bce5ac5d5152
+      sha256: "4188706108906f002b3a293509234588823c8c979dc83304e229ff400c996b05"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.2"
   win32:
     dependency: transitive
     description:
