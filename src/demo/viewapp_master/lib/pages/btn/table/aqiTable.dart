@@ -28,10 +28,13 @@ class crdata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[SizedBox(height: 10.0), DataAQI()]);
+    return const  SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[SizedBox(height: 10.0), DataAQI()]
+        )
+    );
   }
 }
 

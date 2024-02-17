@@ -63,11 +63,11 @@ class _customvarTableState extends State<customvarTable> {
   }
 
   Widget output(List<dynamic> data) {
-    return DataTable(
-      columns: const <DataColumn>[
-        DataColumn(
-          label: Text(
-            '登入名',
+    return  SingleChildScrollView(
+        child:DataTable(
+          columns: const <DataColumn>[
+           DataColumn(
+            label: Text('登入名',
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ),
@@ -153,6 +153,6 @@ class _customvarTableState extends State<customvarTable> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

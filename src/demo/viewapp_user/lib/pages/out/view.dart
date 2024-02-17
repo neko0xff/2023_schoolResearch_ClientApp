@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, non_constant_identifier_names, prefer_interpolation_to_compose_strings, avoid_print, camel_case_types, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:viewapp_user/pages/btn/barchartView.dart';
-import 'package:viewapp_user/pages/btn/linechartView.dart';
-import 'package:viewapp_user/pages/btn/tableView.dart';
+import 'package:viewapp_user/pages/btn/view/barchartView.dart';
+import 'package:viewapp_user/pages/btn/view/linechartView.dart';
+import 'package:viewapp_user/pages/btn/view/tableView.dart';
 import 'package:viewapp_user/pages/widget/wallpaper.dart';
 
 class ViewData extends StatelessWidget {

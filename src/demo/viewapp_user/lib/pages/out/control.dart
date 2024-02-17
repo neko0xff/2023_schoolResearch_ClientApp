@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api, prefer_const_literals_to_create_immutables, prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:viewapp_user/pages/btn/switchCtr.dart';
-import 'package:viewapp_user/pages/btn/valueCtr.dart';
+import 'package:viewapp_user/pages/btn/ctr/switchCtr.dart';
+import 'package:viewapp_user/pages/btn/ctr/valueCtr.dart';
 import 'package:viewapp_user/pages/widget/wallpaper.dart';
 
 class Control extends StatelessWidget {
