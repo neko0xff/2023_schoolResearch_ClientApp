@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:pwa_install/pwa_install.dart';
 import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_master/pages/out/about.dart';
 import 'package:viewapp_master/pages/user/forget.dart';
@@ -12,6 +13,9 @@ var focusedcolor = Colors.yellow;
 var backcolor = Colors.black26;
 
 void main() async {
+  PWAInstall().setup(installCallback: () {
+    debugPrint('APP INSTALLED!');
+  });
   runApp(viewAppMain());
   await Future.delayed(const Duration(seconds: 1));
   /* localNotifier: Only Windows,Linux.macOS */

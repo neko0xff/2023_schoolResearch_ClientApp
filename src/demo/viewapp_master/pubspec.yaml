@@ -40,7 +40,7 @@ dependency_overrides:
   local_notifier: ^0.1.5
   pwa_install: ^0.0.5
   shared_preferences: ^2.2.2
-  fl_chart: ^0.65.0
+  fl_chart: ^0.66.2
   http: ^1.1.0
   path_provider: ^2.1.1
   pdf: ^3.10.6

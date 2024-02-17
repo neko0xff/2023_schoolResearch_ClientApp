@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:pwa_install/pwa_install.dart';
 import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_user/pages/out/about.dart';
 import 'package:viewapp_user/pages/user/forget.dart';
@@ -8,6 +9,10 @@ import 'package:viewapp_user/pages/user/login.dart';
 import 'package:viewapp_user/pages/user/updateUser.dart';
 
 void main() async {
+  // Add this
+  PWAInstall().setup(installCallback: () {
+    debugPrint('APP INSTALLED!');
+  });
   runApp(viewAppMain());
   await Future.delayed(const Duration(seconds: 1));
   /* localNotifier: Only Windows,Linux.macOS */
