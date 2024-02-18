@@ -16,8 +16,8 @@ class CfootTable extends StatefulWidget {
 class _CfootTableState extends State<CfootTable> {
   late Future<List<Map<String, dynamic>>> _dataFuture;
   final List<String> items1 = [];
-  String selectedItem1 = "標籤紙(PET)";
-  String setname = "標籤紙(PET)";
+  String selectedItem1 = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
+  String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _CfootTableState extends State<CfootTable> {
   Future<List<Map<String, dynamic>>> fetchData1() async {
     try {
       final String? serverSource = await PreferencesUtil.getString("serverSource");
-      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/ALL');
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
       final response = await http.get(uri);
 
       if (response.statusCode == 200) {
