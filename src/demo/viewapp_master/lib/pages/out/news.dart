@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/btn/table/aqiTable.dart';
 import 'package:viewapp_master/pages/btn/table/cfootTable.dart';
-import 'package:viewapp_master/pages/btn/view/Cfoot.dart';
+import 'package:viewapp_master/pages/btn/view/Cfoot_test.dart';
+import 'package:viewapp_master/pages/btn/view/Cfoot_api.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 
 class NewsData extends StatelessWidget {
@@ -102,7 +103,7 @@ class btn2 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CfootPage()));
+              context, MaterialPageRoute(builder: (context) => CfootPage_test()));
         },
         child: Text('碳排放\n手動', textAlign: TextAlign.center));
   }
@@ -117,7 +118,7 @@ class btn3 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CfootPage()));
+              context, MaterialPageRoute(builder: (context) => CfootPage_api()));
         },
         child: Text('碳排放\n自動', textAlign: TextAlign.center));
   }

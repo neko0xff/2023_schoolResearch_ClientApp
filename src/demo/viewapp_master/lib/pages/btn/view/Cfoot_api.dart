@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/pages/out/news.dart';
-import 'package:viewapp_master/pages/widget/Cfoot/traffic.dart';
-import 'package:viewapp_master/pages/widget/Cfoot/other.dart';
-import 'package:viewapp_master/pages/widget/CBAM/emissions.dart';
-import 'package:viewapp_master/pages/widget/CBAM/CC_simple.dart';
-import 'package:viewapp_master/pages/widget/CBAM/CC_CoPS.dart';
+import 'package:viewapp_master/pages/widget/Cfoot/traffic_db.dart';
+import 'package:viewapp_master/pages/widget/Cfoot/other_db.dart';
+import 'package:viewapp_master/pages/widget/CBAM/emissions_db.dart';
+import 'package:viewapp_master/pages/widget/CBAM/CC_simple_db.dart';
+import 'package:viewapp_master/pages/widget/CBAM/CC_CoPS_db.dart';
 
-class CfootPage extends StatelessWidget {
-  const CfootPage({super.key});
+class CfootPage_api extends StatelessWidget {
+  const CfootPage_api({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class DataAQI extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("碳排放",
+                  Text("碳排放(自動)",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(width: 10),
                 ]),
@@ -97,7 +97,7 @@ class btn1 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CfootTraffic()));
+              context, MaterialPageRoute(builder: (context) => CfootTraffic_DB()));
         },
         child: Text('交通', textAlign: TextAlign.center));
   }
@@ -112,7 +112,7 @@ class btn2 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CfootOther()));
+              context, MaterialPageRoute(builder: (context) => CfootOther_DB()));
         },
         child: Text('其它', textAlign: TextAlign.center));
   }
@@ -127,7 +127,7 @@ class btn3 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CBAMemissions()));
+              context, MaterialPageRoute(builder: (context) => CBAMemissions_db()));
         },
         child: Text('CBAM \n 排放量', textAlign: TextAlign.center));
   }
@@ -142,7 +142,7 @@ class btn4 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CBAMCCsimple()));
+              context, MaterialPageRoute(builder: (context) => CBAMCCsimple_db()));
         },
         child: Text('CBAM \n 碳含量_簡單與中間產品', textAlign: TextAlign.center));
   }
@@ -157,7 +157,7 @@ class btn5 extends StatelessWidget {
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CBAMCCcops()));
+              context, MaterialPageRoute(builder: (context) => CBAMCCcops_db()));
         },
         child: Text('CBAM \n 碳含量_複雜產品', textAlign: TextAlign.center));
   }

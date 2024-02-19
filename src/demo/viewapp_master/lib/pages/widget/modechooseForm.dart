@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
+List<String> items1 = [];
+final List<String> items2 = ['C', 'A', 'B'];
+
 class modeChooseForm extends StatefulWidget {
   const modeChooseForm({super.key});
 
@@ -12,8 +15,6 @@ class modeChooseForm extends StatefulWidget {
 }
 
 class _modeChooseFormState extends State<modeChooseForm> {
-  List<String> items1 = [];
-  final List<String> items2 = ['C', 'A', 'B'];
   String selectedItem1 = "";
   String selectedItem2 = "C";
 
