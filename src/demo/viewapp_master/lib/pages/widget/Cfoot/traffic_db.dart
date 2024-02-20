@@ -26,7 +26,7 @@ const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
 class CfootTraffic_DB extends StatelessWidget {
-  const CfootTraffic_DB({Key? key}) : super(key: key);
+  const CfootTraffic_DB({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class CfootTraffic_DB extends StatelessWidget {
 }
 
 class InputGet extends StatefulWidget {
-  const InputGet({Key? key}) : super(key: key);
+  const InputGet({super.key});
 
   @override
   _InputGetState createState() => _InputGetState();
@@ -88,7 +88,7 @@ class _InputGetState extends State<InputGet> {
 }
 
 class PostStr extends StatelessWidget {
-  const PostStr({Key? key}) : super(key: key);
+  const PostStr({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +97,10 @@ class PostStr extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text('排放來源', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
         DbCPL(),
         Text('距離', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
         TbDist(),
       ],
     );
@@ -106,7 +108,7 @@ class PostStr extends StatelessWidget {
 }
 
 class DbCPL extends StatefulWidget {
-  const DbCPL({Key? key}) : super(key: key);
+  const DbCPL({super.key});
 
   @override
   _DbCPLState createState() => _DbCPLState();
@@ -156,7 +158,7 @@ class _DbCPLState extends State<DbCPL> {
 }
 
 class TbDist extends StatelessWidget {
-  const TbDist({Key? key}) : super(key: key);
+  const TbDist({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -181,7 +183,7 @@ class TbDist extends StatelessWidget {
 }
 
 class BtnClear extends StatelessWidget {
-  const BtnClear({Key? key}) : super(key: key);
+  const BtnClear({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -198,13 +200,12 @@ class BtnClear extends StatelessWidget {
   }
 
   void clearInput(BuildContext context) {
-    selectedItem1 = selectedItem1Rest;
     distStr.text = "";
   }
 }
 
 class BtnView extends StatelessWidget {
-  const BtnView({Key? key}) : super(key: key);
+  const BtnView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -237,7 +238,7 @@ class BtnView extends StatelessWidget {
 }
 
 class BtnStrSend extends StatelessWidget {
-  const BtnStrSend({Key? key}) : super(key: key);
+  const BtnStrSend({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -246,6 +247,7 @@ class BtnStrSend extends StatelessWidget {
       height: 50.0,
       child: TextButton(
         onPressed: () {
+          checkInputNull(context);
           sendUserData(context);
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 50)),
@@ -253,6 +255,37 @@ class BtnStrSend extends StatelessWidget {
       ),
     );
   }
+}
+
+void checkInputNull(BuildContext context) {
+  final String dist = distStr.text;
+
+  if (dist.isEmpty) {
+    showFailAlert(context);
+  } else {
+    sendUserData(context);
+  }
+}
+
+// 輸出傳送失敗
+Future<void> showFailAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Send Fail!'),
+        content: const Text('Please check your input data!'),
+        actions: <Widget>[
+          ElevatedButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
 
 Future<void> sendUserData(BuildContext context) async {
@@ -309,7 +342,7 @@ Future<void> showFailCNAlert(BuildContext context) {
 }
 
 class BtnGoBack extends StatelessWidget {
-  const BtnGoBack({Key? key}) : super(key: key);
+  const BtnGoBack({super.key});
 
   @override
   Widget build(BuildContext context) {

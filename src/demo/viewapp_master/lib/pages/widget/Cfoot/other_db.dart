@@ -6,15 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
-// 定義輸入組件
-final TextEditingController CPLstr = TextEditingController();
-final TextEditingController totalstr = TextEditingController();
+final TextEditingController totalstrController = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
+List<String> items1 = [];
+late String selectedItem1 = "";
+const String setname = "車用汽油(於移動源使用，2021)";
+
 class CfootOther_DB extends StatelessWidget {
-  const CfootOther_DB({super.key});
+  const CfootOther_DB({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CfootOther_DB extends StatelessWidget {
 }
 
 class InputGet extends StatefulWidget {
-  const InputGet({super.key});
+  const InputGet({Key? key}) : super(key: key);
 
   @override
   _InputGetState createState() => _InputGetState();
@@ -76,7 +78,7 @@ class _InputGetState extends State<InputGet> {
 }
 
 class PostStr extends StatelessWidget {
-  const PostStr({super.key});
+  const PostStr({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,47 +86,106 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
+        Text('總數量', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
         TbTotal(),
-        TbCPL()
+        SizedBox(height: 10),
+        Text('排放來源', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
+        DbCPL()
       ],
     );
   }
 }
 
-class TbCPL extends StatelessWidget {
-  const TbCPL({super.key});
+class DbCPL extends StatefulWidget {
+  const DbCPL({Key? key}) : super(key: key);
+
+  @override
+  _DbCPLState createState() => _DbCPLState();
+}
+
+class _DbCPLState extends State<DbCPL> {
+  late String selectedCPL;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCPL = selectedItem1;
+    fetchData1();
+  }
+
+  Future<void> fetchData1() async {
+    try {
+      final String? serverSource = await PreferencesUtil.getString("serverSource");
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+
+        items1 = data.map<String>((item) => item['name'].toString()).toSet().toList();
+
+        setState(() {
+          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
+          selectedCPL = selectedItem1;
+
+          // 確保 selectedCPL 的初始值存在於 items1 中
+          if (!items1.contains(selectedCPL)) {
+            selectedCPL = items1.isNotEmpty ? items1[0] : '';
+          }
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: CPLstr,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.info),
-          labelText: "排放因素",
-          hintText: "",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: enableColor),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownButton<String>(
+            value: selectedCPL,
+            onChanged: (value) {
+              setState(() {
+                selectedCPL = value!;
+              });
+            },
+            items: [
+              DropdownMenuItem(
+                value: null,
+                child: Text(selectedItem1),
+              ),
+              ...items1.map((item) {
+                return DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(item),
+                );
+              }),
+            ],
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedColor),
-          ),
-        ),
+        ],
       ),
     );
   }
 }
 
 class TbTotal extends StatelessWidget {
-  const TbTotal({super.key});
+  const TbTotal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: totalstr,
+        controller: totalstrController,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
           labelText: "總數量",
@@ -142,7 +203,7 @@ class TbTotal extends StatelessWidget {
 }
 
 class BtnClear extends StatelessWidget {
-  const BtnClear({super.key});
+  const BtnClear({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -159,13 +220,12 @@ class BtnClear extends StatelessWidget {
   }
 
   void clearInput() {
-    CPLstr.text = "";
-    totalstr.text = "";
+    totalstrController.text = "";
   }
 }
 
 class BtnView extends StatelessWidget {
-  const BtnView({super.key});
+  const BtnView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +258,7 @@ class BtnView extends StatelessWidget {
 }
 
 class BtnStrSend extends StatelessWidget {
-  const BtnStrSend({super.key});
+  const BtnStrSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -215,25 +275,23 @@ class BtnStrSend extends StatelessWidget {
   }
 
   void checkInputNull(BuildContext context) {
-    final String CPL = CPLstr.text;
-    final String total = totalstr.text;
+    final String total = totalstrController.text;
 
-    if (CPL.isEmpty || total.isEmpty) {
+    if (total.isEmpty) {
       showFailAlert(context);
     } else {
       sendUserData(context);
     }
   }
 
-  // 使用者比較部分
   Future<void> sendUserData(BuildContext context) async {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
-    final String CPL = CPLstr.text;
-    final String total = totalstr.text;
+    final String cpl = selectedItem1;
+    final String total = totalstrController.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/Cfoot/other");
+    final Uri uri = Uri.http(serverSource!, "/cal/Cfoot/other_db");
     final response = await http.post(uri, body: {
-      "gwp": CPL,
+      "gwp": cpl,
       "total": total
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -253,7 +311,6 @@ class BtnStrSend extends StatelessWidget {
     }
   }
 
-  // 輸出傳送失敗
   Future<void> showFailAlert(BuildContext context) {
     return showDialog<void>(
       context: context,
@@ -274,7 +331,6 @@ class BtnStrSend extends StatelessWidget {
     );
   }
 
-  // 輸出連線失敗
   Future<void> showFailCNAlert(BuildContext context) {
     return showDialog<void>(
       context: context,
@@ -297,7 +353,7 @@ class BtnStrSend extends StatelessWidget {
 }
 
 class BtnGoBack extends StatelessWidget {
-  const BtnGoBack({super.key});
+  const BtnGoBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -314,4 +370,3 @@ class BtnGoBack extends StatelessWidget {
     );
   }
 }
-
