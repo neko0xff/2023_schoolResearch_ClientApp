@@ -158,18 +158,12 @@ class _DbCPLState extends State<DbCPL> {
                 selectedCPL = value!;
               });
             },
-            items: [
-              DropdownMenuItem(
-                value: null,
-                child: Text(selectedItem1),
-              ),
-              ...items1.map((item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(item),
-                );
-              }),
-            ],
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
           ),
         ],
       ),

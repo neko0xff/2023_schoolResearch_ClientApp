@@ -18,7 +18,7 @@ List<String> items1 = [
   '營業大貨車(柴油)',
 ];
 String selectedItem1 = "車用汽油(於移動源使用，2021)";
-String selectedItem1Rest = "車用汽油(於移動源使用，2021)";
+String setname = "車用汽油(於移動源使用，2021)";
 
 final TextEditingController distStr = TextEditingController();
 
@@ -138,18 +138,12 @@ class _DbCPLState extends State<DbCPL> {
                 selectedCPL = value!;
               });
             },
-            items: [
-              DropdownMenuItem(
-                value: null,
-                child: Text(selectedItem1),
-              ),
-              ...items1.map((item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(item),
-                );
-              }),
-            ],
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
           ),
         ],
       ),

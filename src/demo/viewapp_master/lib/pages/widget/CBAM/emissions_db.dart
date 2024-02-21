@@ -14,10 +14,10 @@ const Color enableColor = Colors.black;
 
 List<String> items1 = [];
 String selectedItem1 = "";
-const String setname = "車用汽油(於移動源使用，2021)";
+const String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
 
 class CBAMemissions_db extends StatelessWidget {
-  const CBAMemissions_db({super.key});
+  const CBAMemissions_db({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class CBAMemissions_db extends StatelessWidget {
 }
 
 class InputGet extends StatefulWidget {
-  const InputGet({super.key});
+  const InputGet({Key? key}) : super(key: key);
 
   @override
   _InputGetState createState() => _InputGetState();
@@ -79,7 +79,7 @@ class _InputGetState extends State<InputGet> {
 }
 
 class PostStr extends StatelessWidget {
-  const PostStr({super.key});
+  const PostStr({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class PostStr extends StatelessWidget {
 }
 
 class DbCPL extends StatefulWidget {
-  const DbCPL({super.key});
+  const DbCPL({Key? key}) : super(key: key);
 
   @override
   _DbCPLState createState() => _DbCPLState();
@@ -159,18 +159,12 @@ class _DbCPLState extends State<DbCPL> {
                 selectedCPL = value!;
               });
             },
-            items: [
-              DropdownMenuItem(
-                value: null,
-                child: Text(selectedItem1),
-              ),
-              ...items1.map((item) {
-                return DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(item),
-                );
-              }),
-            ],
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
           ),
         ],
       ),
@@ -179,7 +173,7 @@ class _DbCPLState extends State<DbCPL> {
 }
 
 class TbTotal extends StatelessWidget {
-  const TbTotal({super.key});
+  const TbTotal({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -204,7 +198,7 @@ class TbTotal extends StatelessWidget {
 }
 
 class BtnClear extends StatelessWidget {
-  const BtnClear({super.key});
+  const BtnClear({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -226,7 +220,7 @@ class BtnClear extends StatelessWidget {
 }
 
 class BtnView extends StatelessWidget {
-  const BtnView({super.key});
+  const BtnView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -259,7 +253,7 @@ class BtnView extends StatelessWidget {
 }
 
 class BtnStrSend extends StatelessWidget {
-  const BtnStrSend({super.key});
+  const BtnStrSend({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -354,7 +348,7 @@ class BtnStrSend extends StatelessWidget {
 }
 
 class BtnGoBack extends StatelessWidget {
-  const BtnGoBack({super.key});
+  const BtnGoBack({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
