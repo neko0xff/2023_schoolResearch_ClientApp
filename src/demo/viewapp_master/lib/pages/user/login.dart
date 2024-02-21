@@ -11,12 +11,12 @@ import 'package:viewapp_master/pages/home.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 
 // 定義輸入元件
-TextEditingController serverSourceStr = TextEditingController();
-TextEditingController usernameStr = TextEditingController();
-TextEditingController passwordStr = TextEditingController();
+final TextEditingController serverSourceStr = TextEditingController();
+final TextEditingController usernameStr = TextEditingController();
+final TextEditingController passwordStr = TextEditingController();
 
-var focusedcolor = Colors.green;
-var enablecolor = Colors.black;
+const focusedcolor = Colors.green;
+const enablecolor = Colors.black;
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
 }
 
 class InputGet extends StatelessWidget {
-  const InputGet({super.key});
+  const InputGet({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +44,7 @@ class InputGet extends StatelessWidget {
           const SizedBox(height: 10.0),
           const btnView(),
           const SizedBox(height: 10.0),
+          //const PWA_Install(),
         ],
       ),
     );
@@ -51,7 +52,7 @@ class InputGet extends StatelessWidget {
 }
 
 class LoginStr extends StatelessWidget {
-  const LoginStr({super.key});
+  const LoginStr({Key? key});
   @override
   Widget build(BuildContext context) {
     return const Column(
@@ -63,7 +64,7 @@ class LoginStr extends StatelessWidget {
 }
 
 class tbServerSource extends StatelessWidget {
-  const tbServerSource({super.key});
+  const tbServerSource({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,16 +77,16 @@ class tbServerSource extends StatelessWidget {
             labelText: "Server",
             hintText: "Your Server Address",
             enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
+            OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
             focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
+            OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
       ),
     );
   }
 }
 
 class tbUsername extends StatelessWidget {
-  const tbUsername({super.key});
+  const tbUsername({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +99,16 @@ class tbUsername extends StatelessWidget {
             labelText: "Username",
             hintText: "Your account username",
             enabledBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
+            OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
             focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
+            OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
       ),
     );
   }
 }
 
 class tbPassword extends StatelessWidget {
-  const tbPassword({super.key});
+  const tbPassword({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,49 +122,49 @@ class tbPassword extends StatelessWidget {
             labelText: "Password",
             hintText: "Your account password",
             enabledBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
+            OutlineInputBorder(borderSide: BorderSide(color: enablecolor)),
             focusedBorder:
-              OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
+            OutlineInputBorder(borderSide: BorderSide(color: focusedcolor))),
       ),
     );
   }
 }
 
 class btnView extends StatelessWidget {
-  const btnView({super.key});
+  const btnView({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
         child: Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            btnLoginSend(),
-            SizedBox(width: 50.0)
+          children: <Widget>[
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                btnLoginSend(),
+                SizedBox(width: 50.0)
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                btnToforgetPage(),
+                SizedBox(width: 50.0),
+                btnClear(),
+              ],
+            )
           ],
-        ),
-        SizedBox(height: 15),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            btnToforgetPage(),
-            SizedBox(width: 50.0),
-            btnClear(),
-          ],
-        )
-      ],
-    ));
+        ));
   }
 }
 
 class btnLoginSend extends StatelessWidget {
-  const btnLoginSend({super.key});
+  const btnLoginSend({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -206,7 +207,7 @@ class btnLoginSend extends StatelessWidget {
     final result = response.body;
     final data = jsonDecode(result);
     final code = data["code"];
-    final userData user = userData(
+    final user = userData(
         serverSource: serverSourceStr.text,
         LoginName: data["LoginName"],
         username: data["username"]);
@@ -284,7 +285,7 @@ class btnLoginSend extends StatelessWidget {
   Future<void> showFailCNAlert(BuildContext context) {
     return showDialog<void>(
       context: context,
-        barrierColor: Colors.yellow,
+      barrierColor: Colors.yellow,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
@@ -309,7 +310,7 @@ class btnLoginSend extends StatelessWidget {
 }
 
 class btnClear extends StatelessWidget {
-  const btnClear({super.key});
+  const btnClear({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -333,7 +334,7 @@ class btnClear extends StatelessWidget {
 }
 
 class btnToforgetPage extends StatelessWidget {
-  const btnToforgetPage({super.key});
+  const btnToforgetPage({Key? key});
 
   //跳回登入主頁
   void pushToforget(BuildContext context) {

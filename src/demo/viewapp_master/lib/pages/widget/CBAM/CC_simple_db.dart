@@ -7,11 +7,15 @@ import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
 // 定義輸入組件
-final TextEditingController emissionsstr = TextEditingController();
+final TextEditingController usestr = TextEditingController();
 final TextEditingController productionstr = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
+
+List<String> items1 = [];
+String selectedItem1 = "";
+const String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
 
 class CBAMCCsimple_db extends StatelessWidget {
   const CBAMCCsimple_db({super.key});
@@ -84,25 +88,102 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Tbemissions(),
+        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
+        DbCPL(),
+        Tbuse(),
+        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         Tbproduction()
       ],
     );
   }
 }
 
-class Tbemissions extends StatelessWidget {
-  const Tbemissions({super.key});
+class DbCPL extends StatefulWidget {
+  const DbCPL({super.key});
+
+  @override
+  _DbCPLState createState() => _DbCPLState();
+}
+
+class _DbCPLState extends State<DbCPL> {
+  late String selectedCPL;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCPL = selectedItem1;
+    fetchData1();
+  }
+
+  Future<void> fetchData1() async {
+    try {
+      final String? serverSource = await PreferencesUtil.getString("serverSource");
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+
+        items1 = data.map<String>((item) => item['name'].toString()).toSet().toList();
+
+        setState(() {
+          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
+          selectedCPL = selectedItem1;
+
+          // 確保 selectedCPL 的初始值存在於 items1 中
+          if (!items1.contains(selectedCPL)) {
+            selectedCPL = items1.isNotEmpty ? items1[0] : '';
+          }
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownButton<String>(
+            value: selectedCPL,
+            onChanged: (value) {
+              setState(() {
+                selectedCPL = value!;
+              });
+            },
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Tbuse extends StatelessWidget {
+  const Tbuse({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: emissionsstr,
+        controller: usestr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "排放量",
+          labelText: "該項目每1個單位的使用量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -127,7 +208,7 @@ class Tbproduction extends StatelessWidget {
         controller: productionstr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "生產量",
+          labelText: "生產總量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -159,7 +240,7 @@ class BtnClear extends StatelessWidget {
   }
 
   void clearInput() {
-    emissionsstr.text = "";
+    usestr.text = "";
     productionstr.text = "";
   }
 }
@@ -215,10 +296,10 @@ class BtnStrSend extends StatelessWidget {
   }
 
   void checkInputNull(BuildContext context) {
-    final String emissions = emissionsstr.text;
+    final String use = usestr.text;
     final String production = productionstr.text;
 
-    if (emissions.isEmpty || production.isEmpty) {
+    if (use.isEmpty || production.isEmpty) {
       showFailAlert(context);
     } else {
       sendUserData(context);
@@ -228,12 +309,14 @@ class BtnStrSend extends StatelessWidget {
   // 使用者比較部分
   Future<void> sendUserData(BuildContext context) async {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
-    final String emissions = emissionsstr.text;
+    final String use = usestr.text;
+    final String cpl = selectedItem1;
     final String production = productionstr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_simple");
+    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_simple_db");
     final response = await http.post(uri, body: {
-      "emissions": emissions,
+      "use": use,
+      "gwp": cpl,
       "production": production
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",

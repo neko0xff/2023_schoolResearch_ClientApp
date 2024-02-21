@@ -15,6 +15,10 @@ final TextEditingController CCstr = TextEditingController();
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
+List<String> items1 = [];
+String selectedItem1 = "";
+const String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
+
 class CBAMCCcops_db extends StatelessWidget {
   const CBAMCCcops_db({super.key});
 
@@ -113,6 +117,79 @@ class PostStr extends StatelessWidget {
         TbMid_production(),
         Tbcc()
       ],
+    );
+  }
+}
+
+class DbCPL extends StatefulWidget {
+  const DbCPL({Key? key}) : super(key: key);
+
+  @override
+  _DbCPLState createState() => _DbCPLState();
+}
+
+class _DbCPLState extends State<DbCPL> {
+  late String selectedCPL;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCPL = selectedItem1;
+    fetchData1();
+  }
+
+  Future<void> fetchData1() async {
+    try {
+      final String? serverSource = await PreferencesUtil.getString("serverSource");
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+
+        items1 = data.map<String>((item) => item['name'].toString()).toSet().toList();
+
+        setState(() {
+          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
+          selectedCPL = selectedItem1;
+
+          // 確保 selectedCPL 的初始值存在於 items1 中
+          if (!items1.contains(selectedCPL)) {
+            selectedCPL = items1.isNotEmpty ? items1[0] : '';
+          }
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownButton<String>(
+            value: selectedCPL,
+            onChanged: (value) {
+              setState(() {
+                selectedCPL = value!;
+              });
+            },
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }
