@@ -4,21 +4,29 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:viewapp_master/modules/PreferencesUtil.dart';
+import 'package:viewapp_user/modules/PreferencesUtil.dart';
 
-// 定義輸入組件
-final TextEditingController usestr = TextEditingController();
-final TextEditingController productionstr = TextEditingController();
+List<String> items1 = [
+  '煤油使用(2021)',
+  '車用汽油(於移動源使用，2021)',
+  '柴油(於捕撈移動源使用，2021)',
+  '柴油(於水路運輸移動源使用，2021)',
+  '柴油(於鐵路運輸與非道路運輸移動源使用，2021)',
+  '柴油(於公路運輸移動源使用，2021)',
+  '營業小貨車(汽油)',
+  '營業小貨車(柴油)',
+  '營業大貨車(柴油)',
+];
+String selectedItem1 = "車用汽油(於移動源使用，2021)";
+String setname = "車用汽油(於移動源使用，2021)";
+
+final TextEditingController distStr = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
-List<String> items1 = [];
-String selectedItem1 = "";
-const String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
-
-class CBAMCCsimple_db extends StatelessWidget {
-  const CBAMCCsimple_db({super.key});
+class CfootTraffic_DB extends StatelessWidget {
+  const CfootTraffic_DB({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "CBAM\n碳含量_簡單與中間產品",
+                "碳排放-交通部分",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),
@@ -63,7 +71,7 @@ class _InputGetState extends State<InputGet> {
           SizedBox(height: 10.0),
           PostStr(),
           SizedBox(height: 10.0),
-          Text("公式: 產品碳含量= 排放量/產品活動數據(生產量)"),
+          Text("公式: 排放因數 * 旅行的距離"),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),
@@ -88,12 +96,12 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text('排放來源', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(height: 10),
         DbCPL(),
-        Tbuse(),
-        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Tbproduction()
+        Text('距離', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
+        TbDist(),
       ],
     );
   }
@@ -113,35 +121,6 @@ class _DbCPLState extends State<DbCPL> {
   void initState() {
     super.initState();
     selectedCPL = selectedItem1;
-    fetchData1();
-  }
-
-  Future<void> fetchData1() async {
-    try {
-      final String? serverSource = await PreferencesUtil.getString("serverSource");
-      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
-      final response = await http.get(uri);
-
-      if (response.statusCode == 200) {
-        List<dynamic> data = json.decode(response.body);
-
-        items1 = data.map<String>((item) => item['name'].toString()).toSet().toList();
-
-        setState(() {
-          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
-          selectedCPL = selectedItem1;
-
-          // 確保 selectedCPL 的初始值存在於 items1 中
-          if (!items1.contains(selectedCPL)) {
-            selectedCPL = items1.isNotEmpty ? items1[0] : '';
-          }
-        });
-      } else {
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      throw Exception('Failed to fetch data: $e');
-    }
   }
 
   @override
@@ -172,43 +151,18 @@ class _DbCPLState extends State<DbCPL> {
   }
 }
 
-class Tbuse extends StatelessWidget {
-  const Tbuse({super.key});
+class TbDist extends StatelessWidget {
+  const TbDist({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: usestr,
+        controller: distStr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "該項目每1個單位的使用量",
-          hintText: "",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: enableColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedColor),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Tbproduction extends StatelessWidget {
-  const Tbproduction({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: productionstr,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.info),
-          labelText: "生產總量",
+          labelText: "行走距離",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -233,15 +187,14 @@ class BtnClear extends StatelessWidget {
       child: ElevatedButton(
         child: const Text("Clear"),
         onPressed: () {
-          clearInput();
+          clearInput(context);
         },
       ),
     );
   }
 
-  void clearInput() {
-    usestr.text = "";
-    productionstr.text = "";
+  void clearInput(BuildContext context) {
+    distStr.text = "";
   }
 }
 
@@ -286,38 +239,59 @@ class BtnStrSend extends StatelessWidget {
     return SizedBox(
       width: 100.0,
       height: 50.0,
-      child: ElevatedButton(
-        child: const Text("送出"),
+      child: TextButton(
         onPressed: () {
           checkInputNull(context);
+          sendUserData(context);
         },
+        style: ElevatedButton.styleFrom(minimumSize: const Size(100, 50)),
+        child: const Text("送出"),
       ),
     );
   }
+}
 
-  void checkInputNull(BuildContext context) {
-    final String use = usestr.text;
-    final String production = productionstr.text;
+void checkInputNull(BuildContext context) {
+  final String dist = distStr.text;
 
-    if (use.isEmpty || production.isEmpty) {
-      showFailAlert(context);
-    } else {
-      sendUserData(context);
-    }
+  if (dist.isEmpty) {
+    showFailAlert(context);
+  } else {
+    sendUserData(context);
   }
+}
 
-  // 使用者比較部分
-  Future<void> sendUserData(BuildContext context) async {
+// 輸出傳送失敗
+Future<void> showFailAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Send Fail!'),
+        content: const Text('Please check your input data!'),
+        actions: <Widget>[
+          ElevatedButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future<void> sendUserData(BuildContext context) async {
+  try {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
-    final String use = usestr.text;
     final String cpl = selectedItem1;
-    final String production = productionstr.text;
+    final String dist = distStr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_simple_db");
+    final Uri uri = Uri.http(serverSource!, "/cal/Cfoot/traffic_db");
     final response = await http.post(uri, body: {
-      "use": use,
-      "gwp": cpl,
-      "production": production
+      "CPL": cpl,
+      "dist": dist
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });
@@ -326,57 +300,40 @@ class BtnStrSend extends StatelessWidget {
     final code = data["code"];
 
     if (code == "1") {
+
       final output = data["output"].toString();
       final inputGetState = context.findAncestorStateOfType<_InputGetState>();
       inputGetState!.setResult("輸出結果: $output");
     } else if (code == "0") {
-      showFailAlert(context);
+      //showFailAlert(context);
     } else if (code == "-1") {
       showFailCNAlert(context);
     }
+  } catch (e) {
+    print("Error: $e");
+    showFailCNAlert(context);
   }
+}
 
-  // 輸出傳送失敗
-  Future<void> showFailAlert(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Send Fail!'),
-          content: const Text('Please check your input data!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  // 輸出連線失敗
-  Future<void> showFailCNAlert(BuildContext context) {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Network Connection Fail!'),
-          content: const Text('Please check your network and server!'),
-          actions: <Widget>[
-            ElevatedButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+Future<void> showFailCNAlert(BuildContext context) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Network Connection Fail!'),
+        content: const Text('Please check you are Network & Server!'
+            'Failed to send data.'),
+        actions: <Widget>[
+          ElevatedButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
 
 class BtnGoBack extends StatelessWidget {

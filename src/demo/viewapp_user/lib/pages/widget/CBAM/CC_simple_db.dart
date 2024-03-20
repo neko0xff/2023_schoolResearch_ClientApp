@@ -4,19 +4,21 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:viewapp_master/modules/PreferencesUtil.dart';
+import 'package:viewapp_user/modules/PreferencesUtil.dart';
 
 // 定義輸入組件
-final TextEditingController emissionsstr = TextEditingController();
+final TextEditingController usestr = TextEditingController();
 final TextEditingController productionstr = TextEditingController();
-final TextEditingController Mid_productionstr = TextEditingController();
-final TextEditingController CCstr = TextEditingController();
 
 const Color focusedColor = Colors.yellow;
 const Color enableColor = Colors.black;
 
-class CBAMCCcops extends StatelessWidget {
-  const CBAMCCcops({super.key});
+List<String> items1 = [];
+String selectedItem1 = "";
+const String setname = "苯乙烯-乙烯/丁烯-苯乙烯熱塑性彈性體";
+
+class CBAMCCsimple_db extends StatelessWidget {
+  const CBAMCCsimple_db({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +42,6 @@ class _InputGetState extends State<InputGet> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           SizedBox(height: 10.0),
           Row(
@@ -49,7 +49,7 @@ class _InputGetState extends State<InputGet> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "CBAM \n 碳含量_複雜產品",
+                "CBAM\n碳含量_簡單與中間產品",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(width: 10),
@@ -63,27 +63,7 @@ class _InputGetState extends State<InputGet> {
           SizedBox(height: 10.0),
           PostStr(),
           SizedBox(height: 10.0),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "公式\n",
-                style: TextStyle(fontSize: 15),
-              ),
-              SizedBox(height: 10),
-            ],
-          ),
-          SizedBox(height: 5.0),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "特定產品碳含量\n+\n((中間產品活動數據/產品活動數據)*中間產品碳含量)",
-              ),
-            ],
-          ),
+          Text("公式: 產品碳含量= 排放量/產品活動數據(生產量)"),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),
@@ -108,27 +88,102 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Tbemissions(),
-        Tbproduction(),
-        TbMid_production(),
-        Tbcc()
+        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
+        DbCPL(),
+        Tbuse(),
+        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Tbproduction()
       ],
     );
   }
 }
 
-class Tbemissions extends StatelessWidget {
-  const Tbemissions({super.key});
+class DbCPL extends StatefulWidget {
+  const DbCPL({super.key});
+
+  @override
+  _DbCPLState createState() => _DbCPLState();
+}
+
+class _DbCPLState extends State<DbCPL> {
+  late String selectedCPL;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCPL = selectedItem1;
+    fetchData1();
+  }
+
+  Future<void> fetchData1() async {
+    try {
+      final String? serverSource = await PreferencesUtil.getString("serverSource");
+      final Uri uri = Uri.http(serverSource!, '/read/crawler/CFoot/list');
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+
+        items1 = data.map<String>((item) => item['name'].toString()).toSet().toList();
+
+        setState(() {
+          selectedItem1 = items1.isNotEmpty ? items1[0] : '';
+          selectedCPL = selectedItem1;
+
+          // 確保 selectedCPL 的初始值存在於 items1 中
+          if (!items1.contains(selectedCPL)) {
+            selectedCPL = items1.isNotEmpty ? items1[0] : '';
+          }
+        });
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DropdownButton<String>(
+            value: selectedCPL,
+            onChanged: (value) {
+              setState(() {
+                selectedCPL = value!;
+              });
+            },
+            items: items1.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(item),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Tbuse extends StatelessWidget {
+  const Tbuse({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
-        controller: emissionsstr,
+        controller: usestr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "排放量",
+          labelText: "該項目每1個單位的使用量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -153,57 +208,7 @@ class Tbproduction extends StatelessWidget {
         controller: productionstr,
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.info),
-          labelText: "生產量",
-          hintText: "",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: enableColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedColor),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TbMid_production extends StatelessWidget {
-  const TbMid_production({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: Mid_productionstr,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.info),
-          labelText: "中間產品活動數據",
-          hintText: "",
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: enableColor),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedColor),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Tbcc extends StatelessWidget {
-  const Tbcc({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
-      child: TextFormField(
-        controller: CCstr,
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.info),
-          labelText: "中間產品碳含量",
+          labelText: "生產總量",
           hintText: "",
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: enableColor),
@@ -235,10 +240,8 @@ class BtnClear extends StatelessWidget {
   }
 
   void clearInput() {
-    emissionsstr.text = "";
+    usestr.text = "";
     productionstr.text = "";
-    Mid_productionstr.text = "";
-    CCstr.text = "";
   }
 }
 
@@ -293,12 +296,10 @@ class BtnStrSend extends StatelessWidget {
   }
 
   void checkInputNull(BuildContext context) {
-    final String emissions = emissionsstr.text;
+    final String use = usestr.text;
     final String production = productionstr.text;
-    final String Mid_production = Mid_productionstr.text;
-    final String CC = CCstr.text;
 
-    if (emissions.isEmpty || production.isEmpty || Mid_production.isEmpty || CC.isEmpty ) {
+    if (use.isEmpty || production.isEmpty) {
       showFailAlert(context);
     } else {
       sendUserData(context);
@@ -308,17 +309,15 @@ class BtnStrSend extends StatelessWidget {
   // 使用者比較部分
   Future<void> sendUserData(BuildContext context) async {
     final String? serverSource = await PreferencesUtil.getString("serverSource");
-    final String emissions = emissionsstr.text;
+    final String use = usestr.text;
+    final String cpl = selectedItem1;
     final String production = productionstr.text;
-    final String Mid_production = Mid_productionstr.text;
-    final String CC = CCstr.text;
 
-    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_CoPS");
+    final Uri uri = Uri.http(serverSource!, "/cal/CBAM/CC_simple_db");
     final response = await http.post(uri, body: {
-      "emissions": emissions,
-      "production": production,
-      "Mid_production": Mid_production,
-      "CC": CC
+      "use": use,
+      "gwp": cpl,
+      "production": production
     }, headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     });

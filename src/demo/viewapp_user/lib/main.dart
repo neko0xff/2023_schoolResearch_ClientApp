@@ -19,7 +19,7 @@ void main() async {
   await localNotifier.setup(
     appName: 'View App User v3',
     shortcutPolicy:
-        ShortcutPolicy.requireCreate, // shortcutPolicy: 仅适用于 Windows
+        ShortcutPolicy.requireCreate,
   );
 }
 

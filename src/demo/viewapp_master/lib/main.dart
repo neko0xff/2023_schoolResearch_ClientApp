@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types
+// ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types, depend_on_referenced_packages
 
 import 'package:flutter/material.dart';
 import 'package:pwa_install/pwa_install.dart';

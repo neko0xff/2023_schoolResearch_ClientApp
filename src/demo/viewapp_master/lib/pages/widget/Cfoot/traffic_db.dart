@@ -300,11 +300,12 @@ Future<void> sendUserData(BuildContext context) async {
     final code = data["code"];
 
     if (code == "1") {
-      //showFailAlert(context);
-    } else if (code == "0") {
+
       final output = data["output"].toString();
       final inputGetState = context.findAncestorStateOfType<_InputGetState>();
       inputGetState!.setResult("輸出結果: $output");
+    } else if (code == "0") {
+      //showFailAlert(context);
     } else if (code == "-1") {
       showFailCNAlert(context);
     }
