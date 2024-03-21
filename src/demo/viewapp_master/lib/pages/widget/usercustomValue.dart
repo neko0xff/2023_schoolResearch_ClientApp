@@ -506,7 +506,7 @@ class UserValue06ctr extends StatelessWidget {
             controller: userSelectedValue06,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.numbers),
-                labelText: "User Custom Value 06(co2)",
+                labelText: "User Custom Value 06(pm25)",
                 enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusedBorder: OutlineInputBorder(

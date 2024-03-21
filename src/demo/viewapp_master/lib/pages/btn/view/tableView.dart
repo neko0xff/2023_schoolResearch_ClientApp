@@ -34,18 +34,25 @@ class tableView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           SizedBox(height: 10.0),
+          Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(width: 10),
+                btnGoBack(),
+              ]),
+          SizedBox(height: 10.0),
           Text('Sensor01',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           const Data1(),
+          SizedBox(height: 10.0),
           Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 btn1(),
                 SizedBox(width: 10),
-                btnGoBack(),
               ]),
-          SizedBox(height: 15.0),
         ],
       ),
     );

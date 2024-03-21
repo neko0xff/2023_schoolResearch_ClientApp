@@ -72,7 +72,7 @@ class Data1 extends StatelessWidget {
         Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [btn2(), SizedBox(width: 10), btn3()]
+            children: [SizedBox(width: 10), btn3()]
         ),
       ],
     ));
