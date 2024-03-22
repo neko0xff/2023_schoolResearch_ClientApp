@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_user/modules/PreferencesUtil.dart';
 
-var Color_active = Colors.green;
-var Color_inactive = Colors.blue;
+var Color_active = Colors.blue;
+var Color_inactive = Colors.grey;
 
 class Switch01ctr extends StatefulWidget {
   const Switch01ctr({super.key});

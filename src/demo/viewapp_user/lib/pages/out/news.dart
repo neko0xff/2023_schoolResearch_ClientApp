@@ -93,6 +93,7 @@ class btn1 extends StatelessWidget {
   }
 }
 
+
 class btn3 extends StatelessWidget {
   const btn3({super.key});
 
@@ -104,7 +105,7 @@ class btn3 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CfootPage()));
         },
-        child: Text('碳排放', textAlign: TextAlign.center));
+        child: Text('碳排放計算', textAlign: TextAlign.center));
   }
 }
 

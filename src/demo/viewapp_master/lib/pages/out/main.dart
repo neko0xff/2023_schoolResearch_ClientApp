@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 import 'package:viewapp_master/pages/table/switch01.dart';
+import 'package:viewapp_master/pages/table/sensor01_result.dart';
 import 'package:viewapp_master/pages/widget/wallpaper.dart';
 
 class Main extends StatelessWidget {
@@ -15,7 +16,7 @@ class Main extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.blue, backgroundColor: Colors.white),
+              primarySwatch: Colors.yellow, backgroundColor: Colors.white),
         ),
         home: const Scaffold(
           body: MainPage(),
@@ -49,6 +50,13 @@ class MainPage extends StatelessWidget {
         const Text('Switch01',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const Data3(),
+        const SizedBox(height: 10.0),
+        const Text('感測器狀態',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10.0),
+        const Text('Sensor01',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const Data4(),
         const SizedBox(height: 10.0),
         wallpaperLogin(),
       ],
@@ -132,6 +140,20 @@ class Data3 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [SwitchTable1()]),
+    );
+  }
+}
+
+class Data4 extends StatelessWidget {
+  const Data4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Sensor01Result()]),
     );
   }
 }

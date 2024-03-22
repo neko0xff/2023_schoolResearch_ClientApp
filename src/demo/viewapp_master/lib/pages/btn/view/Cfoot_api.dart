@@ -56,7 +56,7 @@ class DataAQI extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("碳排放",
+                  Text("碳排放計算",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(width: 10),
                 ]),

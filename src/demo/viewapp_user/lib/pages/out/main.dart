@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:viewapp_user/modules/PreferencesUtil.dart';
 import 'package:viewapp_user/pages/table/switch01.dart';
+import 'package:viewapp_user/pages/table/sensor01_result.dart';
 import 'package:viewapp_user/pages/widget/wallpaper.dart';
-import 'package:viewapp_user/pages/widget/modeView.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -16,7 +16,7 @@ class Main extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.blue, backgroundColor: Colors.white),
+              primarySwatch: Colors.yellow, backgroundColor: Colors.white),
         ),
         home: const Scaffold(
           body: MainPage(),
@@ -31,33 +31,36 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        const SizedBox(height: 10.0),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Data1(),
-            SizedBox(width: 10.0),
-            Data2(),
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            const SizedBox(height: 10.0),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Data1(),
+                SizedBox(width: 10.0),
+                Data2(),
+              ],
+            ),
+            const SizedBox(height: 10.0),
+            const Text('開關狀態',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10.0),
+            const Text('Switch01',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Data3(),
+            const SizedBox(height: 10.0),
+            const Text('感測器狀態',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10.0),
+            const Text('Sensor01',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Data4(),
+            const SizedBox(height: 10.0),
+            wallpaperLogin(),
           ],
-        ),
-        const SizedBox(height: 10.0),
-        const modeView(),
-        Text("註: A=AQI,B=CBAM,C=ALL",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 10.0),
-        const Text('開關狀態',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 10.0),
-        const Text('Switch01',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        const Data3(),
-        const SizedBox(height: 10.0),
-        wallpaperLogin(),
-      ],
-    ));
+        ));
   }
 }
 
@@ -120,7 +123,7 @@ class _Data2State extends State<Data2> {
         children: <Widget>[
           Text('$LoginName',
               style:
-                  const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
+              const TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
         ],
       ),
     );
@@ -137,6 +140,20 @@ class Data3 extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [SwitchTable1()]),
+    );
+  }
+}
+
+class Data4 extends StatelessWidget {
+  const Data4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Sensor01Result()]),
     );
   }
 }

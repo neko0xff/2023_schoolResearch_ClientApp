@@ -203,10 +203,10 @@ class BtnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 140.0,
       height: 50.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        child: const Text("清除填入內容"),
         onPressed: () {
           clearInput();
         },
@@ -360,7 +360,7 @@ class BtnGoBack extends StatelessWidget {
           Navigator.pop(context);
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 50)),
-        child: const Text('Go Back'),
+        child: const Text('回上頁'),
       ),
     );
   }

@@ -64,9 +64,11 @@ class _InputGetState extends State<InputGet> {
           PostStr(),
           SizedBox(height: 10.0),
           Text("公式: 產品碳含量= 排放量/產品活動數據(生產量)"),
+          Text("備註: 簡單和中間產品的運算公式相同"),
           SizedBox(height: 10.0),
           BtnView(),
           SizedBox(height: 10.0),
+
         ],
       ),
     );
@@ -88,12 +90,15 @@ class PostStr extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text("特定產品排放量",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         SizedBox(height: 10),
+        Text("指定生產的產品",style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         DbCPL(),
         Tbuse(),
-        Text("排放來源",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        Tbproduction()
+        SizedBox(height: 10),
+        Text("產品活動數據",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10),
+        Tbproduction(),
       ],
     );
   }
@@ -228,10 +233,10 @@ class BtnClear extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 100.0,
+      width: 140.0,
       height: 50.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        child: const Text("清除填入內容"),
         onPressed: () {
           clearInput();
         },
@@ -259,15 +264,14 @@ class BtnView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BtnStrSend(),
-            ],
-          ),
-          SizedBox(height: 10.0),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BtnClear(),
+              Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                BtnStrSend(),
+                SizedBox(width: 10.0,height: 10.0),
+                BtnClear(),
+              ])
             ],
           ),
           SizedBox(height: 10.0),
@@ -392,7 +396,7 @@ class BtnGoBack extends StatelessWidget {
           Navigator.pop(context);
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 50)),
-        child: const Text('Go Back'),
+        child: const Text('回上頁'),
       ),
     );
   }
