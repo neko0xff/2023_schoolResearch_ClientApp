@@ -66,7 +66,7 @@ class btnGoBack extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => ViewData()));
         },
         // ignore: sort_child_properties_last
-        child: const Text('Go Back'),
+        child: const Text('回上頁'),
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)));
   }
 }

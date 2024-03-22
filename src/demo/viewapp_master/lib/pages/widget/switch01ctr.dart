@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 
+var Color_active = Colors.green;
+var Color_inactive = Colors.blue;
+
 class Switch01ctr extends StatefulWidget {
   const Switch01ctr({super.key});
 
@@ -132,11 +135,11 @@ class Fan1ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan1,
-          activeColor: Colors.blue,
+          activeColor: Color_active,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
-          inactiveTrackColor: Colors.green,
+          inactiveTrackColor: Color_inactive,
         ),
       ],
     );
@@ -183,11 +186,11 @@ class Fan2ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan2,
-          activeColor: Colors.blue,
+          activeColor: Color_active,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
-          inactiveTrackColor: Colors.green,
+          inactiveTrackColor: Color_inactive,
         ),
       ],
     );

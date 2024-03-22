@@ -63,7 +63,7 @@ class btn1 extends StatelessWidget {
               MaterialPageRoute(builder: (context) => CreatePDFViewPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
-        child: Text('Create a PDF'));
+        child: Text('建立PDF檔'));
   }
 }
 
@@ -89,7 +89,7 @@ class btnGoBack extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => ViewData()));
       },
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
     );
   }
 }

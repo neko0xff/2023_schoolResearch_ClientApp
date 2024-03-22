@@ -58,7 +58,7 @@ class btn1 extends StatelessWidget {
               MaterialPageRoute(builder: (context) => switchCtrPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        child: Text('Switch'));
+        child: Text('開關控制'));
   }
 }
 
@@ -73,6 +73,6 @@ class btn2 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => valueCtrPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        child: Text('User\nCustom\nValue', textAlign: TextAlign.center));
+        child: Text('使用者\n自訂值', textAlign: TextAlign.center));
   }
 }

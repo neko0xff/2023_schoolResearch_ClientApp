@@ -99,7 +99,7 @@ class btnGoBack extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => NewsData()));
       },
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
     );
   }

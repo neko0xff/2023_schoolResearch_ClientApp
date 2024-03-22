@@ -64,7 +64,7 @@ class btn1 extends StatelessWidget {
               MaterialPageRoute(builder: (context) => tableViewPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        child: Text('Table', textAlign: TextAlign.center));
+        child: Text('表格', textAlign: TextAlign.center));
   }
 }
 
@@ -79,7 +79,7 @@ class btn2 extends StatelessWidget {
               MaterialPageRoute(builder: (context) => barchartViewPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        child: Text('Bar\nChart', textAlign: TextAlign.center));
+        child: Text('長條圖', textAlign: TextAlign.center));
   }
 }
 
@@ -94,6 +94,6 @@ class btn3 extends StatelessWidget {
               MaterialPageRoute(builder: (context) => linecartViewPage()));
         },
         style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        child: Text('Line\nChart', textAlign: TextAlign.center));
+        child: Text('折線圖', textAlign: TextAlign.center));
   }
 }

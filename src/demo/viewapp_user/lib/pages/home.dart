@@ -37,10 +37,10 @@ class HomePage extends StatelessWidget {
             dividerColor: Colors.white,
             labelPadding: EdgeInsets.zero,
             tabs: <Widget>[
-              Tab(icon: Icon(Icons.home), text: "Main"),
-              Tab(icon: Icon(Icons.list), text: "Data"),
-              Tab(icon: Icon(Icons.switch_right_sharp), text: "Control"),
-              Tab(icon: Icon(Icons.account_balance_outlined), text: "News"),
+              Tab(icon: Icon(Icons.home), text: "主頁"),
+              Tab(icon: Icon(Icons.list), text: "資料"),
+              Tab(icon: Icon(Icons.switch_right_sharp), text: "控制"),
+              Tab(icon: Icon(Icons.account_balance_outlined), text: "資訊"),
             ],
           ),
         ),
@@ -96,15 +96,15 @@ class DrawerMenu extends StatelessWidget {
 class BtnLogOut extends StatelessWidget {
   BtnLogOut({super.key});
   LocalNotification notification = LocalNotification(
-    title: "Tip",
-    body: "Now Logout",
+    title: "提示",
+    body: "現在使用者登出",
   );
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: const CircleAvatar(child: Icon(Icons.arrow_back)),
-      title: const Text('Logout'),
+      title: const Text('登出'),
       onTap: () {
         notification.show(); //for Windows,Linux.macOS
         toLoginPage(context);
@@ -125,7 +125,7 @@ class BtnUpdateUser extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const CircleAvatar(child: Icon(Icons.account_circle_outlined)),
-      title: const Text('Update User data'),
+      title: const Text('更新使用者資料'),
       onTap: () {
         toUpdateUserPage(context);
       },
@@ -145,7 +145,7 @@ class BtnAbout extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const CircleAvatar(child: Icon(Icons.info)),
-      title: const Text('About'),
+      title: const Text('關於'),
       onTap: () {
         toAboutPage(context);
       },

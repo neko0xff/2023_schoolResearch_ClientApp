@@ -56,7 +56,7 @@ class DataAQI extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("碳排放(自動)",
+                  Text("碳排放",
                       style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
                   SizedBox(width: 10),
                 ]),
@@ -174,7 +174,7 @@ class btnGoBack extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => const NewsData()));
       },
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
     );
   }
 }

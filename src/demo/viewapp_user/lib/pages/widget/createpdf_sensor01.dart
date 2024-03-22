@@ -104,7 +104,7 @@ class _PDFScreenState extends State<PDFScreen> {
                   createPdfFile(data);
                   savePdfFile();
                 },
-                child: const Text('Output PDF'),
+                child: const Text('輸出PDF檔'),
               ),
             ],
           ),
@@ -132,7 +132,7 @@ class _PDFScreenState extends State<PDFScreen> {
           onPressed: () {
             Share.shareFiles([pdfFile]);
           },
-          child: const Text('Share PDF'),
+          child: const Text('分享PDF檔'),
         ),
       ],
     );
@@ -268,7 +268,7 @@ class BtnGoBack extends StatelessWidget {
       onPressed: () {
         Navigator.pop(context);
       },
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
     );
   }
 }

@@ -33,7 +33,7 @@ class ControlPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SizedBox(height: 10.0),
-        Text("Switch Control",
+        Text("開關控制",
             style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
         SizedBox(height: 10.0),
         Text("Switch01",
@@ -67,7 +67,7 @@ class btnGoBack extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Control()));
       },
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
     );
   }

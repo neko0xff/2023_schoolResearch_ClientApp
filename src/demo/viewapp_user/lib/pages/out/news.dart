@@ -50,31 +50,31 @@ class Data1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("官方資料",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              SizedBox(width: 10),
-            ]),
-        SizedBox(height: 10),
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [btn1(), SizedBox(width: 10), btn4()]
-        ),
-        SizedBox(height: 10.0),
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [btn2(), SizedBox(width: 10), btn3()]
-        ),
-      ],
-    ));
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("官方資料",
+                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                  SizedBox(width: 10),
+                ]),
+            SizedBox(height: 10),
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [btn1(), SizedBox(width: 10), btn4()]
+            ),
+            SizedBox(height: 10.0),
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [SizedBox(width: 10), btn3()]
+            ),
+          ],
+        ));
   }
 }
 
@@ -93,21 +93,6 @@ class btn1 extends StatelessWidget {
   }
 }
 
-class btn2 extends StatelessWidget {
-  const btn2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CfootPage()));
-        },
-        child: Text('碳排放\n手動', textAlign: TextAlign.center));
-  }
-}
-
 class btn3 extends StatelessWidget {
   const btn3({super.key});
 
@@ -119,7 +104,7 @@ class btn3 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CfootPage()));
         },
-        child: Text('碳排放\n自動', textAlign: TextAlign.center));
+        child: Text('碳排放', textAlign: TextAlign.center));
   }
 }
 

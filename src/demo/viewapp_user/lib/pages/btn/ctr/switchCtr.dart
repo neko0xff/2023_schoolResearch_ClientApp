@@ -29,23 +29,23 @@ class ControlPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        SizedBox(height: 10.0),
-        Text("Switch Control",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10.0),
-        Text("Switch01",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10.0),
-        Control1(),
-        SizedBox(height: 10.0),
-        btnGoBack(),
-        SizedBox(height: 5.0),
-        wallpaperLogin(),
-      ],
-    ));
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            Text("開關控制",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10.0),
+            Text("Switch01",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10.0),
+            Control1(),
+            SizedBox(height: 10.0),
+            btnGoBack(),
+            SizedBox(height: 5.0),
+            wallpaperLogin(),
+          ],
+        ));
   }
 }
 
@@ -67,7 +67,7 @@ class btnGoBack extends StatelessWidget {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Control()));
       },
-      child: const Text('Go Back'),
+      child: const Text('回上頁'),
       style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
     );
   }

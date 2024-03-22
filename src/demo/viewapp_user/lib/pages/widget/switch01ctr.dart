@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_user/modules/PreferencesUtil.dart';
 
+var Color_active = Colors.green;
+var Color_inactive = Colors.blue;
+
 class Switch01ctr extends StatefulWidget {
   const Switch01ctr({super.key});
 
@@ -35,7 +38,7 @@ class _Switch01ctrState extends State<Switch01ctr> {
   void _connectToServer() async {
     /*連線部分*/
     final String? serverSource =
-        await PreferencesUtil.getString("serverSource");
+    await PreferencesUtil.getString("serverSource");
     String status_fan1 = _switchSelectedFan1 ? '1' : '0';
     String status_fan2 = _switchSelectedFan2 ? '1' : '0';
     var url_fan1 = Uri.parse(
@@ -106,8 +109,8 @@ class Fan1ctr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MaterialStateProperty<Color?> overlayColor =
-        MaterialStateProperty.resolveWith<Color?>(
-      (Set<MaterialState> states) {
+    MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
         // Material color when switch is selected.
         if (states.contains(MaterialState.selected)) {
           return Colors.amber.withOpacity(0.54);
@@ -132,10 +135,11 @@ class Fan1ctr extends StatelessWidget {
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan1,
-          activeColor: Colors.blue,
+          activeColor: Color_active,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+          inactiveTrackColor: Color_inactive,
         ),
       ],
     );
@@ -156,8 +160,8 @@ class Fan2ctr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MaterialStateProperty<Color?> overlayColor =
-        MaterialStateProperty.resolveWith<Color?>(
-      (Set<MaterialState> states) {
+    MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
         // Material color when switch is selected.
         if (states.contains(MaterialState.selected)) {
           return Colors.amber.withOpacity(0.54);
@@ -176,16 +180,17 @@ class Fan2ctr extends StatelessWidget {
       children: <Widget>[
         const SizedBox(width: 20),
         const Text(
-          "Fan2 ",
+          "Fan2",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: 10),
         Switch(
           value: switchSelectedFan2,
-          activeColor: Colors.blue,
+          activeColor: Color_active,
           onChanged: onChanged,
           overlayColor: overlayColor,
           thumbColor: const MaterialStatePropertyAll<Color>(Colors.black),
+          inactiveTrackColor: Color_inactive,
         ),
       ],
     );

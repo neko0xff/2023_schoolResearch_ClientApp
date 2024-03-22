@@ -64,7 +64,7 @@ class DataAQI extends StatelessWidget {
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn1(),SizedBox(width: 10), btn2() ]),
+                children: [ btn5(),SizedBox(width: 10), btn4() ]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
@@ -74,12 +74,12 @@ class DataAQI extends StatelessWidget {
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn4() ]),
+                children: [ btn1() ]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn5() ]),
+                children: [ btn2() ]),
             SizedBox(height: 10),
             btnGoBack(),
           ],
