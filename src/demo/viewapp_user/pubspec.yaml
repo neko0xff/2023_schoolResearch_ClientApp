@@ -47,7 +47,8 @@ dependency_overrides:
   pdf: ^3.10.6
   printing: ^5.11.1
   share_plus: ^7.2.1
-  syncfusion_flutter_pdfviewer: ^23.1.39
+  syncfusion_flutter_pdfviewer: <=24.0.0-alpha.2
+  pdf_widget_wrapper: ^1.0.4
   url_launcher: ^6.2.1
   flutter_launcher_icons: ^0.13.1
 
