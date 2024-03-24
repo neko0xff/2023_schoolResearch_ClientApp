@@ -10,7 +10,11 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("關於本App"),
+        title: const Text("關於本App",
+          style: TextStyle(
+            color: Colors.black, // 設置文字顏色為黑色
+          ),
+        ),
         automaticallyImplyLeading: true,
       ),
       backgroundColor: Colors.white,
@@ -111,8 +115,13 @@ class btnGithub extends StatelessWidget {
       width: 200.0,
       height: 50.0,
       child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
         onPressed: launchURL,
-        child: const Text("Github"),
+        child: const Text("Github",
+            style: TextStyle(color: Colors.black)
+        ),
       ),
     );
   }
@@ -133,8 +142,13 @@ class btnTwitter extends StatelessWidget {
       width: 200.0,
       height: 50.0,
       child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
         onPressed: launchURL,
-        child: const Text("X(Twitter)"),
+        child: const Text("X(Twitter)",
+            style: TextStyle(color: Colors.black)
+        ),
       ),
     );
   }
@@ -155,8 +169,13 @@ class btnMastdon extends StatelessWidget {
       width: 200.0,
       height: 50.0,
       child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
         onPressed: launchURL,
-        child: const Text("Mastdon(mas.to)"),
+        child: const Text("Mastdon(mas.to)",
+            style: TextStyle(color: Colors.black)
+        ),
       ),
     );
   }

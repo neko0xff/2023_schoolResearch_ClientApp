@@ -225,7 +225,12 @@ class btnClear extends StatelessWidget {
       width: 100.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Clear",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           clearInput();
         },
@@ -248,7 +253,12 @@ class btnUpdateSend extends StatelessWidget {
       width: 100.0,
       height: 40.0,
       child: ElevatedButton(
-        child: const Text("Update"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Update",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           sendUserData(context);
         },
@@ -315,6 +325,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Update User Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -336,6 +347,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('User Data Update Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -357,6 +369,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -378,6 +391,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Password Fail!'),
           content: const Text('Please check you are Password!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),

@@ -155,7 +155,12 @@ class btnToLoginPage extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Login"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Login",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           pushToLogin(context);
         },
@@ -173,7 +178,12 @@ class btnClear extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Clear",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           clearInput();
         },
@@ -196,7 +206,12 @@ class btnforgetSend extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Forget"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Forget",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           checkInputNull(context);
           cnServer(context);
@@ -256,6 +271,7 @@ class btnforgetSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Forget Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -277,6 +293,7 @@ class btnforgetSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection  Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),

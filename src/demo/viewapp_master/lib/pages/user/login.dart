@@ -19,11 +19,11 @@ const focusedcolor = Colors.green;
 const enablecolor = Colors.black;
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: InputGet(),
     );
@@ -39,12 +39,11 @@ class InputGet extends StatelessWidget {
       child: Column(
         children: <Widget>[
           wallpaperLogin(),
-          const SizedBox(height: 10.0),
-          const LoginStr(),
-          const SizedBox(height: 10.0),
-          const btnView(),
-          const SizedBox(height: 10.0),
-          //const PWA_Install(),
+          SizedBox(height: 20.0),
+          LoginStr(),
+          SizedBox(height: 20.0),
+          btnView(),
+          SizedBox(height: 20.0),
         ],
       ),
     );
@@ -55,10 +54,16 @@ class LoginStr extends StatelessWidget {
   const LoginStr({Key? key});
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[tbServerSource(), tbUsername(), tbPassword()],
+      children: const <Widget>[
+        tbServerSource(),
+        SizedBox(height: 10),
+        tbUsername(),
+        SizedBox(height: 10),
+        tbPassword(),
+      ],
     );
   }
 }
@@ -144,6 +149,7 @@ class btnView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(width: 50.0),
                 btnLoginSend(),
                 SizedBox(width: 50.0)
               ],
@@ -172,7 +178,12 @@ class btnLoginSend extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Login"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Login",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           checkInputNull(context);
           sendUserData(context);
@@ -247,6 +258,7 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Login Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -268,6 +280,7 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Password Fail!'),
           content: const Text('Please check you are Password!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -290,9 +303,11 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
-              child: const Text('OK'),
+              child: const Text('OK',
+              ),
               onPressed: () {
                 pushToLogin(context);
               },
@@ -318,14 +333,18 @@ class btnClear extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Clear",
+          style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           clearInput();
         },
       ),
     );
   }
-
   void clearInput() {
     serverSourceStr.text = "";
     usernameStr.text = "";
@@ -347,7 +366,12 @@ class btnToforgetPage extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Forget"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Forget",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           pushToforget(context);
         },

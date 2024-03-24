@@ -246,7 +246,12 @@ class btnRegisterSend extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Register"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Register",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           checkInputNull(context);
           sendUserData(context);
@@ -320,6 +325,7 @@ class btnRegisterSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Register Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               onPressed: () {
@@ -343,6 +349,7 @@ class btnRegisterSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Register Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -365,6 +372,7 @@ class btnRegisterSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Password Fail!'),
           content: const Text('Please check you are Password!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -387,6 +395,7 @@ class btnRegisterSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.yellow,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -417,7 +426,12 @@ class btnClear extends StatelessWidget {
       width: 150.0,
       height: 100.0,
       child: ElevatedButton(
-        child: const Text("Clear"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text("Clear",
+            style: TextStyle(color: Colors.black)
+        ),
         onPressed: () {
           clearInput();
         },
@@ -440,13 +454,23 @@ class btnGoBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AccountData()));
-      },
-      style: ElevatedButton.styleFrom(minimumSize: const Size(100, 80)),
-      child: const Text('Go Back'),
+    return SizedBox(
+      width: 150.0,
+      height: 100.0,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
+        ),
+        child: const Text('Go Back',
+            style: TextStyle(color: Colors.black)
+        ),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const AccountData()));
+        },
+
+      ),
     );
+
   }
 }
