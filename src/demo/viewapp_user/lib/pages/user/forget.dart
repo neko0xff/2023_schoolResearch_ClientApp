@@ -252,6 +252,7 @@ class btnforgetSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Forget Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -273,6 +274,7 @@ class btnforgetSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection  Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),

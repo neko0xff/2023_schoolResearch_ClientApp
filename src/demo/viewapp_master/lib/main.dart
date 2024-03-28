@@ -17,17 +17,14 @@ var backcolor = Colors.black26;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  PWAInstall().setup(installCallback: () {
+    debugPrint('APP INSTALLED!');
+  });
   // Check for PWA install prompt support (if necessary)
   if (defaultTargetPlatform == TargetPlatform.android) {
-    PWAInstall().setup(installCallback: () {
-        debugPrint('APP INSTALLED!');
-    });
-    PWAInstall().promptInstall_();
+    //PWAInstall().promptInstall_();
   }else if(defaultTargetPlatform == TargetPlatform.iOS){
-    PWAInstall().setup(installCallback: () {
-      debugPrint('APP INSTALLED!');
-    });
-    PWAInstall().promptInstall_();
+    //PWAInstall().promptInstall_();
   }
 
   runApp(viewAppMain());

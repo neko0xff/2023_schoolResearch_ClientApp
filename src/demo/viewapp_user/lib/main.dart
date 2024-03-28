@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pwa_install/pwa_install.dart';
 import 'package:viewapp_user/pages/out/about.dart';
@@ -9,10 +10,17 @@ import 'package:viewapp_user/pages/user/updateUser.dart';
 
 void main() async {
   // Add this
+
   PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
   });
-  PWAInstall().promptInstall_();
+  // Check for PWA install prompt support (if necessary)
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    //PWAInstall().promptInstall_();
+  }else if(defaultTargetPlatform == TargetPlatform.iOS){
+    //PWAInstall().promptInstall_();
+  }
+  //PWAInstall().promptInstall_();
   runApp(viewAppMain());
   await Future.delayed(const Duration(seconds: 1));
 }

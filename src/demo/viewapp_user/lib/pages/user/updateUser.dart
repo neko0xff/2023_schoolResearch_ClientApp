@@ -280,6 +280,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Update User Finnish!'),
           content: const Text('Please Go to Login Page,You now can Login!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -301,6 +302,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('User Data Update Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -322,6 +324,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -343,6 +346,7 @@ class btnUpdateSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Password Fail!'),
           content: const Text('Please check you are Password!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
