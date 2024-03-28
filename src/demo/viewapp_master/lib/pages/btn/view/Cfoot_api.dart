@@ -100,7 +100,8 @@ class btn1 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CfootTraffic_DB()));
         },
-        child: Text('交通', textAlign: TextAlign.center));
+        //交通
+        child: Text('產品流通', textAlign: TextAlign.center));
   }
 }
 
@@ -115,7 +116,7 @@ class btn2 extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CfootOther_DB()));
         },
-        child: Text('其它', textAlign: TextAlign.center));
+        child: Text('其它計算', textAlign: TextAlign.center));
   }
 }
 

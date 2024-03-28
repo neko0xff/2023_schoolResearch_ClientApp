@@ -1,29 +1,38 @@
 // ignore_for_file: avoid_web_libraries_in_flutter, use_key_in_widget_constructors, camel_case_types, depend_on_referenced_packages
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pwa_install/pwa_install.dart';
-import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_master/pages/out/about.dart';
 import 'package:viewapp_master/pages/user/forget.dart';
 import 'package:viewapp_master/pages/user/login.dart';
 import 'package:viewapp_master/pages/user/register.dart';
 import 'package:viewapp_master/pages/user/updateUser.dart';
 
+
 var focusedcolor = Colors.yellow;
 var backcolor = Colors.black26;
 
 void main() async {
-  PWAInstall().setup(installCallback: () {
-    debugPrint('APP INSTALLED!');
-  });
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Check for PWA install prompt support (if necessary)
+  if (defaultTargetPlatform == TargetPlatform.android) {
+    PWAInstall().setup(installCallback: () {
+        debugPrint('APP INSTALLED!');
+    });
+    PWAInstall().promptInstall_();
+  }else if(defaultTargetPlatform == TargetPlatform.iOS){
+    PWAInstall().setup(installCallback: () {
+      debugPrint('APP INSTALLED!');
+    });
+    PWAInstall().promptInstall_();
+  }
+
   runApp(viewAppMain());
   await Future.delayed(const Duration(seconds: 1));
-  /* localNotifier: Only Windows,Linux.macOS */
-  await localNotifier.setup(
-    appName: 'View App master v3',
-    shortcutPolicy:
-        ShortcutPolicy.requireCreate, // shortcutPolicy: 仅适用于 Windows
-  );
+
 }
 
 class viewAppMain extends StatelessWidget {

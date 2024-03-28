@@ -2,7 +2,6 @@
 // ignore_for_file: must_be_immutable, duplicate_ignore, non_constant_identifier_names, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_user/class/user.dart';
 import 'package:viewapp_user/modules/PreferencesUtil.dart';
 import 'package:viewapp_user/pages/out/control.dart';
@@ -94,11 +93,7 @@ class DrawerMenu extends StatelessWidget {
 }
 
 class BtnLogOut extends StatelessWidget {
-  BtnLogOut({super.key});
-  LocalNotification notification = LocalNotification(
-    title: "提示",
-    body: "現在使用者登出",
-  );
+  const BtnLogOut({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +101,6 @@ class BtnLogOut extends StatelessWidget {
       leading: const CircleAvatar(child: Icon(Icons.arrow_back)),
       title: const Text('登出'),
       onTap: () {
-        notification.show(); //for Windows,Linux.macOS
         toLoginPage(context);
       },
     );

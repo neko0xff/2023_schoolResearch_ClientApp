@@ -3,7 +3,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_user/class/user.dart';
 import 'package:viewapp_user/modules/PreferencesUtil.dart';
 import 'package:viewapp_user/pages/home.dart';
@@ -204,10 +203,6 @@ class btnLoginSend extends StatelessWidget {
         serverSource: serverSourceStr.text,
         LoginName: data["LoginName"],
         username: data["username"]);
-    LocalNotification notification = LocalNotification(
-      title: "Tip",
-      body: "Now Login User: ${data["LoginName"]} ",
-    );
 
     /*主迴圈*/
     if (code == "1") {
@@ -215,7 +210,6 @@ class btnLoginSend extends StatelessWidget {
       PreferencesUtil.saveString('serverSource', serverSourceStr.text);
       PreferencesUtil.saveString('username', data["username"]);
       PreferencesUtil.saveString('LoginName', data["LoginName"]);
-      notification.show(); //for Windows,Linux.macOS
       //Go To HomePage
       Navigator.push(
           context,
@@ -240,6 +234,7 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Login Fail!'),
           content: const Text('Please check you are Input Data!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -261,6 +256,7 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Password Fail!'),
           content: const Text('Please check you are Password!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),
@@ -282,6 +278,7 @@ class btnLoginSend extends StatelessWidget {
         return AlertDialog(
           title: const Text('Network Connection Fail!'),
           content: const Text('Please check you are Network & Server!'),
+          backgroundColor: Colors.blue,
           actions: <Widget>[
             ElevatedButton(
               child: const Text('OK'),

@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:pwa_install/pwa_install.dart';
-import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_user/pages/out/about.dart';
 import 'package:viewapp_user/pages/user/forget.dart';
 import 'package:viewapp_user/pages/user/login.dart';
@@ -13,14 +12,9 @@ void main() async {
   PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
   });
+  PWAInstall().promptInstall_();
   runApp(viewAppMain());
   await Future.delayed(const Duration(seconds: 1));
-  /* localNotifier: Only Windows,Linux.macOS */
-  await localNotifier.setup(
-    appName: 'View App User v3',
-    shortcutPolicy:
-        ShortcutPolicy.requireCreate,
-  );
 }
 
 class viewAppMain extends StatelessWidget {

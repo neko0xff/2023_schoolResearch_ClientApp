@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:local_notifier/local_notifier.dart';
 import 'package:viewapp_master/class/user.dart';
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
 import 'package:viewapp_master/pages/home.dart';
@@ -23,7 +22,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.white,
       body: InputGet(),
     );
@@ -39,11 +38,11 @@ class InputGet extends StatelessWidget {
       child: Column(
         children: <Widget>[
           wallpaperLogin(),
-          SizedBox(height: 20.0),
-          LoginStr(),
-          SizedBox(height: 20.0),
-          btnView(),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
+          const LoginStr(),
+          const SizedBox(height: 20.0),
+          const btnView(),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
@@ -54,10 +53,10 @@ class LoginStr extends StatelessWidget {
   const LoginStr({Key? key});
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const <Widget>[
+      children: <Widget>[
         tbServerSource(),
         SizedBox(height: 10),
         tbUsername(),
@@ -77,8 +76,8 @@ class tbServerSource extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: serverSourceStr,
-        decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.info),
+        decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.info),
             labelText: "Server",
             hintText: "Your Server Address",
             enabledBorder:
@@ -99,8 +98,8 @@ class tbUsername extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: usernameStr,
-        decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.person),
+        decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.person),
             labelText: "Username",
             hintText: "Your account username",
             enabledBorder:
@@ -122,8 +121,8 @@ class tbPassword extends StatelessWidget {
       child: TextFormField(
         controller: passwordStr,
         obscureText: true,
-        decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.lock),
+        decoration: const InputDecoration(
+            prefixIcon: Icon(Icons.lock),
             labelText: "Password",
             hintText: "Your account password",
             enabledBorder:
@@ -222,10 +221,6 @@ class btnLoginSend extends StatelessWidget {
         serverSource: serverSourceStr.text,
         LoginName: data["LoginName"],
         username: data["username"]);
-    LocalNotification notification = LocalNotification(
-      title: "Tip",
-      body: "Now Login User: ${data["LoginName"]} ",
-    );
 
     /*主迴圈*/
     if (code == "1") {
@@ -233,7 +228,6 @@ class btnLoginSend extends StatelessWidget {
       PreferencesUtil.saveString('serverSource', serverSourceStr.text);
       PreferencesUtil.saveString('username', data["username"]);
       PreferencesUtil.saveString('LoginName', data["LoginName"]);
-      notification.show(); //for Windows,Linux.macOS
       //Go To HomePage
       Navigator.push(
           context,
