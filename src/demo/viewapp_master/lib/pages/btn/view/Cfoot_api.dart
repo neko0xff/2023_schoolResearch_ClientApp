@@ -7,6 +7,7 @@ import 'package:viewapp_master/pages/widget/Cfoot/other_db.dart';
 import 'package:viewapp_master/pages/widget/CBAM/emissions_db.dart';
 import 'package:viewapp_master/pages/widget/CBAM/CC_simple_db.dart';
 import 'package:viewapp_master/pages/widget/CBAM/CC_CoPS_db.dart';
+import 'package:viewapp_master/pages/btn/table/cfootTable.dart';
 
 class CfootPage_api extends StatelessWidget {
   const CfootPage_api({super.key});
@@ -64,22 +65,22 @@ class DataAQI extends StatelessWidget {
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
+                children: [ btn6()]),
+            SizedBox(height: 10),
+            Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [ btn5(),SizedBox(width: 10), btn4() ]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn3()]),
+                children: [ btn1(),SizedBox(width: 10), btn2()]),
             SizedBox(height: 10),
             Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn1() ]),
-            SizedBox(height: 10),
-            Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [ btn2() ]),
+                children: [ btn3(),SizedBox(width: 10)]),
             SizedBox(height: 10),
             btnGoBack(),
           ],
@@ -160,6 +161,21 @@ class btn5 extends StatelessWidget {
               context, MaterialPageRoute(builder: (context) => CBAMCCcops_db()));
         },
         child: Text('CBAM \n 碳含量_複雜產品', textAlign: TextAlign.center));
+  }
+}
+
+class btn6 extends StatelessWidget {
+  const btn6({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        style: ElevatedButton.styleFrom(minimumSize: const Size(150, 100)),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => cfootTablePage()));
+        },
+        child: Text('各項物品碳排放', textAlign: TextAlign.center));
   }
 }
 

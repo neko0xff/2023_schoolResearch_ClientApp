@@ -38,6 +38,7 @@ class NewsPage extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 10.0),
             Data1(),
+            SizedBox(height: 10.0),
             wallpaperLogin(),
           ]),
     );
@@ -66,15 +67,9 @@ class Data1 extends StatelessWidget {
         Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [btn1(), SizedBox(width: 10), btn4()]
+            children: [btn1(), SizedBox(width: 10), btn3()]
         ),
-        SizedBox(height: 10.0),
-        Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [SizedBox(width: 10), btn3()]
-        ),
-      ],
+      ]
     ));
   }
 }
