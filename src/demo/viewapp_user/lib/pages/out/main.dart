@@ -5,6 +5,7 @@ import 'package:viewapp_user/modules/PreferencesUtil.dart';
 import 'package:viewapp_user/pages/table/switch01.dart';
 import 'package:viewapp_user/pages/table/sensor01_result.dart';
 import 'package:viewapp_user/pages/widget/wallpaper.dart';
+import 'package:viewapp_user/pages/widget/modeView.dart';
 
 class Main extends StatelessWidget {
   const Main({super.key});
@@ -43,6 +44,10 @@ class MainPage extends StatelessWidget {
                 Data2(),
               ],
             ),
+            const SizedBox(height: 10.0),
+            const modeView(),
+            Text("註: A=AQI,B=CBAM,C=ALL",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
             const SizedBox(height: 10.0),
             const Text('開關狀態',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
