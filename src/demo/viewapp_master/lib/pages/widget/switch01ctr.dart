@@ -1,4 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names, avoid_print
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:viewapp_master/modules/PreferencesUtil.dart';
@@ -27,13 +29,35 @@ class _Switch01ctrState extends State<Switch01ctr> {
   }
 
   void _getSwitchStatus() async {
-    bool? fan1Status = await PreferencesUtil.getBool("fan1ctr");
-    bool? fan2Status = await PreferencesUtil.getBool("fan2ctr");
-    setState(() {
-      _switchSelectedFan1 = fan1Status ?? false;
-      _switchSelectedFan2 = fan2Status ?? false;
-    });
+    final String? serverSource = await PreferencesUtil.getString("serverSource");
+    final Uri url = Uri.parse('http://$serverSource/read/statusNow/$setboards/viewALL');
+
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        data.forEach((switchData) {
+          final String name = switchData['name'];
+          final bool status = switchData['status'] == 1;
+          if (name == 'fan1') {
+            setState(() {
+              _switchSelectedFan1 = status;
+            });
+          } else if (name == 'fan2') {
+            setState(() {
+              _switchSelectedFan2 = status;
+            });
+          }
+        });
+      } else {
+        throw Exception('Failed to load switch status');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
+
+
 
   void _connectToServer() async {
     /*連線部分*/

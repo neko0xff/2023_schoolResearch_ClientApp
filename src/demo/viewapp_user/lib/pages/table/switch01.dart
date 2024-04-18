@@ -86,7 +86,7 @@ class _SwitchTable1State extends State<SwitchTable1> {
                     style: const TextStyle(fontSize: 25)),
               ),
               DataCell(
-                Text('${data[index]["status"]}',
+                Text(data[index]["status"] == 0 ? "關" : "開",
                     style: const TextStyle(fontSize: 25)),
               ),
             ],

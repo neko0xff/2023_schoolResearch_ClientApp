@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: unnecessary_import
 import 'package:flutter/services.dart';
 import 'package:pwa_install/pwa_install.dart';
 import 'package:viewapp_master/pages/out/about.dart';
