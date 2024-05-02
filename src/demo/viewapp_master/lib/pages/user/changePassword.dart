@@ -28,6 +28,14 @@ class changePasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("忘記密碼",
+          style: TextStyle(
+            color: Colors.black, // 設置文字顏色為黑色
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ),
       backgroundColor: Colors.white,
       body: InputGet(
           key: null,
@@ -141,7 +149,7 @@ class InputTip extends StatelessWidget {
         const SizedBox(height: 10),
         const Column(
           children: [
-            Text("Please Input New Password!",
+            Text("請輸新的密碼，且按下Update進行生效!",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
             SizedBox(height: 10)
           ],

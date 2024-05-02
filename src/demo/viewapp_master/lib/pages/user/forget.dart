@@ -21,7 +21,15 @@ class forgetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("忘記密碼",
+          style: TextStyle(
+            color: Colors.black, // 設置文字顏色為黑色
+          ),
+        ),
+        automaticallyImplyLeading: true,
+      ),
       backgroundColor: Colors.white,
       body: InputGet(),
     );
@@ -133,38 +141,9 @@ class btnView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               SizedBox(width: 20.0),
-              btnToLoginPage(),
               SizedBox(width: 20.0),
             ]),
       ],
-    );
-  }
-}
-
-class btnToLoginPage extends StatelessWidget {
-  const btnToLoginPage({super.key});
-
-  //跳回登入主頁
-  void pushToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 150.0,
-      height: 100.0,
-      child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
-        ),
-        child: const Text("Login",
-            style: TextStyle(color: Colors.black)
-        ),
-        onPressed: () {
-          pushToLogin(context);
-        },
-      ),
     );
   }
 }
@@ -209,7 +188,7 @@ class btnforgetSend extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow),
         ),
-        child: const Text("Forget",
+        child: const Text("Next",
             style: TextStyle(color: Colors.black)
         ),
         onPressed: () {
