@@ -9,6 +9,8 @@ import 'package:viewapp_user/modules/PreferencesUtil.dart';
 
 TextEditingController passwordStr = TextEditingController();
 TextEditingController ConfirmPasswordStr = TextEditingController();
+var focusedcolor = Colors.blue;
+var enablecolor = Colors.black;
 
 class changePasswordPage extends StatelessWidget {
   String? username;
@@ -155,8 +157,15 @@ class InputTip extends StatelessWidget {
   }
 }
 
-class tbPassword extends StatelessWidget {
+class tbPassword extends StatefulWidget {
   const tbPassword({super.key});
+
+  @override
+  _tbPasswordState createState() => _tbPasswordState();
+}
+
+class _tbPasswordState extends State<tbPassword> {
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -164,22 +173,40 @@ class tbPassword extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: passwordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.lock),
-            labelText: "New Password",
-            hintText: "Your account New password",
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+        obscureText: _isObscure, // Set obscureText based on _isObscure.
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.lock),
+          labelText: "Password",
+          hintText: "Your account password",
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              setState(() {
+                _isObscure = !_isObscure;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
 }
 
-class tbConfirmPassword extends StatelessWidget {
+class tbConfirmPassword extends StatefulWidget {
   const tbConfirmPassword({super.key});
+
+  @override
+  _tbConfirmPasswordState createState() => _tbConfirmPasswordState();
+}
+
+class _tbConfirmPasswordState extends State<tbConfirmPassword> {
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -187,15 +214,26 @@ class tbConfirmPassword extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
         controller: ConfirmPasswordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.lock),
-            labelText: "Confirm Password",
-            hintText: "Password Check",
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+        obscureText: _isObscure, // Set obscureText based on _isObscure.
+        decoration: InputDecoration(
+          prefixIcon: const Icon(Icons.lock),
+          labelText: "Confirm Password",
+          hintText: "Password Check",
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: enablecolor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: focusedcolor),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              setState(() {
+                _isObscure = !_isObscure;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
