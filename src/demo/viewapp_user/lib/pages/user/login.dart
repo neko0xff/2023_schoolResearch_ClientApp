@@ -47,10 +47,13 @@ class LoginStr extends StatelessWidget {
   const LoginStr({super.key});
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[tbServerSource(), tbUsername(), tbPassword()],
+      children: <Widget>[
+        const tbServerSource(),
+        const tbUsername(),
+        tbPassword()],
     );
   }
 }
@@ -99,24 +102,43 @@ class tbUsername extends StatelessWidget {
   }
 }
 
-class tbPassword extends StatelessWidget {
-  const tbPassword({super.key});
+class tbPassword extends StatefulWidget {
+  tbPassword({Key? key}) : super(key: key);
+
+  @override
+  _tbPasswordState createState() => _tbPasswordState();
+}
+
+class _tbPasswordState extends State<tbPassword> {
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 5.0),
       child: TextFormField(
+        // Assuming `passwordStr` is defined somewhere else.
         controller: passwordStr,
-        obscureText: true,
-        decoration: const InputDecoration(
-            prefixIcon: Icon(Icons.lock),
-            labelText: "Password",
-            hintText: "Your account password",
-            enabledBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-            focusedBorder:
-                OutlineInputBorder(borderSide: BorderSide(color: Colors.blue))),
+        obscureText: _isObscure, // Set obscureText based on _isObscure.
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.lock),
+          labelText: "Password",
+          hintText: "Your account password",
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+            onPressed: () {
+              setState(() {
+                _isObscure = !_isObscure;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
