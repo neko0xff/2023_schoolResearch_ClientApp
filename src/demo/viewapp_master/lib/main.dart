@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: unnecessary_import
 import 'package:flutter/services.dart';
-import 'package:pwa_install/pwa_install.dart';
+// import 'package:pwa_install/pwa_install.dart';
 import 'package:viewapp_master/pages/out/about.dart';
 import 'package:viewapp_master/pages/user/forget.dart';
 import 'package:viewapp_master/pages/user/login.dart';
@@ -18,9 +18,9 @@ var backcolor = Colors.black26;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  PWAInstall().setup(installCallback: () {
+  /*PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
-  });
+  });*/
   // Check for PWA install prompt support (if necessary)
   if (defaultTargetPlatform == TargetPlatform.android) {
     //PWAInstall().promptInstall_();

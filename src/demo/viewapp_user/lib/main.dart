@@ -2,7 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:pwa_install/pwa_install.dart';
+//import 'package:pwa_install/pwa_install.dart';
 import 'package:viewapp_user/pages/out/about.dart';
 import 'package:viewapp_user/pages/user/forget.dart';
 import 'package:viewapp_user/pages/user/login.dart';
@@ -11,9 +11,9 @@ import 'package:viewapp_user/pages/user/updateUser.dart';
 void main() async {
   // Add this
 
-  PWAInstall().setup(installCallback: () {
+  /*PWAInstall().setup(installCallback: () {
     debugPrint('APP INSTALLED!');
-  });
+  });*/
   // Check for PWA install prompt support (if necessary)
   if (defaultTargetPlatform == TargetPlatform.android) {
     //PWAInstall().promptInstall_();
