@@ -28,39 +28,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          titleSpacing: 0.0,
-          title: const TabBar(
-            labelColor: Colors.white,
-            dividerColor: Colors.white,
-            labelPadding: EdgeInsets.zero,
-            tabs: <Widget>[
-              Tab(icon: Icon(Icons.home), text: "主頁"),
-              Tab(icon: Icon(Icons.list), text: "資料"),
-              Tab(icon: Icon(Icons.switch_right_sharp), text: "控制"),
-              Tab(icon: Icon(Icons.account_balance_outlined), text: "資訊"),
-              Tab(icon: Icon(Icons.account_box), text: "帳戶管理")
-            ],
+          length: 5,
+          child: Scaffold(
+            appBar: AppBar(
+              titleSpacing: 0.0,
+              title: const TabBar(
+                labelColor: Colors.white,
+                dividerColor: Colors.white,
+                labelPadding: EdgeInsets.zero,
+                tabs: <Widget>[
+                  Tab(icon: Icon(Icons.home), text: "主頁"),
+                  Tab(icon: Icon(Icons.list), text: "資料"),
+                  Tab(icon: Icon(Icons.switch_right_sharp), text: "控制"),
+                  Tab(icon: Icon(Icons.account_balance_outlined), text: "資訊"),
+                  Tab(icon: Icon(Icons.account_box), text: "帳戶管理")
+                ],
+              ),
+            ),
+            body: TabBarView(
+              children: <Widget>[
+                Main(),
+                ViewData(),
+                Control(),
+                NewsData(),
+                AccountData()
+              ],
+            ),
+            drawer: DrawerMenu(
+              key: null,
+              username: username,
+              LoginName: LoginName,
+              serverSource: serverSource,
+            ),
           ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            Main(),
-            ViewData(),
-            Control(),
-            NewsData(),
-            AccountData()
-          ],
-        ),
-        drawer: DrawerMenu(
-          key: null,
-          username: username,
-          LoginName: LoginName,
-          serverSource: serverSource,
-        ),
-      ),
     );
   }
 }

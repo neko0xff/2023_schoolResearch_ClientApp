@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -56,6 +58,24 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            minifyEnabled true  //资源压缩设置
+
+            //读取代码压缩配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 自訂輸出檔名
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = "com.neko0xff.viewapp_master"
+            def versionName = variant.versionName
+            def buildType = variant.buildType.name
+            def date = new Date()
+            def formattedDate = new SimpleDateFormat("yyyyMMdd").format(date)
+            def newApkName = "${appName}_${versionName}_${formattedDate}_${buildType}.apk"
+
+            output.outputFileName = newApkName
         }
     }
 }
@@ -64,4 +84,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+
+}
