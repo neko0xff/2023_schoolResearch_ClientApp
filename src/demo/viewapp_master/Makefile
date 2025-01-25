@@ -1,8 +1,8 @@
-CC1:=docker compose
-CC2:=flutter
-IMAGE:=viewapp_master
+CC1 := docker compose
+CC2 := flutter
+IMAGE := viewapp_master
 
-.PHONY: build up logs stop clean apk linux
+.PHONY: all apk linux build up logs stop clean debug-chrome
 
 all: build
 apk: build-apk
@@ -28,3 +28,6 @@ build-apk:
 
 build-linux:
 	@$(CC2) build linux
+
+debug-chrome:
+	@$(CC2) run -d chrome
