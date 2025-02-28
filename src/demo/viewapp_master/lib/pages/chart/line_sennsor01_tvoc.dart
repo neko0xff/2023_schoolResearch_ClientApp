@@ -97,7 +97,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
     final response = await http.get(uri);
     final result = response.body;
     final data1 = jsonDecode(result);
-    print(data1);
+    //print(data1);
     return data1;
   }
 
@@ -110,7 +110,7 @@ class _LineViewtvocState extends State<LineViewtvoc> {
     final response = await http.get(uri);
     final result = response.body;
     final data = jsonDecode(result);
-    print(data);
+    //print(data);
     data2 = List<dynamic>.from(data);
     return data2;
   }

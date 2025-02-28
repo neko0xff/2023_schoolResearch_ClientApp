@@ -64,7 +64,7 @@ class _PDFScreenState extends State<PDFScreen> {
     final response = await http.get(uri);
     final result = response.body;
     final data = jsonDecode(result);
-    print(data[0]);
+    //print(data[0]);
     return Map<String, dynamic>.from(data[0]);
   }
 

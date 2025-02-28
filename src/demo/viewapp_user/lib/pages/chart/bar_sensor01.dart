@@ -32,7 +32,7 @@ class _BarChartView1State extends State<BarView1> {
     final response = await http.get(uri);
     final result = response.body;
     final data = jsonDecode(result);
-    print(data[0]);
+    //print(data[0]);
     _data = Map<String, dynamic>.from(data[0]);
     return _data;
   }
